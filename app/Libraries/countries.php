@@ -1,0 +1,32 @@
+<?php 
+
+return [
+    'BE' => 'België',
+    'BG' => 'Bulgarije',
+    'CY' => 'Cyprus',
+    'DK' => 'Denemarken',
+    'DE' => 'Duitsland',
+    'EE' => 'Estland',
+    'FI' => 'Finland',
+    'FR' => 'Frankrijk',
+    'GR' => 'Griekenland',
+    'HU' => 'Hongarije',
+    'IE' => 'Ierland',
+    'IT' => 'Italië',
+    'HR' => 'Kroatië',
+    'LV' => 'Letland',
+    'LT' => 'Litouwen',
+    'LU' => 'Luxemburg',
+    'MT' => 'Malta',
+    'NL' => 'Nederland',
+    'AT' => 'Oostenrijk',
+    'PL' => 'Polen',
+    'PT' => 'Portugal',
+    'RO' => 'Roemenië',
+    'SI' => 'Slovenië',
+    'SK' => 'Slowakije',
+    'ES' => 'Spanje',
+    'CZ' => 'Tsjechië',
+    'SE' => 'Zweden',
+];
+?>

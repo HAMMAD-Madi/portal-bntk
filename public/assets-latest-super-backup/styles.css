@@ -1,0 +1,229 @@
+:root {
+  --color-bg:        #f0f2f5;
+  --color-surface:   #ffffff;
+  --color-primary:   #1f2937;
+  --color-accent:    #3b82f6;
+  --color-muted:     #6b7280;
+  --color-border:    #e5e7eb;
+  --radius:          0.75rem;
+  --spacing:         1rem;
+  --transition-fast: 150ms ease-in-out;
+  --font-base:       'Inter', sans-serif;
+
+  /* unified control height */
+  --control-height: 2.75rem;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-base);
+  background: var(--color-bg);
+  color: var(--color-primary);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+header, footer {
+  background: var(--color-surface);
+  padding: var(--spacing);
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--spacing);
+}
+
+/* camera preview */
+.camera {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: var(--spacing);
+}
+
+.camera video { width: 100%; display: block; }
+
+/* ───── Controls ───── */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;    /* vertical centering */
+  gap: 0.5rem;
+  margin-bottom: var(--spacing);
+}
+
+/* Make label+control sit inline */
+.field.inline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Uniform height on all controls */
+.controls select,
+.controls input[type="file"],
+.controls button {
+  height: var(--control-height);
+  line-height: var(--control-height);
+  vertical-align: middle;
+}
+
+/* Style selects & file inputs */
+select,
+input[type="file"] {
+  padding: 0 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  font-size: 0.875rem;
+  color: var(--color-primary);
+  transition: border-color var(--transition-fast);
+}
+
+select:focus,
+input[type="file"]:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+/* Buttons */
+button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1rem; /* vertical set by --control-height */
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+button:hover:not(:disabled) {
+  background: #2563eb;
+  transform: translateY(-1px);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+button:disabled {
+  background: var(--color-border);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Spinner */
+.spinner {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 3px solid rgba(0,0,0,0.1);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-left: 0.5rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.hidden { display: none !important; }
+
+/* ───── Results ───── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--spacing);
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card .title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0.75rem 1rem 0.25rem;
+}
+
+.card .subtitle,
+.card .score {
+  font-size: 0.875rem;
+  margin: 0 1rem;
+  color: var(--color-muted);
+}
+
+.card .score {
+  font-weight: 600;
+  margin-top: 0.25rem;
+  color: var(--color-primary);
+}
+
+.card .link {
+  margin: 0.75rem 1rem 1rem;
+  font-size: 0.875rem;
+  text-decoration: none;
+  color: var(--color-accent);
+  transition: color var(--transition-fast);
+}
+
+.card .link:hover {
+  color: #1e40af;
+}
+
+.preview {
+  max-width: 100%;
+  border-radius: var(--radius);
+  margin-bottom: var(--spacing);
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .controls button {
+    width: 100%;
+    justify-content: center;
+  }
+}

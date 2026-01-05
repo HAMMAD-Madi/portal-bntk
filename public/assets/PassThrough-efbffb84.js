@@ -1,0 +1,1 @@
+import{_ as o,i as s,o as r,c as t,l as _}from"./app-be4f7d6f.js";const a={__name:"PassThrough",setup(c){return(n,u)=>{const e=s("router-view");return r(),t("div",null,[_(e)])}}},p=o(a,[["__file","PassThrough.vue"]]);export{p as default};
