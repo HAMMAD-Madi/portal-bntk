@@ -1639,7 +1639,7 @@
                             <div class="sub-items">
                                 <!-- HTML -->
                                 <div class="sub-item" id="voorraad-overzicht-item">
-                                    <a href="https://portal.bntk.eu/overview" class="nav-link" id="voorraad-overzicht-link">
+                                    <a href="http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/overview" class="nav-link" id="voorraad-overzicht-link">
                                         <span class="nav-icon">📊</span>
                                         <span class="nav-text">Overzicht</span>
                                     </a>
@@ -1890,7 +1890,7 @@
                                             <td><input type="checkbox" class="order-check" value="<?= $order->id ?>"></td>
                                             <td><?= $order->created_at ?></td>
                                             <td><span class="badge badge-packed">PACKED</span></td>
-                                            <td> <a href="https://portal.bntk.eu/shipping-detail/<?= $order->marketplace_order_id ?>"># <?= $order->marketplace_order_id ?></a></a></td>
+                                            <td> <a href="http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/shipping-detail/<?= $order->marketplace_order_id ?>"># <?= $order->marketplace_order_id ?></a></a></td>
                                             <td><?= $order->customer_name ?></td>
                                             <td><span class="platform-badge platform-bol"><?= $order->marketplace_type ?></span></td>
                                             <td>€ <?= $order->subtotal ?></td>
@@ -1966,7 +1966,7 @@
                                             <td><input type="checkbox" class="order-check"></td>
                                             <td><?= $order->created_at ?></td>
                                             <td><span class="badge badge-shipped">SHIPPED</span></td>
-                                            <td> <a href="https://portal.bntk.eu/shipping-detail/<?= $order->marketplace_order_id ?>"># <?= $order->marketplace_order_id ?></a></a></td>
+                                            <td> <a href="http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/shipping-detail/<?= $order->marketplace_order_id ?>"># <?= $order->marketplace_order_id ?></a></a></td>
                                             <td><?= $order->customer_name ?></td>
                                             <td><span class="platform-badge platform-bl"><?= $order->marketplace_type ?></span></td>
                                             <td>€ <?= $order->subtotal ?></td>
@@ -2032,7 +2032,7 @@
                                             <td><input type="checkbox" class="order-check"></td>
                                             <td><?= $order->created_at ?></td>
                                             <td><span class="badge badge-completed">COMPLETED</span></td>
-                                            <td> <a href="https://portal.bntk.eu/shipping-detail/<?= $order->marketplace_order_id ?>"># <?= $order->marketplace_order_id ?></a></a></td>
+                                            <td> <a href="http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/shipping-detail/<?= $order->marketplace_order_id ?>"># <?= $order->marketplace_order_id ?></a></a></td>
                                             <td><?= $order->customer_name ?></td>
                                             <td><span class="platform-badge platform-bl"><?= $order->marketplace_type ?></span></td>
                                             <td>€ <?= $order->subtotal ?></td>
@@ -2134,7 +2134,7 @@
                                         <td><?= $count ?></td>
                                         <td><?= $order->marketplace_return_id ?></td>
                                         <td><span class="platform-badge platform-bol"><?= $order->marketplace_type ?></span></td>
-                                        <td> <a href="https://portal.bntk.eu/shipping-detail/<?= $order->marketplace_order_id ?>"># <?= $order->marketplace_order_id ?></a></a></td>
+                                        <td> <a href="http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/shipping-detail/<?= $order->marketplace_order_id ?>"># <?= $order->marketplace_order_id ?></a></a></td>
                                         <td><?= $order->customer_name ?? '--' ?></td>
                                         <td><?= $order->return_reason ?></td>
                                         <td>€<?= $order->total_amount ?></td>

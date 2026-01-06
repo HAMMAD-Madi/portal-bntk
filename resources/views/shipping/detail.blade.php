@@ -1598,7 +1598,7 @@
                             <div class="sub-items">
                                 <!-- HTML -->
                                 <div class="sub-item" id="voorraad-overzicht-item">
-                                    <a href="https://portal.bntk.eu/overview" class="nav-link" id="voorraad-overzicht-link">
+                                    <a href="http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/overview" class="nav-link" id="voorraad-overzicht-link">
                                         <span class="nav-icon">📊</span>
                                         <span class="nav-text">Overzicht</span>
                                     </a>
@@ -1736,7 +1736,7 @@
                 <div class="header-actions">
                     <button class="btn btn-primary" onclick="printPackingSlip()">🖨️ Print Packing Slip</button>
                     <!--<button class="btn btn-primary" onclick="downloadInvoice()">📄 Download Invoice</button>-->
-                    <button class="btn btn-secondary"> <a style="text-decoration: none; color: white;" href="https://portal.bntk.eu/all-shippings"> ← Back to Orders </a></button>
+                    <button class="btn btn-secondary"> <a style="text-decoration: none; color: white;" href="http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/all-shippings"> ← Back to Orders </a></button>
                 </div>
             </div>
             <div class="order-info">

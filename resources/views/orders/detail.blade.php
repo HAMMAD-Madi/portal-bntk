@@ -843,7 +843,7 @@
                             <div class="sub-items">
                                 <!-- HTML -->
                                 <div class="sub-item" id="voorraad-overzicht-item">
-                                    <a href="https://portal.bntk.eu/overview" class="nav-link" id="voorraad-overzicht-link">
+                                    <a href="http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/overview" class="nav-link" id="voorraad-overzicht-link">
                                         <span class="nav-icon">📊</span>
                                         <span class="nav-text">Overzicht</span>
                                     </a>
@@ -977,7 +977,7 @@
         <div class="main-content">
             <div class="header">
                 <div class="header-left">
-                    <a href="https://portal.bntk.eu/all-orders" class="back-btn">← Orders</a>
+                    <a href="http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/all-orders" class="back-btn">← Orders</a>
                     <div>
                         <div class="order-title">
                             <span class="platform-icon brickowl">BO</span>

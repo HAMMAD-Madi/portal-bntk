@@ -1052,7 +1052,7 @@
                             <div class="sub-items">
                                 <!-- HTML -->
                                 <div class="sub-item" id="voorraad-overzicht-item">
-                                    <a href="https://portal.bntk.eu/overview" class="nav-link" id="voorraad-overzicht-link">
+                                    <a href="http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/overview" class="nav-link" id="voorraad-overzicht-link">
                                         <span class="nav-icon">📊</span>
                                         <span class="nav-text">Overzicht</span>
                                     </a>
@@ -1348,8 +1348,8 @@ $sections = [
                             <td class="date">{{ date('d M Y', strtotime($order->created_at)) }}</td>
                             <td><span class="{{ $class }} status-badge">{{ $order->status }}</span></td>
                             <td>
-                                <a href="https://portal.bntk.eu/order-detail/{{ $order->marketplace_order_id }}" class="order-number">#{{ $order->order_number }}</a><br>
-                                <a href="https://portal.bntk.eu/order-detail/{{ $order->marketplace_order_id }}" class="order-details">{{ $order->marketplace_type }} #{{ $order->marketplace_order_id }}</a>
+                                <a href="http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/order-detail/{{ $order->marketplace_order_id }}" class="order-number">#{{ $order->order_number }}</a><br>
+                                <a href="http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/order-detail/{{ $order->marketplace_order_id }}" class="order-details">{{ $order->marketplace_type }} #{{ $order->marketplace_order_id }}</a>
                             </td>
                             <td>{{ $order->customer_name }}</td>
                             <td style="text-align:left;">NL</td>
