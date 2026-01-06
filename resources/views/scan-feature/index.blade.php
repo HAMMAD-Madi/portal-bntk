@@ -11,10 +11,10 @@
     <title>CrocoBricks Dashboard - Home</title>
       <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/public/assets/styles.css" />
-  <script defer src="http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/public/assets/js/yoo1.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+  <link rel="stylesheet" href="http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/assets/styles.css" />
+  <script defer src="http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/assets/js/yoo1.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/assets/styles/choices.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/choices.js/assets/scripts/choices.min.js"></script>
     <style>
         * {
             margin: 0;
