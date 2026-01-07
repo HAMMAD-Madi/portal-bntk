@@ -11,8 +11,8 @@
     <title>CrocoBricks Dashboard - Home</title>
       <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/assets/styles.css" />
-  <script defer src="http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/assets/js/yoo1.js"></script>
+  <link rel="stylesheet" href="https://portal.bntk.eu/assets/styles.css" />
+  <script defer src="https://portal.bntk.eu/assets/js/yoo1.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/assets/styles/choices.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/choices.js/assets/scripts/choices.min.js"></script>
     <style>
@@ -893,7 +893,7 @@
                             <div class="sub-items">
                                 <!-- HTML -->
                                 <div class="sub-item" id="voorraad-overzicht-item">
-                                    <a href="http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/overview" class="nav-link" id="voorraad-overzicht-link">
+                                    <a href="https://portal.bntk.eu/overview" class="nav-link" id="voorraad-overzicht-link">
                                         <span class="nav-icon">📊</span>
                                         <span class="nav-text">Overzicht</span>
                                     </a>
@@ -1248,7 +1248,7 @@
                     return;
                 }
             
-                fetch("http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/send-to-webhook", {
+                fetch("https://portal.bntk.eu/send-to-webhook", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

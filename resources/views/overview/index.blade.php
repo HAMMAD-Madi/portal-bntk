@@ -2642,7 +2642,7 @@
                             <div class="sub-items">
                                 <!-- HTML -->
                                 <div class="sub-item active" id="voorraad-overzicht-item">
-                                    <a href="http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/overview" class="nav-link" id="voorraad-overzicht-link">
+                                    <a href="https://portal.bntk.eu/overview" class="nav-link" id="voorraad-overzicht-link">
                                         <span class="nav-icon">📊</span>
                                         <span class="nav-text">Overzicht</span>
                                     </a>
@@ -3985,7 +3985,7 @@ document.getElementById("fetchPriceBtn_edit").addEventListener("click", function
         item_condition: document.getElementById("edit_condition")?.value || "ABC123"
     };
 
-    fetch("http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/send-to-webhook", {
+    fetch("https://portal.bntk.eu/send-to-webhook", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -4724,7 +4724,7 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
         item_condition: document.getElementById("add_condition")?.value || "ABC123"
     };
 
-    fetch("http://a400wsckk88ogos84woksgog.185.222.240.190.sslip.io/send-to-webhook", {
+    fetch("https://portal.bntk.eu/send-to-webhook", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
