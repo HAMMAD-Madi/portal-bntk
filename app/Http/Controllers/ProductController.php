@@ -661,7 +661,7 @@ try {
 public function sendToWebhookForPostRequest(Request $request)
 {
     // dd($request->all());die;
-    $response = Http::post('https://n8n.bntk.eu/webhook/portal-bricklink-price', [
+    $response = Http::post('https://v2.bntk.eu/webhook/portal-bricklink-price', [
         'item_no' => $request->item_no,
         'item_type' => $request->item_type,
         'color_id' => $request->item_color_id,
@@ -674,7 +674,7 @@ public function sendToWebhookForPostRequest(Request $request)
 
 public function sendToWebhook($itemNo, $itemType)
 {
-    $response = Http::post('https://n8n.bntk.eu/webhook/portal-bricklink-price', [
+    $response = Http::post('https://v2.bntk.eu/webhook/portal-bricklink-price', [
         'item_no' => $itemNo,
         'item_type' => $itemType
     ]);

@@ -138,7 +138,7 @@ class OrderController extends Controller
         // print_r($order_detail->marketplace_order_id.' / '.$group_to_be_updated_in_db);die;
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-        ])->post('https://n8n.bntk.eu/webhook/order-status-changed', [
+        ])->post('https://v2.bntk.eu/webhook/order-status-changed', [
             'orderid' => $order_detail->marketplace_order_id,
             'status'  => $group_to_be_updated_in_db,
             'fullOrderData' => (array) $order_detail
@@ -183,7 +183,7 @@ class OrderController extends Controller
                 // print_r($order_detail->marketplace_order_id.' / '.$group_to_be_updated_in_db);die;
                 $response = Http::withHeaders([
                     'Content-Type' => 'application/json',
-                ])->post('https://n8n.bntk.eu/webhook/order-status-changed', [
+                ])->post('https://v2.bntk.eu/webhook/order-status-changed', [
                     'orderid' => $order_detail->marketplace_order_id,
                     'status'  => $newStatus,
                     'fullOrderData' => (array) $order_detail
