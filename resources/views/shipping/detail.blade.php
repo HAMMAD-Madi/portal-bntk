@@ -2303,7 +2303,7 @@ function markAsShipped(orderId, section) {
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
-    const url = "{{ route('get-shipping-options') }}" +
+    const url = "https://portal.bntk.eu/get-shipping-options" +
         "?order_id={{ $order->id }}" +
         "&order_number={{ urlencode($order->order_number) }}" +
         "&weight={{ urlencode($order->package_weight_grams) }}" +
