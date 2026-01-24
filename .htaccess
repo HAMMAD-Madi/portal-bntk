@@ -1,13 +1,7 @@
-Options +SymLinksIfOwnerMatch
-RewriteEngine On
+<IfModule mod_rewrite.c>
+    RewriteEngine On
 
-# Allow Installatron requests
-RewriteCond %{REQUEST_FILENAME} deleteme\.\w+\.php
-RewriteRule (.*) - [L] 
-
-RewriteRule ^ index.php [L]
-
-
-location /assets/ {
-    alias /var/www/html/my-prefix/assets/;
-}
+    # Redirect all requests to /public
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
