@@ -1282,7 +1282,7 @@
             font-weight: 600;
         }
 
-    
+
         .quick-add-fab {
             position: fixed;
             bottom: 30px;
@@ -2327,45 +2327,50 @@
                 font-size: 12px;
             }
         }
-
     </style>
-    
     <style>
         .sidebar-wrapper {
-          position: relative;       /* for ::before positioning */
-          padding: 20px;            /* space around sidebar */
-          box-sizing: border-box;
-          height: 100vh;            /* keep sidebar full height */
+            position: relative;
+            /* for ::before positioning */
+            padding: 20px;
+            /* space around sidebar */
+            box-sizing: border-box;
+            height: 100vh;
+            /* keep sidebar full height */
         }
-        
+
         /* Green background of only 300px height */
         .sidebar-wrapper::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 300px;            /* only this height is green */
-          background-color: #4CAF50;
-          z-index: -1;              /* behind sidebar */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 300px;
+            /* only this height is green */
+            background-color: #4CAF50;
+            z-index: -1;
+            /* behind sidebar */
         }
-        
+
         /* Sidebar stays full height and unchanged */
         .sidebar {
-          width: 250px;
-          height: 100%;             /* full height */
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(20px);
-          border-radius: 24px;
-          box-shadow:
-            0 20px 25px -5px rgba(0, 0, 0, 0.1),
-            0 10px 10px -5px rgba(0, 0, 0, 0.04),
-            inset 0 1px 0 rgba(255, 255, 255, 0.2);
-          padding: 0;
-          position: relative;       /* above ::before */
-          z-index: 1;
-          margin-left: 4px;
-          margin-top: -3px;
+            width: 250px;
+            height: 100%;
+            /* full height */
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow:
+                0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                0 10px 10px -5px rgba(0, 0, 0, 0.04),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            padding: 0;
+            position: relative;
+            /* above ::before */
+            z-index: 1;
+            margin-left: 4px;
+            margin-top: -3px;
         }
 
         .sidebar:hover {
@@ -2608,20 +2613,17 @@
                 max-width: 320px;
             }
         }
-
     </style>
 </head>
 
 <body>
     <div class="container">
-
         <div class="sidebar-wrapper">
             <div class="sidebar">
                 <div class="logo-section">
                     <div class="logo">CrocoBricks</div>
                     <div class="logo-subtitle">Business Portal</div>
                 </div>
-    
                 <div class="nav-container">
                     <div class="nav-section">
                         <div class="nav-item">
@@ -2631,7 +2633,6 @@
                             </a>
                         </div>
                     </div>
-    
                     <div class="nav-section">
                         <div class="nav-item expanded" onclick="toggleSection(this)">
                             <a href="#" class="nav-link">
@@ -2647,71 +2648,42 @@
                                         <span class="nav-text">Overzicht</span>
                                     </a>
                                 </div>
-    
+
                                 <!-- Put this CSS in your head or your stylesheet -->
                                 <style>
                                     /* Base look */
                                     .sub-item .nav-link {
-                                        color: #374151; /* dark gray */
+                                        color: #374151;
+                                        /* dark gray */
                                         background-color: transparent;
                                         transition: all 0.2s ease-in-out;
                                     }
-                                    
+
                                     /* Active styles */
                                     .sub-item.active .nav-link,
                                     .nav-link[aria-current="page"] {
                                         color: #fff;
-                                        background-color: #60B864 !important; /* green */
+                                        background-color: #60B864 !important;
+                                        /* green */
                                         box-shadow: 0 2px 8px rgba(0, 123, 255, 0.12);
                                     }
-                                    
+
                                     /* Hover styles */
                                     .sub-item .nav-link:hover {
                                         color: black;
-                                        background-color: #4da653; /* slightly darker green */
+                                        background-color: #4da653;
+                                        /* slightly darker green */
                                     }
                                 </style>
-    
-                                <!--<div class="sub-item">-->
-                                <!--    <a href="/voorraad/nieuw-product" class="nav-link">-->
-                                <!--        <span class="nav-icon">➕</span>-->
-                                <!--        <span class="nav-text">Nieuw product</span>-->
-                                <!--    </a>-->
-                                <!--</div>-->
                                 <div class="sub-item">
                                     <a href="/scan-feature" class="nav-link">
                                         <span class="nav-icon">📸</span>
                                         <span class="nav-text">Scan Feature</span>
                                     </a>
                                 </div>
-                                <!--<div class="sub-item">-->
-                                <!--    <a href="/voorraad/categorieen" class="nav-link">-->
-                                <!--        <span class="nav-icon">🏷️</span>-->
-                                <!--        <span class="nav-text">Categorieën</span>-->
-                                <!--    </a>-->
-                                <!--</div>-->
-                                <!--<div class="sub-item">-->
-                                <!--    <a href="/voorraad/nieuwe-categorie" class="nav-link">-->
-                                <!--        <span class="nav-icon">➕</span>-->
-                                <!--        <span class="nav-text">Nieuwe categorie</span>-->
-                                <!--    </a>-->
-                                <!--</div>-->
-                                <!--<div class="sub-item">-->
-                                <!--    <a href="/voorraad/investeringsvoorraad" class="nav-link">-->
-                                <!--        <span class="nav-icon">💰</span>-->
-                                <!--        <span class="nav-text">Investeringsvoorraad</span>-->
-                                <!--    </a>-->
-                                <!--</div>-->
-                                <!--<div class="sub-item">-->
-                                <!--    <a href="/voorraad/locaties" class="nav-link">-->
-                                <!--        <span class="nav-icon">📍</span>-->
-                                <!--        <span class="nav-text">Voorraad locaties</span>-->
-                                <!--    </a>-->
-                                <!--</div>-->
                             </div>
                         </div>
                     </div>
-    
                     <div class="nav-section">
                         <div class="nav-item">
                             <a href="/all-shippings" class="nav-link">
@@ -2721,7 +2693,6 @@
                             </a>
                         </div>
                     </div>
-    
                     <div class="nav-section">
                         <div class="nav-item">
                             <a href="/all-orders" class="nav-link">
@@ -2731,44 +2702,7 @@
                             </a>
                         </div>
                     </div>
-    
                     <div class="divider"></div>
-    
-                    <!--<div class="nav-section">-->
-                    <!--    <div class="nav-item expanded" onclick="toggleSection(this)">-->
-                    <!--        <a href="#" class="nav-link">-->
-                    <!--            <span class="nav-icon">🧾</span>-->
-                    <!--            <span class="nav-text">Facturen</span>-->
-                    <!--            <span class="expand-icon">▶</span>-->
-                    <!--        </a>-->
-                    <!--        <div class="sub-items">-->
-                    <!--            <div class="sub-item">-->
-                    <!--                <a href="/facturen/overzicht" class="nav-link">-->
-                    <!--                    <span class="nav-icon">📊</span>-->
-                    <!--                    <span class="nav-text">Overzicht</span>-->
-                    <!--                </a>-->
-                    <!--            </div>-->
-                    <!--            <div class="sub-item">-->
-                    <!--                <a href="/facturen/factuuraanvragen" class="nav-link">-->
-                    <!--                    <span class="nav-icon">📥</span>-->
-                    <!--                    <span class="nav-text">Factuuraanvragen</span>-->
-                    <!--                </a>-->
-                    <!--            </div>-->
-                    <!--            <div class="sub-item">-->
-                    <!--                <a href="/facturen/nieuw" class="nav-link">-->
-                    <!--                    <span class="nav-icon">➕</span>-->
-                    <!--                    <span class="nav-text">Nieuw factuur</span>-->
-                    <!--                </a>-->
-                    <!--            </div>-->
-                    <!--            <div class="sub-item">-->
-                    <!--                <a href="/facturen/klanten" class="nav-link">-->
-                    <!--                    <span class="nav-icon">👥</span>-->
-                    <!--                    <span class="nav-text">Klanten</span>-->
-                    <!--                </a>-->
-                    <!--            </div>-->
-                    <!--        </div>-->
-                    <!--    </div>-->
-                    <!--</div>-->
                 </div>
             </div>
         </div>
@@ -2830,61 +2764,61 @@
                         <input type="hidden" name="color" value="{{ request('color') }}">
                         <input type="hidden" name="condition" value="{{ request('condition') }}">
                         <input type="hidden" name="stock" value="{{ request('stock') }}">
-                        
+
                         <style>
-/* Make Select2 look like Bootstrap form-control */
-.select2-container .select2-selection--single {
-    height: calc(2.25rem + 2px) !important; /* same as form-control height */
-    border: 1px solid #ced4da !important;
-    border-radius: 0.375rem !important; /* matches Bootstrap 5 radius */
-    padding: 0.375rem 0.75rem !important;
-    display: flex !important;
-    align-items: center !important;
-    width: 225px;
-}
+                            /* Make Select2 look like Bootstrap form-control */
+                            .select2-container .select2-selection--single {
+                                height: calc(2.25rem + 2px) !important;
+                                /* same as form-control height */
+                                border: 1px solid #ced4da !important;
+                                border-radius: 0.375rem !important;
+                                /* matches Bootstrap 5 radius */
+                                padding: 0.375rem 0.75rem !important;
+                                display: flex !important;
+                                align-items: center !important;
+                                width: 225px;
+                            }
 
-.select2-selection__arrow {
-    height: 100% !important;
-    right: 0.75rem !important;
-}
+                            .select2-selection__arrow {
+                                height: 100% !important;
+                                right: 0.75rem !important;
+                            }
 
-.select2-selection__rendered {
-    color: #212529 !important;
-    line-height: 1.5 !important;
-}
+                            .select2-selection__rendered {
+                                color: #212529 !important;
+                                line-height: 1.5 !important;
+                            }
 
-.select2-container--default .select2-selection--single:focus,
-.select2-container--default.select2-container--focus .select2-selection--single {
-    border-color: #86b7fe !important;
-    box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25) !important; /* focus ring like Bootstrap */
-}
+                            .select2-container--default .select2-selection--single:focus,
+                            .select2-container--default.select2-container--focus .select2-selection--single {
+                                border-color: #86b7fe !important;
+                                box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, .25) !important;
+                                /* focus ring like Bootstrap */
+                            }
 
-.select2-dropdown {
-    border: 1px solid #ced4da !important;
-    border-radius: 0.375rem !important;
-}
-</style>
+                            .select2-dropdown {
+                                border: 1px solid #ced4da !important;
+                                border-radius: 0.375rem !important;
+                            }
+                        </style>
 
                         <!-- Select2 CSS -->
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+                        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
-<!-- jQuery + Select2 JS -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
+                        <!-- jQuery + Select2 JS -->
+                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
                         <select id="categorySelect" class="filter-btn form-control" name="category" style="width:50px;">
-    <option value="">All Categories</option>
-    @foreach ($categories as $category)
-        <option value="{{ $category->title }}" {{ request('category') == $category->title ? 'selected' : '' }}>
-            {{ $category->title }}
-        </option>
-    @endforeach
-</select>
-
-
+                            <option value="">All Categories</option>
+                            @foreach ($categories as $category)
+                            <option value="{{ $category->title }}" {{ request('category') == $category->title ? 'selected' : '' }}>
+                                {{ $category->title }}
+                            </option>
+                            @endforeach
+                        </select>
                     </form>
-                    
+
                     {{-- Colors filter --}}
                     <form method="GET" action="">
                         <input type="hidden" name="general_search" value="{{ request('general_search') }}">
@@ -2903,32 +2837,32 @@
                             </option>
                             @endforeach
                         </select>
-<script>
-$(document).ready(function() {
-    $('#categorySelect').select2({
-        placeholder: 'Select a Category',
-        allowClear: true,
-        width: '100%'
-    });
+                        <script>
+                            $(document).ready(function() {
+                                $('#categorySelect').select2({
+                                    placeholder: 'Select a Category',
+                                    allowClear: true,
+                                    width: '100%'
+                                });
 
-    // Submit form when category changes
-    $('#categorySelect').on('change', function() {
-        this.form.submit();
-    });
-});
-$(document).ready(function() {
-    $('#colorSelection').select2({
-        placeholder: 'Select a Color',
-        allowClear: true,
-        width: '100%'
-    });
+                                // Submit form when category changes
+                                $('#categorySelect').on('change', function() {
+                                    this.form.submit();
+                                });
+                            });
+                            $(document).ready(function() {
+                                $('#colorSelection').select2({
+                                    placeholder: 'Select a Color',
+                                    allowClear: true,
+                                    width: '100%'
+                                });
 
-    // Submit form when category changes
-    $('#categorySelect').on('change', function() {
-        this.form.submit();
-    });
-});
-</script>
+                                // Submit form when category changes
+                                $('#categorySelect').on('change', function() {
+                                    this.form.submit();
+                                });
+                            });
+                        </script>
                     </form>
 
                     {{-- Condition filter --}}
@@ -2970,8 +2904,8 @@ $(document).ready(function() {
                             <option value="UNSORTED_LOT" {{ request('item_type')=='UNSORTED_LOT' ? 'selected' : '' }}>UNSORTED_LOT</option>
                             <option value="ORIGINAL_BOX" {{ request('item_type')=='ORIGINAL_BOX' ? 'selected' : '' }}>ORIGINAL_BOX</option>
                         </select>
-                    </form>  
-                    
+                    </form>
+
                     {{-- Location --}}
                     <div class="search-box">
                         <form method="GET" action="">
@@ -2984,9 +2918,9 @@ $(document).ready(function() {
                             <input type="hidden" name="condition" value="{{ request('condition') }}">
                             <input type="hidden" name="stock" value="{{ request('stock') }}">
                             <input type="text" placeholder="Location" id="location" name="location" value="<?= $_GET['location'] ?? NULL ?>" onkeyup="searchItems()">
-                        </form>  
+                        </form>
                     </div>
-                                    
+
                     {{-- Stock filter --}}
                     <form method="GET" action="">
                         <input type="hidden" name="category" value="{{ request('general_search') }}">
@@ -3006,8 +2940,6 @@ $(document).ready(function() {
                     </form>
 
                     <!--<button class="action-btn" onclick="exportInventory()">📊 Export</button>-->
-                    
-                    
                     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
                     <script>
                         function exportInventory() {
@@ -3027,7 +2959,6 @@ $(document).ready(function() {
                                     let color = card.querySelector(".item-details div:nth-child(3)")?.innerText.replace("Kleur:", "").trim() || "";
                                     let stock = card.dataset.stock || "";
                                     let price = card.querySelector(".current-price")?.innerText.replace("€", "").trim() || "";
-
                                     rows.push([itemNo, name, category, condition, color, stock, price]);
                                 }
                             });
@@ -3076,364 +3007,325 @@ $(document).ready(function() {
                         }
                     </style>
 
-                    <!-- Button -->
-                    <!--<button class="action-btn secondary" onclick="syncAllMarketplaces(this)">-->
-                    <!--    <i class="fas fa-sync"></i> Sync All-->
-                    <!--</button>-->
+                    <div style="position: relative; display: inline-block;" id="actionsDropdown">
 
-                   
+                        <!-- Dropdown Toggle -->
+                        <button
+                            style="
+                                background:#3b82f6;
+                                color:white;
+                                padding:10px 16px;
+                                border:none;
+                                border-radius:6px;
+                                cursor:pointer;
+                                font-size:14px;
+                            "
+                            onclick="toggleActionsDropdown()">
+                            ⚙️ Actions
+                        </button>
 
+                        <!-- Dropdown Menu -->
+                        <div
+                            id="actionsMenu"
+                            style="
+                                display:none;
+                                position:absolute;
+                                background:white;
+                                min-width:180px;
+                                border-radius:6px;
+                                box-shadow:0px 4px 8px rgba(0,0,0,0.15);
+                                overflow:hidden;
+                                z-index:999;
+                            ">
+                            <button
+                                onclick="exportInventory()"
+                                style="
+                                    width:100%;
+                                    padding:10px 14px;
+                                    border:none;
+                                    background:white;
+                                    text-align:left;
+                                    cursor:pointer;
+                                    font-size:14px;
+                                "
+                                onmouseover="this.style.background='#f1f5f9'"
+                                onmouseout="this.style.background='white'">
+                                📊 Export
+                            </button>
 
-<div style="position: relative; display: inline-block;" id="actionsDropdown">
+                            <button
+                                onclick="syncAllMarketplaces(this)"
+                                style="
+                                    width:100%;
+                                    padding:10px 14px;
+                                    border:none;
+                                    background:white;
+                                    text-align:left;
+                                    cursor:pointer;
+                                    font-size:14px;
+                                "
+                                onmouseover="this.style.background='#f1f5f9'"
+                                onmouseout="this.style.background='white'">
+                                🔄 Sync All
+                            </button>
 
-    <!-- Dropdown Toggle -->
-    <button 
-        style="
-            background:#3b82f6;
-            color:white;
-            padding:10px 16px;
-            border:none;
-            border-radius:6px;
-            cursor:pointer;
-            font-size:14px;
-        "
-        onclick="toggleActionsDropdown()"
-    >
-        ⚙️ Actions
-    </button>
-    
-    <!-- Dropdown Menu -->
-    <div 
-        id="actionsMenu"
-        style="
-            display:none;
-            position:absolute;
-            background:white;
-            min-width:180px;
-            border-radius:6px;
-            box-shadow:0px 4px 8px rgba(0,0,0,0.15);
-            overflow:hidden;
-            z-index:999;
-        "
-    >
-        <button 
-            onclick="exportInventory()" 
-            style="
-                width:100%;
-                padding:10px 14px;
-                border:none;
-                background:white;
-                text-align:left;
-                cursor:pointer;
-                font-size:14px;
-            "
-            onmouseover="this.style.background='#f1f5f9'"
-            onmouseout="this.style.background='white'"
-        >
-            📊 Export
-        </button>
-
-        <button 
-            onclick="syncAllMarketplaces(this)" 
-            style="
-                width:100%;
-                padding:10px 14px;
-                border:none;
-                background:white;
-                text-align:left;
-                cursor:pointer;
-                font-size:14px;
-            "
-            onmouseover="this.style.background='#f1f5f9'"
-            onmouseout="this.style.background='white'"
-        >
-            🔄 Sync All
-        </button>
-
-        <button 
-            onclick="bulkUpdateLocation()" 
-            style="
-                width:100%;
-                padding:10px 14px;
-                border:none;
-                background:white;
-                text-align:left;
-                cursor:pointer;
-                font-size:14px;
-            "
-            onmouseover="this.style.background='#f1f5f9'"
-            onmouseout="this.style.background='white'"
-        >
-            📍 Bulk Update
-        </button>
-    </div>
-</div>
+                            <button
+                                onclick="bulkUpdateLocation()"
+                                style="
+                                    width:100%;
+                                    padding:10px 14px;
+                                    border:none;
+                                    background:white;
+                                    text-align:left;
+                                    cursor:pointer;
+                                    font-size:14px;
+                                "
+                                onmouseover="this.style.background='#f1f5f9'"
+                                onmouseout="this.style.background='white'">
+                                📍 Bulk Update
+                            </button>
+                        </div>
+                    </div>
 
                     @php
-    $isDesc = request('desc_products') == 1;
-@endphp
+                    $isDesc = request('desc_products') == 1;
+                    @endphp
 
-<form method="GET" action="">
-    <!-- Preserve filters -->
-    <input type="hidden" name="general_search" value="{{ request('general_search') }}">
-    <input type="hidden" name="category" value="{{ request('category') }}">
-    <input type="hidden" name="item_type" value="{{ request('item_type') }}">
-    <input type="hidden" name="location" value="{{ request('location') }}">
-    <input type="hidden" name="color" value="{{ request('color') }}">
-    <input type="hidden" name="condition" value="{{ request('condition') }}">
-    <input type="hidden" name="stock" value="{{ request('stock') }}">
+                    <form method="GET" action="">
+                        <!-- Preserve filters -->
+                        <input type="hidden" name="general_search" value="{{ request('general_search') }}">
+                        <input type="hidden" name="category" value="{{ request('category') }}">
+                        <input type="hidden" name="item_type" value="{{ request('item_type') }}">
+                        <input type="hidden" name="location" value="{{ request('location') }}">
+                        <input type="hidden" name="color" value="{{ request('color') }}">
+                        <input type="hidden" name="condition" value="{{ request('condition') }}">
+                        <input type="hidden" name="stock" value="{{ request('stock') }}">
 
-    @if($isDesc)
-        <!-- Clear descending -->
-        <button
-            type="submit"
-            name="desc_products"
-            value="0"
-            style="
-                background:#ef4444;
-                color:white;
-                padding:10px 16px;
-                border:none;
-                border-radius:6px;
-                cursor:pointer;
-                font-size:14px;
-            "
-        >
-            ✕ Clear Descending
-        </button>
-    @else
-        <!-- Apply descending -->
-        <button
-            type="submit"
-            name="desc_products"
-            value="1"
-            style="
-                background:#3b82f6;
-                color:white;
-                padding:10px 16px;
-                border:none;
-                border-radius:6px;
-                cursor:pointer;
-                font-size:14px;
-            "
-        >
-            ↓ Descending Products
-        </button>
-    @endif
-</form>
+                        @if($isDesc)
+                        <!-- Clear descending -->
+                        <button
+                            type="submit"
+                            name="desc_products"
+                            value="0"
+                            style="
+                                background:#ef4444;
+                                color:white;
+                                padding:10px 16px;
+                                border:none;
+                                border-radius:6px;
+                                cursor:pointer;
+                                font-size:14px;
+                            ">
+                            ✕ Clear Descending
+                        </button>
+                        @else
+                        <!-- Apply descending -->
+                        <button
+                            type="submit"
+                            name="desc_products"
+                            value="1"
+                            style="
+                                background:#3b82f6;
+                                color:white;
+                                padding:10px 16px;
+                                border:none;
+                                border-radius:6px;
+                                cursor:pointer;
+                                font-size:14px;
+                            ">
+                            ↓ Descending Products
+                        </button>
+                        @endif
+                    </form>
 
 
- <script>
+                    <script>
                         function syncAllMarketplaces(btn) {
                             let icon = btn.querySelector("i");
-
-                            // Add spinning animation
-                            // icon.classList.add("spin");
-
-                            // Reload after short delay so user sees animation
                             setTimeout(() => {
                                 location.reload();
                             }, 800);
                         }
                     </script>
-                    
-<script>
-function toggleActionsDropdown() {
-    let menu = document.getElementById("actionsMenu");
-    menu.style.display = menu.style.display === "block" ? "none" : "block";
-}
 
-document.addEventListener("click", function(e) {
-    const dropdown = document.getElementById("actionsDropdown");
-    const menu = document.getElementById("actionsMenu");
+                    <script>
+                        function toggleActionsDropdown() {
+                            let menu = document.getElementById("actionsMenu");
+                            menu.style.display = menu.style.display === "block" ? "none" : "block";
+                        }
 
-    // If clicked outside dropdown, close it
-    if (!dropdown.contains(e.target)) {
-        menu.style.display = "none";
-    }
-});
-</script>
+                        document.addEventListener("click", function(e) {
+                            const dropdown = document.getElementById("actionsDropdown");
+                            const menu = document.getElementById("actionsMenu");
 
-
-                    <!--<button class="action-btn secondary" onclick="importBatch()">📥 Import</button>-->
-                    <!-- Load Font Awesome (if not already included) -->
-
-                    <!--<div class="view-toggle">-->
-                    <!--    <button class="view-btn active" onclick="switchView('grid')">⊞</button>-->
-                    <!--    <button class="view-btn" onclick="switchView('table')">☰</button>-->
-                    <!--</div>-->
+                            // If clicked outside dropdown, close it
+                            if (!dropdown.contains(e.target)) {
+                                menu.style.display = "none";
+                            }
+                        });
+                    </script>
                 </div>
 
+                <!-- Inventory Grid -->
+                <div class="inventory-grid" id="gridView">
 
-<!-- Bulk Actions -->
-<!--<div class="bulk-actions" id="bulkActions">-->
-<!--    <button class="bulk-btn secondary" onclick="bulkUpdateLocation()">Bulk Location Update</button>-->
-<!--</div>-->
+                    <?php foreach ($products as $product) { ?>
+                        <div class="inventory-card"
+                            data-id="<?= $product->id; ?>"
+                            data-category="<?= $product->category; ?>"
+                            data-condition="<?= $product->condition; ?>"
+                            data-stock="<?= $product->stock; ?>"
+                            data-item="<?= $product->item_no; ?>"
+                            data-location="<?= $product->location ?? '' ?>">
 
+                            <input type="checkbox" class="card-checkbox">
 
+                            <div class="card-image" style="position: relative; width: auto; height: 240px; overflow: hidden; border: 1px solid #ddd; border-radius: 6px; background: #fff; display:flex; align-items:center; justify-content:center;">
+                                <img src="<?= !empty($product->imageurl) ? asset($product->imageurl) : asset($product->main_image) ?>"
+                                    alt="Product Image"
+                                    style="max-width: 100%; max-height: 100%; object-fit: contain;">
 
+                                <div class="stock-badge"><?= $product->stock; ?></div>
+                            </div>
 
-<!-- Inventory Grid -->
-<div class="inventory-grid" id="gridView">
+                            <div class="card-content">
+                                <div class="item-title"><?= $product->title; ?></div>
+                                <div class="item-details">
+                                    <div><strong>Item # </strong> <?= $product->item_no; ?></div>
+                                    <div><strong>Categorie:</strong> <?= $product->category; ?></div>
+                                    <div><strong>Kleur:</strong> <?= $product->color_name; ?></div>
+                                    <div><strong>Conditie:</strong>
+                                        <span class="condition-badge condition-new"><?= $product->condition; ?></span>
+                                    </div>
+                                    <span class="location-text"><?= $product->location ?? '' ?></span>
+                                </div>
+                                <div class="item-price">
+                                    <span class="current-price">€<?= $product->price; ?></span>
+                                </div>
+                                <div class="card-actions">
+                                    <button class="icon-btn" onclick="editItem('<?= $product->id; ?>')">✏️ Edit</button>
+                                    <button class="icon-btn" onclick="adjustStock('<?= $product->id; ?>')">📊 Stock</button>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
 
-    <?php foreach ($products as $product) { ?>
-    <div class="inventory-card"
-        data-id="<?= $product->id; ?>"
-        data-category="<?= $product->category; ?>"
-        data-condition="<?= $product->condition; ?>"
-        data-stock="<?= $product->stock; ?>"
-        data-item="<?= $product->item_no; ?>"
-        data-location="<?= $product->location ?? '' ?>">
-
-        <input type="checkbox" class="card-checkbox">
-
-        <div class="card-image" style="position: relative; width: auto; height: 240px; overflow: hidden; border: 1px solid #ddd; border-radius: 6px; background: #fff; display:flex; align-items:center; justify-content:center;">
-            <img src="<?= !empty($product->imageurl) ? asset($product->imageurl) : asset($product->main_image) ?>"
-                alt="Product Image"
-                style="max-width: 100%; max-height: 100%; object-fit: contain;">
-
-            <div class="stock-badge"><?= $product->stock; ?></div>
-        </div>
-
-        <div class="card-content">
-            <div class="item-title"><?= $product->title; ?></div>
-            <div class="item-details">
-                <div><strong>Item # </strong> <?= $product->item_no; ?></div>
-                <div><strong>Categorie:</strong> <?= $product->category; ?></div>
-                <div><strong>Kleur:</strong> <?= $product->color_name; ?></div>
-                <div><strong>Conditie:</strong>
-                    <span class="condition-badge condition-new"><?= $product->condition; ?></span>
                 </div>
-                <span class="location-text"><?= $product->location ?? '' ?></span>
-            </div>
-            <div class="item-price">
-                <span class="current-price">€<?= $product->price; ?></span>
-            </div>
-            <div class="card-actions">
-                <button class="icon-btn" onclick="editItem('<?= $product->id; ?>')">✏️ Edit</button>
-                <button class="icon-btn" onclick="adjustStock('<?= $product->id; ?>')">📊 Stock</button>
-            </div>
-        </div>
-    </div>
-    <?php } ?>
 
-</div>
+                <!-- =================== MODAL WITH INLINE CSS ONLY =================== -->
+                <!-- Bulk Location Update Modal -->
+                <div id="locationModal" class="hidden"
+                    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                        background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center;
+                        z-index: 999999;">
 
-<!-- =================== MODAL WITH INLINE CSS ONLY =================== -->
-<!-- Bulk Location Update Modal -->
-<div id="locationModal" class="hidden"
-    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center;
-    z-index: 999999;">
+                    <div style="background: #fff; width: 420px; border-radius: 10px; overflow:hidden;
+                        box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
 
-    <div style="background: #fff; width: 420px; border-radius: 10px; overflow:hidden;
-         box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                        <!-- Header -->
+                        <div style="display:flex; justify-content:space-between; align-items:center;
+                            padding:15px 20px; border-bottom:1px solid #eee;">
+                            <h2 style="margin:0; font-size:20px;">Update Bulk Location</h2>
+                            <button onclick="closeModal()"
+                                style="font-size:26px; background:none; border:none; cursor:pointer; line-height:1;">
+                                &times;
+                            </button>
+                        </div>
 
-        <!-- Header -->
-        <div style="display:flex; justify-content:space-between; align-items:center;
-            padding:15px 20px; border-bottom:1px solid #eee;">
-            <h2 style="margin:0; font-size:20px;">Update Bulk Location</h2>
-            <button onclick="closeModal()" 
-                style="font-size:26px; background:none; border:none; cursor:pointer; line-height:1;">
-                &times;
-            </button>
-        </div>
+                        <!-- Body -->
+                        <div style="padding:20px;">
 
-        <!-- Body -->
-        <div style="padding:20px;">
+                            <div style="margin-bottom:20px;">
+                                <label style="font-weight:600; display:block; margin-bottom:6px;">
+                                    New Location
+                                </label>
+                                <input type="text" id="newLocation" placeholder="Enter new location"
+                                    style="width:100%; padding:10px; border:1px solid #ccc; 
+                                        border-radius:6px; font-size:15px;">
+                            </div>
 
-            <div style="margin-bottom:20px;">
-                <label style="font-weight:600; display:block; margin-bottom:6px;">
-                    New Location
-                </label>
-                <input type="text" id="newLocation" placeholder="Enter new location"
-                       style="width:100%; padding:10px; border:1px solid #ccc; 
-                       border-radius:6px; font-size:15px;">
-            </div>
+                            <!-- Actions -->
+                            <div style="display:flex; justify-content:flex-end; gap:10px;">
 
-            <!-- Actions -->
-            <div style="display:flex; justify-content:flex-end; gap:10px;">
+                                <button onclick="closeModal()"
+                                    style="padding:10px 16px; background:#6c757d; color:#fff;
+                                        border:none; border-radius:6px; cursor:pointer; font-weight:600;">
+                                    Cancel
+                                </button>
 
-                <button onclick="closeModal()"
-                    style="padding:10px 16px; background:#6c757d; color:#fff;
-                    border:none; border-radius:6px; cursor:pointer; font-weight:600;">
-                    Cancel
-                </button>
+                                <button onclick="saveLocation()"
+                                    style="padding:10px 16px; background:#007bff; color:#fff;
+                                        border:none; border-radius:6px; cursor:pointer; font-weight:600;">
+                                    Save
+                                </button>
 
-                <button onclick="saveLocation()"
-                    style="padding:10px 16px; background:#007bff; color:#fff;
-                    border:none; border-radius:6px; cursor:pointer; font-weight:600;">
-                    Save
-                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            </div>
-        </div>
-    </div>
-</div>
+                <!-- =================== JS (NO CHANGES NEEDED) =================== -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
 
+                        let currentIds = [];
+                        const modal = document.getElementById('locationModal');
+                        const input = document.getElementById('newLocation');
 
-<!-- =================== JS (NO CHANGES NEEDED) =================== -->
-<script>
-document.addEventListener('DOMContentLoaded', function () {
+                        // OPEN MODAL
+                        window.bulkUpdateLocation = function() {
+                            currentIds = Array.from(document.querySelectorAll('.card-checkbox:checked'))
+                                .map(cb => cb.closest('.inventory-card').dataset.id);
 
-    let currentIds = [];
-    const modal = document.getElementById('locationModal');
-    const input = document.getElementById('newLocation');
+                            if (!currentIds.length) return alert('Select at least one item.');
 
-    // OPEN MODAL
-    window.bulkUpdateLocation = function () {
-        currentIds = Array.from(document.querySelectorAll('.card-checkbox:checked'))
-            .map(cb => cb.closest('.inventory-card').dataset.id);
+                            input.value = "";
+                            modal.style.display = "flex"; // <-- INLINE SHOW
+                        };
 
-        if (!currentIds.length) return alert('Select at least one item.');
+                        // SAVE BULK LOCATION
+                        window.saveLocation = function() {
+                            const value = input.value.trim();
+                            if (!value) return alert('Please enter a location.');
 
-        input.value = "";
-        modal.style.display = "flex";  // <-- INLINE SHOW
-    };
+                            fetch('/update-location', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-CSRF-TOKEN': '<?= csrf_token(); ?>'
+                                    },
+                                    body: JSON.stringify({
+                                        ids: currentIds,
+                                        location: value
+                                    })
+                                })
+                                .then(res => res.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        currentIds.forEach(id => {
+                                            const card = document.querySelector(`.inventory-card[data-id='${id}']`);
+                                            if (card) {
+                                                card.dataset.location = value;
+                                                const locText = card.querySelector('.location-text');
+                                                if (locText) locText.textContent = value;
+                                            }
+                                        });
+                                        closeModal();
+                                        window.location.reload();
+                                    } else {
+                                        alert('Failed to update location.');
+                                    }
+                                })
+                                .catch(() => alert('Error updating location.'));
+                        };
 
-    // SAVE BULK LOCATION
-    window.saveLocation = function () {
-        const value = input.value.trim();
-        if (!value) return alert('Please enter a location.');
-
-        fetch('/update-location', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '<?= csrf_token(); ?>'
-            },
-            body: JSON.stringify({ ids: currentIds, location: value })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                currentIds.forEach(id => {
-                    const card = document.querySelector(`.inventory-card[data-id='${id}']`);
-                    if (card) {
-                        card.dataset.location = value;
-                        const locText = card.querySelector('.location-text');
-                        if (locText) locText.textContent = value;
-                    }
-                });
-                closeModal();
-                window.location.reload();
-            } else {
-                alert('Failed to update location.');
-            }
-        })
-        .catch(() => alert('Error updating location.'));
-    };
-
-    // CLOSE MODAL
-    window.closeModal = function () {
-        modal.style.display = "none";  // <-- INLINE HIDE
-        currentIds = [];
-    };
-});
-</script>
-
-
-
+                        // CLOSE MODAL
+                        window.closeModal = function() {
+                            modal.style.display = "none"; // <-- INLINE HIDE
+                            currentIds = [];
+                        };
+                    });
+                </script>
 
                 <div class="table-view" id="tableView">
                     <table class="inventory-table">
@@ -3605,7 +3497,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         margin: 1rem 0;
                         font-family: 'Inter', sans-serif;
                     }
-                    
+
                     /* Pagination buttons */
                     .pagination a,
                     .pagination span {
@@ -3625,14 +3517,14 @@ document.addEventListener('DOMContentLoaded', function () {
                         text-decoration: none;
                         transition: all 0.2s ease-in-out;
                     }
-                    
+
                     /* Hover effect */
                     .pagination a:hover {
                         background-color: #f3f4f6;
                         color: #111827;
                         border-color: #2563eb;
                     }
-                    
+
                     /* Disabled buttons */
                     .pagination span[aria-disabled="true"] {
                         color: #9ca3af;
@@ -3640,12 +3532,13 @@ document.addEventListener('DOMContentLoaded', function () {
                         background-color: #f9fafb;
                         border-color: #d1d5db;
                     }
-                    
+
                     /* Hide Laravel default results text */
                     .pagination p.text-sm.text-gray-700,
                     .pagination p.text-sm.text-gray-700.dark\:text-gray-400 {
                         display: none !important;
                     }
+
                     /* Hide "Previous" and "Next" text links */
                     .pagination a[rel="prev"],
                     .pagination a[rel="next"],
@@ -3653,11 +3546,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     .pagination span[aria-label*="Next"] {
                         display: none !important;
                     }
+
                     /* Hide Laravel's "Showing X to Y of Z results" wrapper */
-                    
+
                     .relative.inline-flex.items-center.px-4.py-2.text-sm.font-medium.text-gray-500.bg-white.border.border-gray-300.cursor-default.leading-5.rounded-md.dark\:text-gray-600.dark\:bg-gray-800.dark\:border-gray-600 {
                         display: none !important;
                     }
+
                     /* Hide all extra Laravel pagination wrappers and info */
                 </style>
                 <div class="pagination">
@@ -3714,7 +3609,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="modal-body">
                     <form id="editForm" class="edit-form" method="POST" action="{{ route('update-product', 419503090) }}" enctype="multipart/form-data">
                         @csrf
-                        
                         <div class="edit-tabs">
                             <button type="button" class="edit-tab-btn active" onclick="switchEditTab('basic')">Basic Info</button>
                             <button type="button" class="edit-tab-btn" onclick="switchEditTab('images')">Images</button>
@@ -3791,16 +3685,12 @@ document.addEventListener('DOMContentLoaded', function () {
                                         <option value="Used">Used</option>
                                     </select>
                                 </div>
-                                
-                                <!--<div class="form-group">-->
-                                <!--    <label for="edit_bricklink_inventory_id">Bricklink Inventory ID</label>-->
-                                <!--    <input type="text" id="edit_bricklink_inventory_id" name="bricklink_inventory_id">-->
-                                <!--</div>-->
+
                                 <div class="form-group">
                                     <label for="edit_rebrickable_id">Rebrickable ID</label>
                                     <input type="text" id="edit_rebrickable_id" name="rebrickable_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_completeness">Completeness</label>
                                     <select id="edit_completeness" name="completeness">
@@ -3810,25 +3700,16 @@ document.addEventListener('DOMContentLoaded', function () {
                                         <option value="sealed">Sealed</option>
                                     </select>
                                 </div>
-                                
-                                <!--<div class="form-group">-->
-                                <!--    <label for="edit_weight">Weight (grams)</label>-->
-                                <!--    <input type="number" id="edit_weight" name="weight" step="1" min="0">-->
-                                <!--</div>-->
-                                <!--<div class="form-group">-->
-                                <!--    <label for="edit_price">Selling Price (€) *</label>-->
-                                <!--    <input type="number" id="edit_price" name="price" step="0.01" min="0">-->
-                                <!--</div>-->
                             </div>
                         </div>
-                        
+
                         <!-- Images Tab -->
                         <div class="edit-tab-content" id="imagesTab">
                             <div class="images-header">
                                 <h3>Product Afbeeldingen</h3>
                                 <p>Beheer hoofdafbeelding, galerij en image URL voor dit product.</p>
                             </div>
-    
+
                             <!-- Single Image URL -->
                             <div class="single-url-section">
                                 <h4>Product Image URL</h4>
@@ -3846,11 +3727,11 @@ document.addEventListener('DOMContentLoaded', function () {
                                     </div>
                                 </div>
                             </div>
-    
+
                             <!-- Hidden inputs for form submission -->
                             <input type="hidden" id="main_image_input" name="main_image">
                             <input type="hidden" id="gallery_images_input" name="gallery_images">
-    
+
                             <!-- Main Image -->
                             <div class="primary-image-section">
                                 <h4>Main Image</h4>
@@ -3865,17 +3746,16 @@ document.addEventListener('DOMContentLoaded', function () {
                                     </div>
                                     <input type="file" id="primaryImageFile" name="main_image" accept="image/*" style="display:none;">
                                     <div class="primary-image-actions" id="primaryImageActions" style="display:none; margin-top:5px;">
-                                        <button type="button" 
-                                                class="action-btn btn-block" 
-                                                style="width: 100%; display: flex; justify-content: center; align-items: center;" onclick="replacePrimaryImage()" >
+                                        <button type="button"
+                                            class="action-btn btn-block"
+                                            style="width: 100%; display: flex; justify-content: center; align-items: center;" onclick="replacePrimaryImage()">
                                             Choose File
                                         </button>
                                         <!--<button type="button" class="action-btn danger" onclick="removePrimaryImage()">Remove</button>-->
                                     </div>
                                 </div>
                             </div>
-    
-    
+
                             <!-- Gallery -->
                             <div class="gallery-images-section">
                                 <h4>Gallery Images</h4>
@@ -3891,7 +3771,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <div class="gallery-grid" id="galleryGrid"></div>
                             </div>
                         </div>
-    
+
                         <!-- Details Tab -->
                         <div class="edit-tab-content" id="detailsTab">
                             <div class="form-grid">
@@ -3911,7 +3791,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                     <label for="edit_height">Dim Z</label>
                                     <input type="text" id="edit_dim_z" name="dim_z" step="0.1" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_height">Pieces</label>
                                     <input type="number" id="edit_pieces" name="pieces" step="0.1" min="0">
@@ -3924,7 +3804,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                     <label for="edit_height">Min age</label>
                                     <input type="number" id="edit_min_age" name="min_age" step="0.1" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_height">Description</label>
                                     <input type="text" id="edit_description" name="description" step="0.1" min="0">
@@ -3937,136 +3817,136 @@ document.addEventListener('DOMContentLoaded', function () {
                                     <label for="edit_remarks">Remarks</label>
                                     <input type="text" id="edit_remarks" name="remarks" step="0.1" min="0">
                                 </div>
-                             
+
                             </div>
                         </div>
-    
+
                         <!-- Pricing Tab -->
                         <div class="edit-tab-content" id="pricingTab">
                             <div class="form-grid">
                                 <div class="form-group">
                                     <label for="edit_price">price</label>
                                     <input type="number" id="edit_price" name="price" step="0.01" min="0">
-                                                                        <style>
-.swal2-container {
-    z-index: 20000 !important; /* Higher than Bootstrap modal (1050–1060) */
-}
-</style>
+                                    <style>
+                                        .swal2-container {
+                                            z-index: 20000 !important;
+                                            /* Higher than Bootstrap modal (1050–1060) */
+                                        }
+                                    </style>
 
                                     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<button type="button" class="btn-primary" style="
-            text-align: center;
-            height: 25px;
-            width: 100%;
-            background: #4CAF51;
-            color: #fff;
-            border-radius: 5px;
-            padding: 10px 18px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center; /* ✅ Center horizontally */
-            gap: 8px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-          " id="fetchPriceBtn_edit">Fetch Price</button>
+                                    <button type="button" class="btn-primary" style="
+                                        text-align: center;
+                                        height: 25px;
+                                        width: 100%;
+                                        background: #4CAF51;
+                                        color: #fff;
+                                        border-radius: 5px;
+                                        padding: 10px 18px;
+                                        cursor: pointer;
+                                        transition: all 0.3s ease;
+                                        display: inline-flex;
+                                        align-items: center;
+                                        justify-content: center; /* ✅ Center horizontally */
+                                        gap: 8px;
+                                        box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+                                    " id="fetchPriceBtn_edit">Fetch Price</button>
 
-<script>
-document.getElementById("fetchPriceBtn_edit").addEventListener("click", function() {
-    const btn = this;
-    btn.disabled = true;
-    btn.textContent = "Fetching...";
+                                    <script>
+                                        document.getElementById("fetchPriceBtn_edit").addEventListener("click", function() {
+                                            const btn = this;
+                                            btn.disabled = true;
+                                            btn.textContent = "Fetching...";
 
-    const payload = {
-        item_no: document.getElementById("edit_item_no")?.value || "ABC123",
-        item_type: document.getElementById("edit_item_type")?.value || "ABC123",
-        item_color_id: document.getElementById("edit_color_id")?.value || "ABC123",
-        item_condition: document.getElementById("edit_condition")?.value || "ABC123"
-    };
+                                            const payload = {
+                                                item_no: document.getElementById("edit_item_no")?.value || "ABC123",
+                                                item_type: document.getElementById("edit_item_type")?.value || "ABC123",
+                                                item_color_id: document.getElementById("edit_color_id")?.value || "ABC123",
+                                                item_condition: document.getElementById("edit_condition")?.value || "ABC123"
+                                            };
 
-    fetch("https://portal.bntk.eu/send-to-webhook", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
-        },
-        body: JSON.stringify(payload)
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log("Response:", data);
+                                            fetch("https://portal.bntk.eu/send-to-webhook", {
+                                                    method: "POST",
+                                                    headers: {
+                                                        "Content-Type": "application/json",
+                                                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+                                                    },
+                                                    body: JSON.stringify(payload)
+                                                })
+                                                .then(response => response.json())
+                                                .then(data => {
+                                                    console.log("Response:", data);
 
-        if (data.avg_price !== undefined) {
-            const priceField = document.getElementById("edit_price");
-            priceField.value = data.avg_price;
-            priceField.removeAttribute("disabled");
-        } else {
-            Swal.fire({
-                    icon: 'error',
-                    title: 'Invalid Item No',
-                    text: 'Please provide the valid Item No, Item Type, Color ID & Condition to fetch the price!'
-                });
-        }
-    })
-    .catch(error => {
-        console.error("Error fetching price:", error);
-        alert("Failed to fetch price.");
-    })
-    .finally(() => {
-        btn.disabled = false;
-        btn.textContent = "Fetch Price";
-    });
-});
-</script>
-
+                                                    if (data.avg_price !== undefined) {
+                                                        const priceField = document.getElementById("edit_price");
+                                                        priceField.value = data.avg_price;
+                                                        priceField.removeAttribute("disabled");
+                                                    } else {
+                                                        Swal.fire({
+                                                            icon: 'error',
+                                                            title: 'Invalid Item No',
+                                                            text: 'Please provide the valid Item No, Item Type, Color ID & Condition to fetch the price!'
+                                                        });
+                                                    }
+                                                })
+                                                .catch(error => {
+                                                    console.error("Error fetching price:", error);
+                                                    alert("Failed to fetch price.");
+                                                })
+                                                .finally(() => {
+                                                    btn.disabled = false;
+                                                    btn.textContent = "Fetch Price";
+                                                });
+                                        });
+                                    </script>
 
                                 </div>
                                 <div class="form-group">
                                     <label for="edit_sell_price">Sell Price</label>
                                     <input type="number" id="edit_sell_price" name="sell_price" step="0.01" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_purchase_price">Purchase Price</label>
                                     <input type="number" id="edit_purchase_price" name="purchase_price" step="0.01" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_sale_rate">Sale Rate (%)</label>
                                     <input type="number" id="edit_sale_rate" name="sale_rate" step="0.01" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_tier_quantity1">Tier Quantity 1</label>
                                     <input type="number" id="edit_tier_quantity1" name="tier_quantity1" step="1" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_tier_price1">Tier Price 1</label>
                                     <input type="number" id="edit_tier_price1" name="tier_price1" step="0.01" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_tier_quantity2">Tier Quantity 2</label>
                                     <input type="number" id="edit_tier_quantity2" name="tier_quantity2" step="1" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_tier_price2">Tier Price 2</label>
                                     <input type="number" id="edit_tier_price2" name="tier_price2" step="0.01" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_tier_quantity3">Tier Quantity 3</label>
                                     <input type="number" id="edit_tier_quantity3" name="tier_quantity3" step="1" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_tier_price3">Tier Price 3</label>
                                     <input type="number" id="edit_tier_price3" name="tier_price3" step="0.01" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_currency">Currency</label>
                                     <input type="text" id="edit_currency" name="currency" maxlength="3" placeholder="e.g. EUR">
@@ -4079,7 +3959,7 @@ document.getElementById("fetchPriceBtn_edit").addEventListener("click", function
                                 </div>
                             </div>
                         </div>
-    
+
                         <!-- amazonIntegrationTab Tab -->
                         <div class="edit-tab-content" id="amazonIntegrationTab">
                             <div class="form-grid">
@@ -4087,44 +3967,44 @@ document.getElementById("fetchPriceBtn_edit").addEventListener("click", function
                                     <label for="edit_amazon_sku">Amazon SKU</label>
                                     <input type="text" id="edit_amazon_sku" name="amazon_sku">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_amazon_price">Amazon Price</label>
                                     <input type="text" id="edit_amazon_price" name="amazon_price">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_amazon_condition_type">Amazon Condition Type</label>
                                     <input type="text" id="edit_amazon_condition_type" name="amazon_condition_type">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_amazon_fulfillment_channel">Amazon Fulfillment Channel</label>
                                     <input type="text" id="edit_amazon_fulfillment_channel" name="amazon_fulfillment_channel">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_amazon_target_age_min">Amazon Target Age Min</label>
                                     <input type="text" id="edit_amazon_target_age_min" name="amazon_target_age_min">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_amazon_listing_id">Amazon Listing ID</label>
                                     <input type="text" id="edit_amazon_listing_id" name="amazon_listing_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_amazon_status">Amazon Status</label>
                                     <input type="text" id="edit_amazon_status" name="amazon_status">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_amazon_last_sync">Amazon Last Sync</label>
                                     <input type="text" id="edit_amazon_last_sync" name="amazon_last_sync">
                                 </div>
                             </div>
                         </div>
-    
+
                         <!-- ebayIntegrationTab Tab -->
                         <div class="edit-tab-content" id="ebayIntegrationTab">
                             <div class="form-grid">
@@ -4132,64 +4012,64 @@ document.getElementById("fetchPriceBtn_edit").addEventListener("click", function
                                     <label for="edit_ebay_item_id">Ebay Item ID</label>
                                     <input type="text" id="edit_ebay_item_id" name="ebay_item_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_ebay_price">Ebay Price</label>
                                     <input type="text" id="edit_ebay_price" name="ebay_price">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_ebay_condition_id">Ebay Condition ID</label>
                                     <input type="text" id="edit_ebay_condition_id" name="ebay_condition_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_ebay_category_id">Ebay Category ID</label>
                                     <input type="text" id="edit_ebay_category_id" name="ebay_category_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_ebay_listing_type">Ebay Listing Type</label>
                                     <input type="text" id="edit_ebay_listing_type" name="ebay_listing_type">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_ebay_listing_duration">Ebay Listing Duration</label>
                                     <input type="text" id="edit_ebay_listing_duration" name="ebay_listing_duration">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_ebay_primary_image">Ebay Primary Image</label>
                                     <input type="text" id="edit_ebay_primary_image" name="ebay_primary_image">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_ebay_item_specifics">Ebay Item Specifics</label>
                                     <input type="text" id="edit_ebay_item_specifics" name="ebay_item_specifics">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_ebay_handling_time">Ebay Handling Time</label>
                                     <input type="text" id="edit_ebay_handling_time" name="ebay_handling_time">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_ebay_sku">Ebay SKU</label>
                                     <input type="text" id="edit_ebay_sku" name="ebay_sku">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_ebay_status">Ebay Status</label>
                                     <input type="text" id="edit_ebay_status" name="ebay_status">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_ebay_last_sync">Ebay Last Sync</label>
                                     <input type="text" id="edit_ebay_last_sync" name="ebay_last_sync">
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- bolComIntegrationTab Tab -->
                         <div class="edit-tab-content" id="bolComIntegrationTab">
                             <div class="form-grid">
@@ -4197,29 +4077,29 @@ document.getElementById("fetchPriceBtn_edit").addEventListener("click", function
                                     <label for="edit_bol_active">Bol Active</label>
                                     <input type="text" id="edit_bol_active" name="bol_active">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_bol_offerId">Bol Offer ID</label>
                                     <input type="text" id="edit_bol_offerId" name="bol_offerId">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_bol_price">Bol Price</label>
                                     <input type="text" id="edit_bol_price" name="bol_price">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_bol_fulfilment_method">Bol Fulfilment Method</label>
                                     <input type="text" id="edit_bol_fulfilment_method" name="bol_fulfilment_method">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_bol_delivery_code">Bol Delivery Code</label>
                                     <input type="text" id="edit_bol_delivery_code" name="bol_delivery_code">
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Supplier & Location Tab -->
                         <div class="edit-tab-content" id="supplierAndLocationTab">
                             <div class="form-grid">
@@ -4227,34 +4107,34 @@ document.getElementById("fetchPriceBtn_edit").addEventListener("click", function
                                     <label for="edit_supplier">Supplier</label>
                                     <input type="text" id="edit_supplier" name="supplier">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_stockSupplier">Stock Supplier</label>
                                     <input type="text" id="edit_stockSupplier" name="stockSupplier">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_location_id">Location ID</label>
                                     <input type="text" id="edit_location_id" name="location_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_lot_id">Lot ID</label>
                                     <input type="text" id="edit_lot_id" name="lot_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_super_lot_id">Super Lot ID</label>
                                     <input type="text" id="edit_super_lot_id" name="super_lot_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_super_lot_qty">Super Lot Quantity</label>
                                     <input type="text" id="edit_super_lot_qty" name="super_lot_qty">
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- specialPropertiesAndOtherTab Tab -->
                         <div class="edit-tab-content" id="specialPropertiesAndOtherTab">
                             <div class="form-grid">
@@ -4265,75 +4145,75 @@ document.getElementById("fetchPriceBtn_edit").addEventListener("click", function
                                     </label>
                                 </div>
                                 <br>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_woocommerce_parent_id">WooCommerce Parent ID</label>
                                     <input type="text" id="edit_woocommerce_parent_id" name="woocommerce_parent_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_woocommerce_id">WooCommerce ID</label>
                                     <input type="text" id="edit_woocommerce_id" name="woocommerce_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_bricklink_inventory_id">BrickLink Inventory ID</label>
                                     <input type="text" id="edit_bricklink_inventory_id" name="bricklink_inventory_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_brickowl_id">BrickOwl ID</label>
                                     <input type="text" id="edit_brickowl_id" name="brickowl_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_element_id">Element ID</label>
                                     <input type="text" id="edit_element_id" name="element_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_notifyvalues">Notify Values</label>
                                     <input type="text" id="edit_notifyvalues" name="notifyvalues">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_notifyselected">Notify Selected</label>
                                     <input type="text" id="edit_notifyselected" name="notifyselected">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_notifystatus">Notify Status</label>
                                     <input type="text" id="edit_notifystatus" name="notifystatus">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_bind_id">Bind ID</label>
                                     <input type="text" id="edit_bind_id" name="bind_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_reserved_for">Reserved For</label>
                                     <input type="text" id="edit_reserved_for" name="reserved_for">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_date">Date</label>
                                     <input type="text" id="edit_date" name="date">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_new_or_used">New or Used</label>
                                     <input type="text" id="edit_new_or_used" name="new_or_used">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_upgrades">Upgrades</label>
                                     <input type="text" id="edit_upgrades" name="upgrades">
                                 </div>
-                                
+
                             </div>
                         </div>
-                        
+
                         <!-- Vinted Tab -->
                         <div class="edit-tab-content" id="vintedTab">
                             <div class="form-grid">
@@ -4348,27 +4228,24 @@ document.getElementById("fetchPriceBtn_edit").addEventListener("click", function
                                     <label for="edit_vinted_item_id">Vinted Item ID</label>
                                     <input type="text" id="edit_vinted_item_id" name="vinted_item_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_vinted_item_id">Vinted Bulk Amount</label>
                                     <input type="text" id="edit_vinted_bulk_amount" name="vinted_bulk_amount">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="edit_vinted_status">Vinted Status</label>
                                     <input type="text" id="edit_vinted_status" name="vinted_status">
                                 </div>
                                 <div class="form-group">
-                                    
+
                                 </div>
-                                
-                
-    
-    
+
                                 <!-- Hidden inputs for form submission -->
                                 <input type="hidden" id="vinted_main_image_input" name="vinted_main_image">
                                 <input type="hidden" id="vinted_gallery_images_input" name="vinted_gallery_images">
-        
+
                                 <!-- Main Image -->
                                 <div class="primary-image-section">
                                     <h4>Main Image</h4>
@@ -4383,17 +4260,16 @@ document.getElementById("fetchPriceBtn_edit").addEventListener("click", function
                                         </div>
                                         <input type="file" id="vinted_primaryImageFile" name="vinted_main_image" accept="image/*" style="display:none;">
                                         <div class="primary-image-actions" id="vinted_primaryImageActions" style="display:none; margin-top:5px;">
-                                            <button type="button" 
-                                                    class="action-btn btn-block" 
-                                                    style="width: 100%; display: flex; justify-content: center; align-items: center;" onclick="vinted_replacePrimaryImage()" >
+                                            <button type="button"
+                                                class="action-btn btn-block"
+                                                style="width: 100%; display: flex; justify-content: center; align-items: center;" onclick="vinted_replacePrimaryImage()">
                                                 Choose File
                                             </button>
                                             <!--<button type="button" class="action-btn danger" onclick="removePrimaryImage()">Remove</button>-->
                                         </div>
                                     </div>
                                 </div>
-        
-        
+
                                 <!-- Gallery -->
                                 <div class="gallery-images-section">
                                     <h4>Gallery Images</h4>
@@ -4408,10 +4284,6 @@ document.getElementById("fetchPriceBtn_edit").addEventListener("click", function
                                     </div>
                                     <div class="gallery-grid" id="vinted_galleryGrid"></div>
                                 </div>
-                            
-                            
-                            
-                            
                             </div>
                         </div>
 
@@ -4423,7 +4295,7 @@ document.getElementById("fetchPriceBtn_edit").addEventListener("click", function
                 </div>
             </div>
         </div>
-        
+
         <!-- Add Product Modal -->
         <div class="modal-overlay" id="addModal">
             <div class="modal modal-large">
@@ -4446,7 +4318,7 @@ document.getElementById("fetchPriceBtn_edit").addEventListener("click", function
                             <button type="button" class="edit-tab-btn" onclick="switchEditTab('add-supplierAndLocation')">Supplier & Location</button>
                             <button type="button" class="edit-tab-btn" onclick="switchEditTab('add-specialPropertiesAndOther')">Special Properties & Others</button>
                         </div>
-        
+
                         <!-- Basic Info -->
                         <div class="edit-tab-content active" id="add-basicTab">
                             <div class="form-grid">
@@ -4494,9 +4366,9 @@ document.getElementById("fetchPriceBtn_edit").addEventListener("click", function
                                     <label for="add_ean">EAN/GTIN</label>
                                     <input type="text" id="add_ean" name="ean" maxlength="13">
                                 </div>
-                                
+
                                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+                                <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
                                 <div class="form-group">
                                     <label for="add_category">Category *</label>
@@ -4508,15 +4380,15 @@ document.getElementById("fetchPriceBtn_edit").addEventListener("click", function
                                     </select>
                                 </div>
                                 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    new Choices('#add_category', {
-        searchEnabled: true,
-        itemSelectText: '',
-        placeholderValue: 'Search category...',
-        allowHTML: true
-    });
-});
-</script>
+                                    document.addEventListener('DOMContentLoaded', function() {
+                                        new Choices('#add_category', {
+                                            searchEnabled: true,
+                                            itemSelectText: '',
+                                            placeholderValue: 'Search category...',
+                                            allowHTML: true
+                                        });
+                                    });
+                                </script>
 
                                 <script></script>
                                 <div class="form-group">
@@ -4526,16 +4398,12 @@ document.addEventListener('DOMContentLoaded', function() {
                                         <option value="Used">Used</option>
                                     </select>
                                 </div>
-                                
-                                <!--<div class="form-group">-->
-                                <!--    <label for="add_bricklink_inventory_id">Bricklink Inventory ID</label>-->
-                                <!--    <input type="text" id="add_bricklink_inventory_id" name="bricklink_inventory_id">-->
-                                <!--</div>-->
+
                                 <div class="form-group">
                                     <label for="add_rebrickable_id">Rebrickable ID</label>
                                     <input type="text" id="add_rebrickable_id" name="rebrickable_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_completeness">Completeness</label>
                                     <select id="add_completeness" name="completeness">
@@ -4545,25 +4413,16 @@ document.addEventListener('DOMContentLoaded', function() {
                                         <option value="sealed">Sealed</option>
                                     </select>
                                 </div>
-                                
-                                <!--<div class="form-group">-->
-                                <!--    <label for="add_weight">Weight (grams)</label>-->
-                                <!--    <input type="number" id="add_weight" name="weight" step="1" min="0">-->
-                                <!--</div>-->
-                                <!--<div class="form-group">-->
-                                <!--    <label for="add_price">Selling Price (€) *</label>-->
-                                <!--    <input type="number" id="add_price" name="price" step="0.01" min="0" required>-->
-                                <!--</div>-->
                             </div>
                         </div>
-        
+
                         <!-- Images Tab -->
                         <div class="edit-tab-content" id="add-imagesTab">
                             <div class="images-header">
                                 <h3>Product Afbeeldingen</h3>
                                 <p>Beheer hoofdafbeelding, galerij en image URL voor dit product.</p>
                             </div>
-    
+
                             <!-- Single Image URL -->
                             <div class="single-url-section">
                                 <h4>Product Image URL</h4>
@@ -4581,11 +4440,11 @@ document.addEventListener('DOMContentLoaded', function() {
                                     </div>
                                 </div>
                             </div>
-            
+
                             <!-- Hidden inputs for form submission -->
                             <input type="hidden" id="main_image_input" name="main_image">
                             <input type="hidden" id="gallery_images_input" name="gallery_images">
-            
+
                             <!-- Main Image -->
                             <div class="primary-image-section">
                                 <h4>Main Image</h4>
@@ -4600,15 +4459,15 @@ document.addEventListener('DOMContentLoaded', function() {
                                     </div>
                                     <input type="file" id="addPrimaryImageFile" name="main_image" accept="image/*" style="display:none;">
                                     <div class="primary-image-actions" id="addPrimaryImageActions" style="display:none; margin-top:5px;">
-                                        <button type="button" 
-                                                class="action-btn btn-block" 
-                                                style="width: 100%; display: flex; justify-content: center; align-items: center;" onclick="replaceAddPrimaryImage()" >
+                                        <button type="button"
+                                            class="action-btn btn-block"
+                                            style="width: 100%; display: flex; justify-content: center; align-items: center;" onclick="replaceAddPrimaryImage()">
                                             Choose File
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Gallery -->
                             <div class="gallery-images-section">
                                 <h4>Gallery Images</h4>
@@ -4624,7 +4483,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <div class="gallery-grid" id="addGalleryGrid"></div>
                             </div>
                         </div>
-    
+
                         <!-- Details Tab -->
                         <div class="edit-tab-content" id="add-detailsTab">
                             <div class="form-grid">
@@ -4632,181 +4491,179 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <label for="add_weight">Weight (gram)</label>
                                     <input type="text" id="add_weight" name="weight" step="1" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_dim_x">Dim x</label>
                                     <input type="text" id="add_dim_x" name="dim_x" step="0.1" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_dim_y">Dim Y</label>
                                     <input type="text" id="add_dim_y" name="dim_y" step="0.1" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_dim_z">Dim Z</label>
                                     <input type="text" id="add_dim_z" name="dim_z" step="0.1" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_pieces">Pieces</label>
                                     <input type="number" id="add_pieces" name="pieces" step="0.1" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_year">Year</label>
                                     <input type="number" id="add_year" name="year" step="0.1" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_min_age">Min age</label>
                                     <input type="number" id="add_min_age" name="min_age" step="0.1" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_description">Description</label>
                                     <input type="text" id="add_description" name="description" step="0.1" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_extended_description">Extended Description</label>
                                     <input type="text" id="add_extended_description" name="extended_description" step="0.1" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_remarks">Remarks</label>
                                     <input type="text" id="add_remarks" name="remarks" step="0.1" min="0">
                                 </div>
                             </div>
                         </div>
-    
+
                         <!-- Pricing Tab -->
                         <div class="edit-tab-content" id="add-pricingTab">
                             <div class="form-grid">
                                 <div class="form-group">
                                     <label for="add_price">Price</label>
                                     <style>
-.swal2-container {
-    z-index: 20000 !important; /* Higher than Bootstrap modal (1050–1060) */
-}
-</style>
+                                        .swal2-container {
+                                            z-index: 20000 !important;
+                                            /* Higher than Bootstrap modal (1050–1060) */
+                                        }
+                                    </style>
 
                                     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<input type="number" id="add_price" name="price" step="0.01" min="0" placeholder="Price will be auto-fetch against Item No!">
-<button type="button" class="btn-primary" style="
-            text-align: center;
-            height: 25px;
-            width: 100%;
-            background: #4CAF51;
-            color: #fff;
-            border-radius: 5px;
-            padding: 10px 18px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center; /* ✅ Center horizontally */
-            gap: 8px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-          " id="fetchPriceBtn">Fetch Price</button>
+                                    <input type="number" id="add_price" name="price" step="0.01" min="0" placeholder="Price will be auto-fetch against Item No!">
+                                    <button type="button" class="btn-primary" style="
+                                        text-align: center;
+                                        height: 25px;
+                                        width: 100%;
+                                        background: #4CAF51;
+                                        color: #fff;
+                                        border-radius: 5px;
+                                        padding: 10px 18px;
+                                        cursor: pointer;
+                                        transition: all 0.3s ease;
+                                        display: inline-flex;
+                                        align-items: center;
+                                        justify-content: center; /* ✅ Center horizontally */
+                                        gap: 8px;
+                                        box-shadow: 0 3px 8px rgba(0,0,0,0.2);" id="fetchPriceBtn">Fetch Price</button>
 
-<script>
-document.getElementById("fetchPriceBtn").addEventListener("click", function() {
-    const btn = this;
-    btn.disabled = true;
-    btn.textContent = "Fetching...";
+                                    <script>
+                                        document.getElementById("fetchPriceBtn").addEventListener("click", function() {
+                                            const btn = this;
+                                            btn.disabled = true;
+                                            btn.textContent = "Fetching...";
 
-    const payload = {
-        item_no: document.getElementById("add_item_no")?.value || "ABC123",
-        item_type: document.getElementById("add_item_type")?.value || "ABC123",
-        item_color_id: document.getElementById("add_color_id")?.value || "ABC123",
-        item_condition: document.getElementById("add_condition")?.value || "ABC123"
-    };
+                                            const payload = {
+                                                item_no: document.getElementById("add_item_no")?.value || "ABC123",
+                                                item_type: document.getElementById("add_item_type")?.value || "ABC123",
+                                                item_color_id: document.getElementById("add_color_id")?.value || "ABC123",
+                                                item_condition: document.getElementById("add_condition")?.value || "ABC123"
+                                            };
 
-    fetch("https://portal.bntk.eu/send-to-webhook", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
-        },
-        body: JSON.stringify(payload)
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log("Response:", data);
+                                            fetch("https://portal.bntk.eu/send-to-webhook", {
+                                                    method: "POST",
+                                                    headers: {
+                                                        "Content-Type": "application/json",
+                                                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+                                                    },
+                                                    body: JSON.stringify(payload)
+                                                })
+                                                .then(response => response.json())
+                                                .then(data => {
+                                                    console.log("Response:", data);
 
-        if (data.avg_price !== undefined) {
-            const priceField = document.getElementById("add_price");
-            priceField.value = data.avg_price;
-            priceField.removeAttribute("disabled");
-        } else {
-            Swal.fire({
-                    icon: 'error',
-                    title: 'Invalid Item No',
-                    text: 'Please provide the valid Item No, Item Type, Color ID & Condition to fetch the price!'
-                });
-        }
-    })
-    .catch(error => {
-        console.error("Error fetching price:", error);
-        alert("Failed to fetch price.");
-    })
-    .finally(() => {
-        btn.disabled = false;
-        btn.textContent = "Fetch Price";
-    });
-});
-</script>
-
-
+                                                    if (data.avg_price !== undefined) {
+                                                        const priceField = document.getElementById("add_price");
+                                                        priceField.value = data.avg_price;
+                                                        priceField.removeAttribute("disabled");
+                                                    } else {
+                                                        Swal.fire({
+                                                            icon: 'error',
+                                                            title: 'Invalid Item No',
+                                                            text: 'Please provide the valid Item No, Item Type, Color ID & Condition to fetch the price!'
+                                                        });
+                                                    }
+                                                })
+                                                .catch(error => {
+                                                    console.error("Error fetching price:", error);
+                                                    alert("Failed to fetch price.");
+                                                })
+                                                .finally(() => {
+                                                    btn.disabled = false;
+                                                    btn.textContent = "Fetch Price";
+                                                });
+                                        });
+                                    </script>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_sell_price">Sell Price</label>
                                     <input type="number" id="add_sell_price" name="sell_price" step="0.01" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_purchase_price">Purchase Price</label>
                                     <input type="number" id="add_purchase_price" name="purchase_price" step="0.01" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_sale_rate">Sale Rate (%)</label>
                                     <input type="number" id="add_sale_rate" name="sale_rate" step="0.01" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_tier_quantity1">Tier Quantity 1</label>
                                     <input type="number" id="add_tier_quantity1" name="tier_quantity1" step="1" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_tier_price1">Tier Price 1</label>
                                     <input type="number" id="add_tier_price1" name="tier_price1" step="0.01" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_tier_quantity2">Tier Quantity 2</label>
                                     <input type="number" id="add_tier_quantity2" name="tier_quantity2" step="1" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_tier_price2">Tier Price 2</label>
                                     <input type="number" id="add_tier_price2" name="tier_price2" step="0.01" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_tier_quantity3">Tier Quantity 3</label>
                                     <input type="number" id="add_tier_quantity3" name="tier_quantity3" step="1" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_tier_price3">Tier Price 3</label>
                                     <input type="number" id="add_tier_price3" name="tier_price3" step="0.01" min="0">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_currency">Currency</label>
                                     <input type="text" id="add_currency" name="currency" maxlength="3" placeholder="e.g. EUR">
@@ -4819,7 +4676,7 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                                 </div>
                             </div>
                         </div>
-    
+
                         <!-- amazonIntegrationTab Tab -->
                         <div class="edit-tab-content" id="add-amazonIntegrationTab">
                             <div class="form-grid">
@@ -4827,44 +4684,44 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                                     <label for="add_amazon_sku">Amazon SKU</label>
                                     <input type="text" id="add_amazon_sku" name="amazon_sku">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_amazon_price">Amazon Price</label>
                                     <input type="text" id="add_amazon_price" name="amazon_price">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_amazon_condition_type">Amazon Condition Type</label>
                                     <input type="text" id="add_amazon_condition_type" name="amazon_condition_type">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_amazon_fulfillment_channel">Amazon Fulfillment Channel</label>
                                     <input type="text" id="add_amazon_fulfillment_channel" name="amazon_fulfillment_channel">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_amazon_target_age_min">Amazon Target Age Min</label>
                                     <input type="text" id="add_amazon_target_age_min" name="amazon_target_age_min">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_amazon_listing_id">Amazon Listing ID</label>
                                     <input type="text" id="add_amazon_listing_id" name="amazon_listing_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_amazon_status">Amazon Status</label>
                                     <input type="text" id="add_amazon_status" name="amazon_status">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_amazon_last_sync">Amazon Last Sync</label>
                                     <input type="text" id="add_amazon_last_sync" name="amazon_last_sync">
                                 </div>
                             </div>
                         </div>
-    
+
                         <!-- ebayIntegrationTab Tab -->
                         <div class="edit-tab-content" id="add-ebayIntegrationTab">
                             <div class="form-grid">
@@ -4872,64 +4729,64 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                                     <label for="add_ebay_item_id">Ebay Item ID</label>
                                     <input type="text" id="add_ebay_item_id" name="ebay_item_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_ebay_price">Ebay Price</label>
                                     <input type="text" id="add_ebay_price" name="ebay_price">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_ebay_condition_id">Ebay Condition ID</label>
                                     <input type="text" id="add_ebay_condition_id" name="ebay_condition_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_ebay_category_id">Ebay Category ID</label>
                                     <input type="text" id="add_ebay_category_id" name="ebay_category_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_ebay_listing_type">Ebay Listing Type</label>
                                     <input type="text" id="add_ebay_listing_type" name="ebay_listing_type">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_ebay_listing_duration">Ebay Listing Duration</label>
                                     <input type="text" id="add_ebay_listing_duration" name="ebay_listing_duration">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_ebay_primary_image">Ebay Primary Image</label>
                                     <input type="text" id="add_ebay_primary_image" name="ebay_primary_image">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_ebay_item_specifics">Ebay Item Specifics</label>
                                     <input type="text" id="add_ebay_item_specifics" name="ebay_item_specifics">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_ebay_handling_time">Ebay Handling Time</label>
                                     <input type="text" id="add_ebay_handling_time" name="ebay_handling_time">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_ebay_sku">Ebay SKU</label>
                                     <input type="text" id="add_ebay_sku" name="ebay_sku">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_ebay_status">Ebay Status</label>
                                     <input type="text" id="add_ebay_status" name="ebay_status">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_ebay_last_sync">Ebay Last Sync</label>
                                     <input type="text" id="add_ebay_last_sync" name="ebay_last_sync">
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- bolComIntegrationTab Tab -->
                         <div class="edit-tab-content" id="add-bolComIntegrationTab">
                             <div class="form-grid">
@@ -4937,29 +4794,29 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                                     <label for="add_bol_active">Bol Active</label>
                                     <input type="text" id="add_bol_active" name="bol_active">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_bol_offerId">Bol Offer ID</label>
                                     <input type="text" id="add_bol_offerId" name="bol_offerId">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_bol_price">Bol Price</label>
                                     <input type="text" id="add_bol_price" name="bol_price">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_bol_fulfilment_method">Bol Fulfilment Method</label>
                                     <input type="text" id="add_bol_fulfilment_method" name="bol_fulfilment_method">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_bol_delivery_code">Bol Delivery Code</label>
                                     <input type="text" id="add_bol_delivery_code" name="bol_delivery_code">
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Supplier & Location Tab -->
                         <div class="edit-tab-content" id="add-supplierAndLocationTab">
                             <div class="form-grid">
@@ -4967,34 +4824,34 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                                     <label for="add_supplier">Supplier</label>
                                     <input type="text" id="add_supplier" name="supplier">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_stockSupplier">Stock Supplier</label>
                                     <input type="text" id="add_stockSupplier" name="stockSupplier">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_location_id">Location ID</label>
                                     <input type="text" id="add_location_id" name="location_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_lot_id">Lot ID</label>
                                     <input type="text" id="add_lot_id" name="lot_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_super_lot_id">Super Lot ID</label>
                                     <input type="text" id="add_super_lot_id" name="super_lot_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_super_lot_qty">Super Lot Quantity</label>
                                     <input type="text" id="add_super_lot_qty" name="super_lot_qty">
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- specialPropertiesAndOtherTab Tab -->
                         <div class="edit-tab-content" id="add-specialPropertiesAndOtherTab">
                             <div class="form-grid">
@@ -5009,75 +4866,69 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                                     <label for="add_woocommerce_parent_id">WooCommerce Parent ID</label>
                                     <input type="text" id="add_woocommerce_parent_id" name="woocommerce_parent_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_woocommerce_id">WooCommerce ID</label>
                                     <input type="text" id="add_woocommerce_id" name="woocommerce_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_bricklink_inventory_id">BrickLink Inventory ID</label>
                                     <input type="text" id="add_bricklink_inventory_id" name="bricklink_inventory_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_brickowl_id">BrickOwl ID</label>
                                     <input type="text" id="add_brickowl_id" name="brickowl_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_element_id">Element ID</label>
                                     <input type="text" id="add_element_id" name="element_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_notifyvalues">Notify Values</label>
                                     <input type="text" id="add_notifyvalues" name="notifyvalues">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_notifyselected">Notify Selected</label>
                                     <input type="text" id="add_notifyselected" name="notifyselected">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_notifystatus">Notify Status</label>
                                     <input type="text" id="add_notifystatus" name="notifystatus">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_bind_id">Bind ID</label>
                                     <input type="text" id="add_bind_id" name="bind_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_reserved_for">Reserved For</label>
                                     <input type="text" id="add_reserved_for" name="reserved_for">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_date">Date</label>
                                     <input type="text" id="add_date" name="date">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_new_or_used">New or Used</label>
                                     <input type="text" id="add_new_or_used" name="new_or_used">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_upgrades">Upgrades</label>
                                     <input type="text" id="add_upgrades" name="upgrades">
                                 </div>
-                                
-                                <!--<div class="form-group">-->
-                                <!--    <label for="add_retired">Retired</label>-->
-                                <!--    <input type="checkbox" id="add_retired" name="retired">-->
-                                <!--</div>-->
-                                
                             </div>
                         </div>
-                        
+
                         <!-- Vinted Tab -->
                         <div class="edit-tab-content" id="add-vintedTab">
                             <div class="form-grid">
@@ -5092,20 +4943,20 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                                     <label for="add_vinted_item_id">Vinted Item ID</label>
                                     <input type="text" id="add_vinted_item_id" name="vinted_item_id">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_vinted_item_id">Vinted Bulk Amount</label>
                                     <input type="text" id="add_vinted_bulk_amount" name="vinted_bulk_amount">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="add_vinted_status">Vinted Status</label>
                                     <input type="text" id="add_vinted_status" name="vinted_status">
                                 </div>
                                 <div class="form-group">
-                                    
+
                                 </div>
-                
+
                                 <!-- Main Image -->
                                 <div class="primary-image-section">
                                     <h4>Main Image</h4>
@@ -5120,15 +4971,15 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                                         </div>
                                         <input type="file" id="vinted_addPrimaryImageFile" name="vinted_main_image" accept="image/*" style="display:none;">
                                         <div class="primary-image-actions" id="vinted_addPrimaryImageActions" style="display:none; margin-top:5px;">
-                                            <button type="button" 
-                                                    class="action-btn btn-block" 
-                                                    style="width: 100%; display: flex; justify-content: center; align-items: center;" onclick="vinted_replaceAddPrimaryImage()" >
+                                            <button type="button"
+                                                class="action-btn btn-block"
+                                                style="width: 100%; display: flex; justify-content: center; align-items: center;" onclick="vinted_replaceAddPrimaryImage()">
                                                 Choose File
                                             </button>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <!-- Gallery -->
                                 <div class="gallery-images-section">
                                     <h4>Gallery Images</h4>
@@ -5143,10 +4994,10 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                                     </div>
                                     <div class="gallery-grid" id="vinted_addGalleryGrid"></div>
                                 </div>
-                            
+
                             </div>
                         </div>
-        
+
                         <div class="form-actions">
                             <button type="button" class="btn-secondary" onclick="closeAddModal()">Cancel</button>
                             <button type="submit" class="btn-primary">Save Product</button>
@@ -5155,8 +5006,6 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                 </div>
             </div>
         </div>
-
-
 
         <!-- Stock Adjustment Modal -->
         <div class="modal-overlay" id="stockModal">
@@ -5179,7 +5028,7 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                             <p id="stockProductDetails">SKU: --- | Condition: ---</p>
                         </div>
                     </div>
-        
+
                     <form id="stockForm" class="stock-form" method="POST">
                         @csrf
                         <div class="stock-adjustment">
@@ -5202,34 +5051,7 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                                 <label for="stockAmount">Amount</label>
                                 <input type="number" id="stockAmount" name="amount" min="0" required>
                             </div>
-                            <!--<div class="adjustment-reason">-->
-                            <!--    <label for="stockReason">Reason (optional)</label>-->
-                            <!--    <select id="stockReason" name="reason">-->
-                            <!--        <option value="">Select reason...</option>-->
-                            <!--        <option value="purchase">New Purchase</option>-->
-                            <!--        <option value="sale">Sale</option>-->
-                            <!--        <option value="damage">Damaged</option>-->
-                            <!--        <option value="lost">Lost</option>-->
-                            <!--        <option value="return">Returned</option>-->
-                            <!--        <option value="correction">Correction</option>-->
-                            <!--        <option value="other">Other</option>-->
-                            <!--    </select>-->
-                            <!--</div>-->
-                            <!--<div class="adjustment-note">-->
-                            <!--    <label for="stockNote">Note</label>-->
-                            <!--    <textarea id="stockNote" name="note" rows="2"-->
-                            <!--        placeholder="Optional note..."></textarea>-->
-                            <!--</div>-->
                         </div>
-        
-                        <!--<div class="new-stock-preview">-->
-                        <!--    <h4>New Stock</h4>-->
-                        <!--    <div class="stock-preview">-->
-                        <!--        <span class="preview-number" id="previewStock">0</span>-->
-                        <!--        <span class="stock-label">pcs</span>-->
-                        <!--    </div>-->
-                        <!--</div>-->
-        
                         <div class="form-actions">
                             <button type="button" class="btn-secondary" onclick="closeStockModal()">Cancel</button>
                             <button type="submit" class="btn-primary">Update Stock</button>
@@ -5238,7 +5060,6 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                 </div>
             </div>
         </div>
-
     </div>
 
     <!-- Notification container -->
@@ -5248,10 +5069,11 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
 
     <style>
         .gallery-item button {
-          transition: background 0.2s ease;
+            transition: background 0.2s ease;
         }
+
         .gallery-item button:hover {
-          background: red !important;
+            background: red !important;
         }
     </style>
     <script>
@@ -5259,51 +5081,51 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
         function switchEditTab(tabName) {
             document.querySelectorAll('.edit-tab-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.edit-tab-content').forEach(tab => tab.classList.remove('active'));
-        
+
             const activeBtn = document.querySelector(`.edit-tab-btn[onclick="switchEditTab('${tabName}')"]`);
             if (activeBtn) activeBtn.classList.add('active');
-        
+
             document.getElementById(tabName + 'Tab').classList.add('active');
         }
         const productData = @json($products); // $products should be keyed by productId
     </script>
-    
+
     <script>
         function addNewItem() {
             const modal = document.getElementById('addModal');
             modal.classList.add('show');
             modal.style.display = 'block';
         }
-         window.closeAddModal = function() {
+        window.closeAddModal = function() {
             const modal = document.getElementById('addModal');
             modal.classList.remove('show');
             modal.style.display = 'none';
         };
-        
+
         // Handle Add Modal Primary Image
         function replaceAddPrimaryImage() {
             document.getElementById("addPrimaryImageFile").click();
         }
-        
+
         document.getElementById("addPrimaryImageFile").addEventListener("change", function(e) {
             const file = e.target.files[0];
             if (!file) return;
-        
+
             const reader = new FileReader();
             reader.onload = function(event) {
-                document.getElementById("addPrimaryImagePreview").innerHTML = 
+                document.getElementById("addPrimaryImagePreview").innerHTML =
                     `<img src="${event.target.result}" alt="Primary Image" style="width:130px;">`;
                 document.getElementById("addPrimaryImageActions").style.display = "block";
             };
             reader.readAsDataURL(file);
         });
-        
+
         // Handle Add Modal Gallery
         document.getElementById("addGalleryImageFiles").addEventListener("change", function(e) {
             const files = e.target.files;
             const galleryGrid = document.getElementById("addGalleryGrid");
             galleryGrid.innerHTML = "";
-        
+
             Array.from(files).forEach(file => {
                 const reader = new FileReader();
                 reader.onload = function(event) {
@@ -5316,33 +5138,31 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                 reader.readAsDataURL(file);
             });
         });
-        
-        
-        
+
         // Vinted
         function vinted_replaceAddPrimaryImage() {
             document.getElementById("vinted_addPrimaryImageFile").click();
         }
-        
+
         document.getElementById("vinted_addPrimaryImageFile").addEventListener("change", function(e) {
             const file = e.target.files[0];
             if (!file) return;
-        
+
             const reader = new FileReader();
             reader.onload = function(event) {
-                document.getElementById("vinted_addPrimaryImagePreview").innerHTML = 
+                document.getElementById("vinted_addPrimaryImagePreview").innerHTML =
                     `<img src="${event.target.result}" alt="Primary Image" style="width:130px;">`;
                 document.getElementById("vinted_addPrimaryImageActions").style.display = "block";
             };
             reader.readAsDataURL(file);
         });
-        
+
         // Handle Add Modal Gallery
         document.getElementById("vinted_addGalleryImageFiles").addEventListener("change", function(e) {
             const files = e.target.files;
             const galleryGrid = document.getElementById("vinted_addGalleryGrid");
             galleryGrid.innerHTML = "";
-        
+
             Array.from(files).forEach(file => {
                 const reader = new FileReader();
                 reader.onload = function(event) {
@@ -5360,18 +5180,18 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
         let primaryImage = null;
         let galleryImages = [];
         let singleImageUrl = '';
-        
+
         // ------------------ Edit Item ------------------
         window.editItem = function(productId) {
-            
+
             console.log('editItem called with:', productId);
-            
+
             // get form by ID
             const form = document.getElementById('editForm');
-        
+
             // set dynamic action (must match your update route)
-            form.action = `/update-product/${productId}`;
-        
+            form.action = `./update-product/${productId}`;
+
             const product = productData.data.find(p => p.id == productId);
             console.log("product detailzZz:", product);
             if (!product) {
@@ -5382,7 +5202,7 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                 });
                 return;
             }
-        
+
             try {
                 // Reset everything
                 primaryImage = null;
@@ -5394,27 +5214,25 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                 document.getElementById('main_image_input').value = '';
                 document.getElementById('gallery_images_input').value = '';
                 document.getElementById('primaryImageActions').style.display = 'none';
-                
-                
+
+
                 document.getElementById('vinted_galleryGrid').innerHTML = '';
                 document.getElementById('vinted_primaryImagePreview').innerHTML = '<div class="upload-placeholder"><div class="upload-icon">🖼️</div><p><strong>Drag main image here</strong></p><p>or <button type="button" class="upload-btn" onclick="document.getElementById(\'vinted_primaryImageFile\').click()">choose file</button></p><small>JPG, PNG, WEBP (max 5MB)</small></div>';
                 document.getElementById('vinted_main_image_input').value = '';
                 document.getElementById('vinted_gallery_images_input').value = '';
                 document.getElementById('vinted_primaryImageActions').style.display = 'none';
-        
+
                 const setField = (id, val) => {
                     const el = document.getElementById(id);
                     if (el) el.value = val ?? '';
                 };
-        
+
                 // ------------------ Basic Info ------------------
                 document.getElementById('edit_vinted_active').checked = (product.vinted_active == 1);
                 // setField('vinted_active', product.vinted_active);
                 setField('edit_vinted_item_id', product.vinted_item_id);
                 setField('edit_vinted_bulk_amount', product.vinted_bulk_amount);
                 setField('edit_vinted_status', product.vinted_status);
-                
-                
                 setField('edit_name', product.title);
                 setField('edit_item_no', product.item_no);
                 setField('edit_item_type', product.item_type);
@@ -5425,11 +5243,9 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                 setField('edit_category', product.category);
                 setField('edit_condition', product.condition);
                 setField('edit_price', product.price);
-                
                 setField('edit_bricklink_inventory_id', product.bricklink_inventory_id);
                 setField('edit_rebrickable_id', product.rebrickable_id);
                 setField('edit_completeness', product.completeness);
-                
                 setField('edit_weight', product.weight);
                 setField('edit_dim_x', product.dim_x);
                 setField('edit_dim_y', product.dim_y);
@@ -5440,7 +5256,6 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                 setField('edit_description', product.description);
                 setField('edit_extended_description', product.extended_description);
                 setField('edit_remarks', product.remarks);
-        
                 setField('edit_price', product.price);
                 setField('edit_sell_price', product.sell_price);
                 setField('edit_purchase_price', product.purchase_price);
@@ -5452,7 +5267,6 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                 setField('edit_tier_quantity3', product.tier_quantity3);
                 setField('edit_tier_price3', product.tier_price3);
                 setField('edit_currency', product.currency);
-                
                 setField('edit_amazon_sku', product.amazon_sku);
                 setField('edit_amazon_price', product.amazon_price);
                 setField('edit_amazon_condition_type', product.amazon_condition_type);
@@ -5461,7 +5275,6 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                 setField('edit_amazon_listing_id', product.amazon_listing_id);
                 setField('edit_amazon_status', product.amazon_status);
                 setField('edit_amazon_last_sync', product.amazon_last_sync);
-                
                 setField('edit_ebay_item_id', product.ebay_item_id);
                 setField('edit_ebay_price', product.ebay_price);
                 setField('edit_ebay_condition_id', product.ebay_condition_id);
@@ -5474,13 +5287,11 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                 setField('edit_ebay_sku', product.ebay_sku);
                 setField('edit_ebay_status', product.ebay_status);
                 setField('edit_ebay_last_sync', product.ebay_last_sync);
-                
                 setField('edit_bol_active', product.bol_active);
                 setField('edit_bol_offerId', product.bol_offerId);
                 setField('edit_bol_price', product.bol_price);
                 setField('edit_bol_fulfilment_method', product.bol_fulfilment_method);
                 setField('edit_bol_delivery_code', product.bol_delivery_code);
-                
                 setField('edit_woocommerce_parent_id', product.woocommerce_parent_id);
                 setField('edit_woocommerce_id', product.woocommerce_id);
                 setField('edit_bricklink_inventory_id', product.bricklink_inventory_id);
@@ -5503,13 +5314,13 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                 setField('edit_lot_id', product.lot_id);
                 setField('edit_super_lot_id', product.super_lot_id);
                 setField('edit_super_lot_qty', product.super_lot_qty);
-        
+
                 // ------------------ Main Image Preview ------------------
                 if (product.main_image) {
                     showMainImage(product.main_image);
                 }
                 setField('product_image_url', product.imageurl);
-        
+
                 // ------------------ Gallery Images Preview ------------------
                 if (product.gallery_images) {
                     let galleryArr = [];
@@ -5528,25 +5339,25 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                     } catch (e) {
                         galleryArr = [String(product.gallery_images)];
                     }
-        
+
                     const galleryGrid = document.getElementById("galleryGrid");
-        
+
                     galleryArr.forEach(url => {
                         if (!url) return;
                         const imgUrl = url; // keep exact URL (don’t modify with /public)
-        
+
                         const wrapper = document.createElement('div');
                         wrapper.classList.add('gallery-item');
                         wrapper.style.position = "relative";
                         wrapper.style.display = "inline-block";
                         wrapper.style.margin = "5px";
-        
+
                         const img = document.createElement('img');
-                        img.src = imgUrl;
+                        img.src = ".."+imgUrl;
                         img.classList.add('img-thumbnail');
                         img.style.maxWidth = "100%";
                         img.style.borderRadius = "6px";
-        
+
                         const delBtn = document.createElement('button');
                         delBtn.innerHTML = "×";
                         delBtn.style.position = "absolute";
@@ -5561,34 +5372,31 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                         delBtn.style.cursor = "pointer";
                         delBtn.style.fontSize = "14px";
                         delBtn.style.lineHeight = "18px";
-        
+
                         // delete handler
                         delBtn.addEventListener("click", function() {
                             wrapper.remove();
                             galleryImages = galleryImages.filter(u => u !== imgUrl);
                             document.getElementById('gallery_images_input').value = JSON.stringify(galleryImages);
                         });
-        
+
                         wrapper.appendChild(img);
                         wrapper.appendChild(delBtn);
                         galleryGrid.appendChild(wrapper);
-        
+
                         galleryImages.push(imgUrl); // push real URL
                     });
-        
+
                     // update hidden input
                     document.getElementById('gallery_images_input').value = JSON.stringify(galleryImages);
                 }
-                
-                
-                
-                
+
                 // Vinted
                 // ------------------ Main Image Preview ------------------
                 if (product.vinted_main_image) {
                     vinted_showMainImage(product.vinted_main_image);
                 }
-        
+
                 // ------------------ Gallery Images Preview ------------------
                 if (product.vinted_gallery_images) {
                     let galleryArr = [];
@@ -5607,25 +5415,25 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                     } catch (e) {
                         galleryArr = [String(product.vinted_gallery_images)];
                     }
-        
+
                     const galleryGrid = document.getElementById("vinted_galleryGrid");
-        
+
                     galleryArr.forEach(url => {
                         if (!url) return;
                         const imgUrl = url; // keep exact URL (don’t modify with /public)
-        
+
                         const wrapper = document.createElement('div');
                         wrapper.classList.add('gallery-item');
                         wrapper.style.position = "relative";
                         wrapper.style.display = "inline-block";
                         wrapper.style.margin = "5px";
-        
+
                         const img = document.createElement('img');
-                        img.src = imgUrl;
+                        img.src = ".."+imgUrl;
                         img.classList.add('img-thumbnail');
                         img.style.maxWidth = "100%";
                         img.style.borderRadius = "6px";
-        
+
                         const delBtn = document.createElement('button');
                         delBtn.innerHTML = "×";
                         delBtn.style.position = "absolute";
@@ -5640,35 +5448,32 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                         delBtn.style.cursor = "pointer";
                         delBtn.style.fontSize = "14px";
                         delBtn.style.lineHeight = "18px";
-        
+
                         // delete handler
                         delBtn.addEventListener("click", function() {
                             wrapper.remove();
                             vinted_galleryImages = vinted_galleryImages.filter(u => u !== imgUrl);
                             document.getElementById('vinted_gallery_images_input').value = JSON.stringify(vinted_galleryImages);
                         });
-        
+
                         wrapper.appendChild(img);
                         wrapper.appendChild(delBtn);
                         galleryGrid.appendChild(wrapper);
-        
+
                         vinted_galleryImages.push(imgUrl); // push real URL
                     });
-        
+
                     // update hidden input
                     document.getElementById('vinted_gallery_images_input').value = JSON.stringify(vinted_galleryImages);
                 }
-                
-                
-                
-        
+
                 // ------------------ Show Modal ------------------
                 const modal = document.getElementById('editModal');
                 modal.classList.add('show');
                 modal.style.display = 'block';
-        
+
                 console.log('Edit modal opened:', productId);
-        
+
             } catch (err) {
                 console.error('Error filling form:', err);
                 Swal.fire({
@@ -5678,35 +5483,35 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                 });
             }
         };
-        
+
         window.closeEditModal = function() {
             const modal = document.getElementById('editModal');
             modal.classList.remove('show');
             modal.style.display = 'none';
         };
-        
+
         function showMainImage(imgUrl) {
             const preview = document.getElementById('primaryImagePreview');
             preview.innerHTML = '';
             const img = document.createElement('img');
-            img.src = imgUrl;
+            img.src = ".."+imgUrl;
             img.classList.add('img-thumbnail');
             img.style.maxWidth = "150px";
             img.style.margin = "5px";
             preview.appendChild(img);
-        
+
             primaryImage = imgUrl;
             document.getElementById('main_image_input').value = primaryImage;
             document.getElementById('primaryImageActions').style.display = 'block';
         }
-        
+
         document.getElementById('primaryImageFile').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (!file) return;
-        
+
             const mainImagePreview = document.getElementById('primaryImagePreview');
-            mainImagePreview.innerHTML = ''; 
-        
+            mainImagePreview.innerHTML = '';
+
             const img = document.createElement('img');
             img.src = URL.createObjectURL(file);
             img.alt = "Main Image";
@@ -5715,11 +5520,11 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
             img.style.margin = "5px";
             mainImagePreview.appendChild(img);
         });
-        
+
         function replacePrimaryImage() {
             document.getElementById('primaryImageFile').click();
         }
-        
+
 
         function removePrimaryImage() {
             primaryImage = null;
@@ -5727,29 +5532,29 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
             document.getElementById('primaryImagePreview').innerHTML = '<div class="upload-placeholder"><div class="upload-icon">🖼️</div><p><strong>Drag main image here</strong></p><p>or <button type="button" class="upload-btn" onclick="document.getElementById(\'primaryImageFile\').click()">choose file</button></p><small>JPG, PNG, WEBP (max 5MB)</small></div>';
             document.getElementById('primaryImageActions').style.display = 'none';
         }
-        
+
         // ------------------ Gallery Images Upload ------------------
         document.getElementById('galleryImageFiles').addEventListener('change', function(e) {
             const files = Array.from(e.target.files);
             const galleryGrid = document.getElementById('galleryGrid');
-        
+
             files.forEach(file => {
                 const reader = new FileReader();
                 reader.onload = function(event) {
                     const imgUrl = event.target.result;
-        
+
                     const wrapper = document.createElement('div');
                     wrapper.classList.add('gallery-item');
                     wrapper.style.position = "relative";
                     wrapper.style.display = "inline-block";
                     wrapper.style.margin = "5px";
-        
+
                     const img = document.createElement('img');
                     img.src = imgUrl;
                     img.classList.add('img-thumbnail');
                     img.style.maxWidth = "100%";
                     img.style.borderRadius = "6px";
-        
+
                     const delBtn = document.createElement('button');
                     delBtn.innerHTML = "×";
                     delBtn.style.position = "absolute";
@@ -5764,56 +5569,52 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                     delBtn.style.cursor = "pointer";
                     delBtn.style.fontSize = "14px";
                     delBtn.style.lineHeight = "18px";
-        
+
                     delBtn.addEventListener("click", function() {
-                        wrapper.remove(); 
+                        wrapper.remove();
                         galleryImages = galleryImages.filter(u => u !== imgUrl);
                         document.getElementById('gallery_images_input').value = JSON.stringify(galleryImages);
                     });
-        
+
                     wrapper.appendChild(img);
                     wrapper.appendChild(delBtn);
                     galleryGrid.appendChild(wrapper);
-        
+
                     galleryImages.push(imgUrl);
                     document.getElementById('gallery_images_input').value = JSON.stringify(galleryImages);
                 };
                 reader.readAsDataURL(file);
             });
         });
-        
+
         // ------------------ Always sync before submit ------------------
         document.getElementById('editForm').addEventListener('submit', function() {
             document.getElementById('gallery_images_input').value = JSON.stringify(galleryImages);
         });
-        
-        
-        
-        
-        
+
         // Vinted
         function vinted_showMainImage(imgUrl) {
             const preview = document.getElementById('vinted_primaryImagePreview');
             preview.innerHTML = '';
             const img = document.createElement('img');
-            img.src = imgUrl;
+            img.src = ".."+imgUrl;
             img.classList.add('img-thumbnail');
             img.style.maxWidth = "150px";
             img.style.margin = "5px";
             preview.appendChild(img);
-        
+
             primaryImage = imgUrl;
             document.getElementById('vinted_main_image_input').value = primaryImage;
             document.getElementById('vinted_primaryImageActions').style.display = 'block';
         }
-        
+
         document.getElementById('vinted_primaryImageFile').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (!file) return;
-        
+
             const mainImagePreview = document.getElementById('vinted_primaryImagePreview');
-            mainImagePreview.innerHTML = ''; 
-        
+            mainImagePreview.innerHTML = '';
+
             const img = document.createElement('img');
             img.src = URL.createObjectURL(file);
             img.alt = "Main Image";
@@ -5822,40 +5623,40 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
             img.style.margin = "5px";
             mainImagePreview.appendChild(img);
         });
-        
+
         function vinted_replacePrimaryImage() {
             document.getElementById('vinted_primaryImageFile').click();
         }
-        
+
         function vinted_removePrimaryImage() {
             primaryImage = null;
             document.getElementById('vinted_main_image_input').value = '';
             document.getElementById('vinted_primaryImagePreview').innerHTML = '<div class="upload-placeholder"><div class="upload-icon">🖼️</div><p><strong>Drag main image here</strong></p><p>or <button type="button" class="upload-btn" onclick="document.getElementById(\'vinted_primaryImageFile\').click()">choose file</button></p><small>JPG, PNG, WEBP (max 5MB)</small></div>';
             document.getElementById('vinted_primaryImageActions').style.display = 'none';
         }
-        
+
         // ------------------ Gallery Images Upload ------------------
         document.getElementById('vinted_galleryImageFiles').addEventListener('change', function(e) {
             const files = Array.from(e.target.files);
             const galleryGrid = document.getElementById('vinted_galleryGrid');
-        
+
             files.forEach(file => {
                 const reader = new FileReader();
                 reader.onload = function(event) {
                     const imgUrl = event.target.result;
-        
+
                     const wrapper = document.createElement('div');
                     wrapper.classList.add('gallery-item');
                     wrapper.style.position = "relative";
                     wrapper.style.display = "inline-block";
                     wrapper.style.margin = "5px";
-        
+
                     const img = document.createElement('img');
-                    img.src = imgUrl;
+                    img.src = ".."+imgUrl;
                     img.classList.add('img-thumbnail');
                     img.style.maxWidth = "100%";
                     img.style.borderRadius = "6px";
-        
+
                     const delBtn = document.createElement('button');
                     delBtn.innerHTML = "×";
                     delBtn.style.position = "absolute";
@@ -5870,40 +5671,37 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
                     delBtn.style.cursor = "pointer";
                     delBtn.style.fontSize = "14px";
                     delBtn.style.lineHeight = "18px";
-        
+
                     delBtn.addEventListener("click", function() {
-                        wrapper.remove(); 
+                        wrapper.remove();
                         vinted_galleryImages = vinted_galleryImages.filter(u => u !== imgUrl);
                         document.getElementById('vinted_gallery_images_input').value = JSON.stringify(vinted_galleryImages);
                     });
-        
+
                     wrapper.appendChild(img);
                     wrapper.appendChild(delBtn);
                     galleryGrid.appendChild(wrapper);
-        
+
                     vinted_galleryImages.push(imgUrl);
                     document.getElementById('vinted_gallery_images_input').value = JSON.stringify(vinted_galleryImages);
                 };
                 reader.readAsDataURL(file);
             });
         });
-        
+
         // ------------------ Always sync before submit ------------------
         document.getElementById('editForm').addEventListener('submit', function() {
             document.getElementById('vinted_gallery_images_input').value = JSON.stringify(vinted_galleryImages);
         });
-        
         // vinted end
 
-
-
         function adjustStock(productId) {
-            
-                // get form by ID
+
+            // get form by ID
             const form = document.getElementById('stockForm');
             // set dynamic action (must match your update route)
             form.action = `/update-stock/${productId}`;
-            
+
             console.log('adjustStock called with:', productId);
             const product = productData.data.find(p => p.id == productId);
             if (!product) {
@@ -5946,34 +5744,6 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
             modal.classList.remove('show');
             modal.style.display = 'none';
         };
-        
-        
-        // function showPriceTrends(productId) {
-        //     console.log('showPriceTrends called with:', productId);
-        //     showProductInfo(productId);
-        //     setTimeout(() => {
-        //         document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        //         document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-
-        //         const trendsTabBtn = document.querySelector('.tab-btn:nth-child(3)');
-        //         const trendsTab = document.getElementById('trendsTab');
-        //         if (trendsTabBtn) trendsTabBtn.classList.add('active');
-        //         if (trendsTab) trendsTab.classList.add('active');
-
-        //         loadPriceTrends(productId);
-        //     }, 100);
-        // }
-
-        // // Image management functions
-        // let primaryImage = null;
-        // let galleryImages = [];
-        // let singleImageUrl = '';
-
-        // function setupImageUpload() {
-        //     setupSingleUrlTest();
-        //     setupPrimaryImageUpload();
-        //     setupGalleryImageUpload();
-        // }
 
         function setupSingleUrlTest() {
             const urlInput = document.getElementById('product_image_url');
@@ -6030,212 +5800,6 @@ document.getElementById("fetchPriceBtn").addEventListener("click", function() {
 
             img.src = url;
         }
-
-        // function setupPrimaryImageUpload() {
-        //     const uploadArea = document.getElementById('primaryUploadArea');
-        //     const fileInput = document.getElementById('primaryImageFile');
-        //     const preview = document.getElementById('primaryImagePreview');
-
-        //     // Drag and drop
-        //     uploadArea.addEventListener('dragover', function (e) {
-        //         e.preventDefault();
-        //         this.classList.add('dragover');
-        //     });
-
-        //     uploadArea.addEventListener('dragleave', function (e) {
-        //         e.preventDefault();
-        //         this.classList.remove('dragover');
-        //     });
-
-        //     uploadArea.addEventListener('drop', function (e) {
-        //         e.preventDefault();
-        //         this.classList.remove('dragover');
-        //         const files = Array.from(e.dataTransfer.files);
-        //         if (files.length > 0) {
-        //             handlePrimaryImageFile(files[0]);
-        //         }
-        //     });
-
-        //     fileInput.addEventListener('change', function () {
-        //         if (this.files.length > 0) {
-        //             handlePrimaryImageFile(this.files[0]);
-        //         }
-        //     });
-        // }
-
-        // function handlePrimaryImageFile(file) {
-        //     if (!validateImageFile(file)) return;
-
-        //     const reader = new FileReader();
-        //     reader.onload = function (e) {
-        //         primaryImage = {
-        //             id: Date.now(),
-        //             url: e.target.result,
-        //             name: file.name,
-        //             size: file.size,
-        //             type: file.type
-        //         };
-
-        //         displayPrimaryImage();
-        //         showNotification('Hoofdafbeelding geüpload', 'success');
-        //     };
-
-        //     reader.readAsDataURL(file);
-        // }
-
-        // function displayPrimaryImage() {
-        //     const preview = document.getElementById('primaryImagePreview');
-        //     const actions = document.getElementById('primaryImageActions');
-
-        //     preview.innerHTML = `<img src="${primaryImage.url}" alt="${primaryImage.name}">`;
-        //     preview.classList.add('has-image');
-        //     actions.style.display = 'flex';
-        // }
-
-        // function replacePrimaryImage() {
-        //     document.getElementById('primaryImageFile').click();
-        // }
-
-        // function removePrimaryImage() {
-        //     if (confirm('Weet je zeker dat je de hoofdafbeelding wilt verwijderen?')) {
-        //         primaryImage = null;
-        //         const preview = document.getElementById('primaryImagePreview');
-        //         const actions = document.getElementById('primaryImageActions');
-
-        //         preview.innerHTML = `
-        //             <div class="upload-placeholder">
-        //                 <div class="upload-icon">🖼️</div>
-        //                 <p><strong>Sleep hoofdafbeelding hierheen</strong></p>
-        //                 <p>of <button type="button" class="upload-btn" onclick="document.getElementById('primaryImageFile').click()">selecteer bestand</button></p>
-        //                 <small>JPG, PNG, WEBP (max 5MB)</small>
-        //             </div>
-        //         `;
-        //         preview.classList.remove('has-image');
-        //         actions.style.display = 'none';
-
-        //         showNotification('Hoofdafbeelding verwijderd', 'success');
-        //     }
-        // }
-
-        // function setupGalleryImageUpload() {
-        //     const uploadArea = document.getElementById('galleryUploadArea');
-        //     const fileInput = document.getElementById('galleryImageFiles');
-
-        //     // Drag and drop
-        //     uploadArea.addEventListener('dragover', function (e) {
-        //         e.preventDefault();
-        //         this.classList.add('dragover');
-        //     });
-
-        //     uploadArea.addEventListener('dragleave', function (e) {
-        //         e.preventDefault();
-        //         this.classList.remove('dragover');
-        //     });
-
-        //     uploadArea.addEventListener('drop', function (e) {
-        //         e.preventDefault();
-        //         this.classList.remove('dragover');
-        //         const files = Array.from(e.dataTransfer.files);
-        //         handleGalleryImageFiles(files);
-        //     });
-
-        //     fileInput.addEventListener('change', function () {
-        //         const files = Array.from(this.files);
-        //         handleGalleryImageFiles(files);
-        //     });
-        // }
-
-        // function handleGalleryImageFiles(files) {
-        //     files.forEach(file => {
-        //         if (!validateImageFile(file)) return;
-
-        //         const reader = new FileReader();
-        //         reader.onload = function (e) {
-        //             const imageData = {
-        //                 id: Date.now() + Math.random(),
-        //                 url: e.target.result,
-        //                 name: file.name,
-        //                 size: file.size,
-        //                 type: file.type
-        //             };
-
-        //             galleryImages.push(imageData);
-        //             addImageToGallery(imageData);
-        //         };
-
-        //         reader.readAsDataURL(file);
-        //     });
-
-        //     showNotification(`${files.length} galerij afbeelding(en) geüpload`, 'success');
-        // }
-
-        // function addImageToGallery(imageData) {
-        //     const gallery = document.getElementById('galleryGrid');
-        //     if (!gallery) return;
-
-        //     const galleryItem = document.createElement('div');
-        //     galleryItem.className = 'gallery-item';
-        //     galleryItem.dataset.imageId = imageData.id;
-
-        //     galleryItem.innerHTML = `
-        //         <img src="${imageData.url}" alt="${imageData.name}" loading="lazy">
-        //         <div class="gallery-overlay">
-        //             <button class="gallery-delete-btn" onclick="removeGalleryImage('${imageData.id}')">Verwijderen</button>
-        //         </div>
-        //     `;
-
-        //     gallery.appendChild(galleryItem);
-        // }
-
-        // function removeGalleryImage(imageId) {
-        //     if (confirm('Weet je zeker dat je deze galerij afbeelding wilt verwijderen?')) {
-        //         galleryImages = galleryImages.filter(img => img.id != imageId);
-
-        //         const galleryItem = document.querySelector(`[data-image-id="${imageId}"]`);
-        //         if (galleryItem) {
-        //             galleryItem.remove();
-        //         }
-
-        //         showNotification('Galerij afbeelding verwijderd', 'success');
-        //     }
-        // }
-
-        // function addGalleryUrlField() {
-        //     const urlInputs = document.getElementById('galleryUrlInputs');
-        //     if (!urlInputs) return;
-
-        //     const newUrlGroup = document.createElement('div');
-        //     newUrlGroup.className = 'gallery-url-group';
-        //     newUrlGroup.innerHTML = `
-        //         <input type="url" placeholder="https://example.com/gallery-image.jpg">
-        //         <button type="button" class="url-add-btn" onclick="addGalleryUrl(this)">Toevoegen</button>
-        //     `;
-        //     urlInputs.appendChild(newUrlGroup);
-        // }
-
-        // function addGalleryUrl(button) {
-        //     const input = button.parentElement.querySelector('input');
-        //     if (!input) {
-        //         showNotification('Input veld niet gevonden', 'error');
-        //         return;
-        //     }
-
-        //     const url = input.value.trim();
-
-        //     if (!url) {
-        //         showNotification('Voer een URL in', 'warning');
-        //         input.focus();
-        //         return;
-        //     }
-
-        //     try {
-        //         new URL(url);
-        //     } catch {
-        //         showNotification('Ongeldige URL format', 'error');
-        //         input.focus();
-        //         return;
-        //     }
-        // }
     </script>
 
 </body>
