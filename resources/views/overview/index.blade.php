@@ -5353,7 +5353,7 @@
                         wrapper.style.margin = "5px";
 
                         const img = document.createElement('img');
-                        img.src = ".."+imgUrl;
+                        img.src = ".."+imgUrl.replace(/^\/public/, '');
                         img.classList.add('img-thumbnail');
                         img.style.maxWidth = "100%";
                         img.style.borderRadius = "6px";
@@ -5429,7 +5429,7 @@
                         wrapper.style.margin = "5px";
 
                         const img = document.createElement('img');
-                        img.src = ".."+imgUrl;
+                        img.src = ".."+imgUrl.replace(/^\/public/, '');
                         img.classList.add('img-thumbnail');
                         img.style.maxWidth = "100%";
                         img.style.borderRadius = "6px";
@@ -5494,7 +5494,7 @@
             const preview = document.getElementById('primaryImagePreview');
             preview.innerHTML = '';
             const img = document.createElement('img');
-            img.src = ".."+imgUrl;
+            img.src = ".."+imgUrl.replace(/^\/public/, '');
             img.classList.add('img-thumbnail');
             img.style.maxWidth = "150px";
             img.style.margin = "5px";
@@ -5597,7 +5597,7 @@
             const preview = document.getElementById('vinted_primaryImagePreview');
             preview.innerHTML = '';
             const img = document.createElement('img');
-            img.src = ".."+imgUrl;
+            img.src = ".."+imgUrl.replace(/^\/public/, '');
             img.classList.add('img-thumbnail');
             img.style.maxWidth = "150px";
             img.style.margin = "5px";
@@ -5652,7 +5652,7 @@
                     wrapper.style.margin = "5px";
 
                     const img = document.createElement('img');
-                    img.src = ".."+imgUrl;
+                    img.src = imgUrl;
                     img.classList.add('img-thumbnail');
                     img.style.maxWidth = "100%";
                     img.style.borderRadius = "6px";
