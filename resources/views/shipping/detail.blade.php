@@ -2041,11 +2041,12 @@
                         <h4>Shipping Address</h4>
                         <p>
                             <b>Name: </b><?= $order->shipping_name ?? "--" ?><br>
-                            <b>Address: </b><?= $order->shipping_address_1 ?? "--" ?><br>
-                            <b>Country Code: </b><?= $order->shipping_country ?? "--" ?><br>
+                            <b>Shipping Address 1: </b><?= $order->shipping_address_1 ?? "--" ?><br>
+                            <b>Shipping Address 2: </b><?= $order->shipping_address_2 ?? "--" ?><br>
                             <b>City: </b><?= $order->shipping_city ?? "--" ?><br>
                             <b>State: </b><?= $order->shipping_state ?? "--" ?><br>
                             <b>Postcode: </b><?= $order->shipping_postcode ?? "--" ?>
+                            <b>Country Code: </b><?= $order->shipping_country ?? "--" ?><br>
                         </p>
                     </div>
                     <div class="info-card">

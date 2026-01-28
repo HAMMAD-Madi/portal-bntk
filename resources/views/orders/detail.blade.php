@@ -1052,15 +1052,27 @@
                             <span class="info-value">{{ $order[0]->customer_name ?? "{not set}" }}</span>
                         </div>
                         <div class="info-row">
-                            <span class="info-label">Address:</span>
+                            <span class="info-label">Shipping Address 1:</span>
                             <span class="info-value">{{ $order[0]->shipping_address_1 ?? "{not set}" }}</span>
                         </div>
                         <div class="info-row">
-                            <span class="info-label"></span>
-                            <span class="info-value">{{ $order[0]->shipping_city }} {{ $order[0]->shipping_state }} {{ $order[0]->shipping_postcode }}</span>
+                            <span class="info-label">Shipping Address 2:</span>
+                            <span class="info-value">{{ $order[0]->shipping_address_2 ?? "{not set}" }}</span>
                         </div>
                         <div class="info-row">
-                            <span class="info-label"></span>
+                            <span class="info-label">City:</span>
+                            <span class="info-value">{{ $order[0]->shipping_city ?? "{not set}" }}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">State:</span>
+                            <span class="info-value">{{ $order[0]->shipping_state ?? "{not set}" }}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Postcode:</span>
+                            <span class="info-value">{{ $order[0]->shipping_postcode ?? "{not set}" }}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Country:</span>
                             <span class="info-value">{{ $order[0]->shipping_country ?? "{not set}" }}</span>
                         </div>
                         <div class="info-row">
