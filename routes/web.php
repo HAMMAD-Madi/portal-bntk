@@ -42,6 +42,7 @@ Route::get('/download-sendcloud-pdf/{any}', [ShippingController::class, 'downloa
 
 
 Route::post('/orders/change-status/{status}', [OrderController::class, 'change_status'])->name('orders.changeStatus')->middleware('auth');
+Route::post('/shipping-detail/update-marketplace-order', [OrderController::class, 'updateTrackOrTraceCodeForOrder'])->name('update.marketplace.order')->middleware('auth');
 
 Route::get('/overview', [OverviewController::class, 'index'])->middleware('auth');
 Route::post('/update-product/{any}', [ProductController::class, 'update_from_overview_page'])->middleware('auth')->name('update-product');
@@ -60,5 +61,3 @@ Route::get('/{any}', function () {
 Route::post('/update-location', [ProductController::class, 'updateLocation'])->name('update-location');
 Route::post('/update-retired', [ProductController::class, 'updateRetired'])->name('update-retired');
 Route::post('/update-lock-price', [ProductController::class, 'updateLockPrice'])->name('update-lock-price');
-
-Route::post('/shipping-detail/update-marketplace-order', [OrderController::class, 'updateTrackOrTraceCodeForOrder'])->name('update.marketplace.order');
