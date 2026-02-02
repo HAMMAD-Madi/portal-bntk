@@ -33,6 +33,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
+Route::post('/shipping-detail/update-marketplace-order', [OrderController::class, 'update_track_or_trace_code_order'])->name('update.marketplace.order');
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 

@@ -2046,7 +2046,7 @@
                     <!--        📍 Current Status: Package packed and ready at warehouse-->
                     <!--    </div>-->
                     <!--</div>-->
-                    
+
                     <button class="btn btn-success" onclick="markAsShipped(<?= $order->id ?>, 'shipped')">✓ Mark as Shipped</button>
                     <div class="action-section" style="margin-top: 15px;">
 
@@ -2102,31 +2102,30 @@
                         <script>
                             document.addEventListener('DOMContentLoaded', () => {
 
-const updateField = (orderId, field, value) => {
-    fetch('./update-marketplace-order', {
-        method: 'POST',
-        credentials: 'same-origin', // important to send cookies/session
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': "{{ csrf_token() }}" // correct CSRF header
-        },
-        body: JSON.stringify({
-            marketplace_order_id: orderId,
-            field: field,
-            value: value
-        })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) {
-            console.log(`${field} updated for order ${orderId}`);
-        } else {
-            console.error(`Failed to update ${field} for order ${orderId}`);
-        }
-    })
-    .catch(err => console.error(err));
-}
-
+                                const updateField = (orderId, field, value) => {
+                                    fetch('{{route("update.marketplace.order")}}', {
+                                            method: 'POST',
+                                            credentials: 'same-origin', // important to send cookies/session
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                'X-CSRF-TOKEN': "{{ csrf_token() }}" // correct CSRF header
+                                            },
+                                            body: JSON.stringify({
+                                                marketplace_order_id: orderId,
+                                                field: field,
+                                                value: value
+                                            })
+                                        })
+                                        .then(res => res.json())
+                                        .then(data => {
+                                            if (data.success) {
+                                                console.log(`${field} updated for order ${orderId}`);
+                                            } else {
+                                                console.error(`Failed to update ${field} for order ${orderId}`);
+                                            }
+                                        })
+                                        .catch(err => console.error(err));
+                                }
 
                                 // Track Code input
                                 document.querySelectorAll('.track-input').forEach(input => {
