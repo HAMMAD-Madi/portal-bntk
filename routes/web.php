@@ -42,7 +42,7 @@ Route::get('/download-sendcloud-pdf/{any}', [ShippingController::class, 'downloa
 
 
 Route::post('/orders/change-status/{status}', [OrderController::class, 'change_status'])->name('orders.changeStatus')->middleware('auth');
-Route::post('/shipping-detail/update-marketplace-order', [OrderController::class, 'updateTrackOrTraceCodeForOrder'])->name('update.marketplace.order')->middleware('auth');
+Route::post('/shipping-detail/update-marketplace-order', [OrderController::class, 'update_track_or_trace_code_order'])->name('update.marketplace.order')->middleware('auth');
 
 Route::get('/overview', [OverviewController::class, 'index'])->middleware('auth');
 Route::post('/update-product/{any}', [ProductController::class, 'update_from_overview_page'])->middleware('auth')->name('update-product');

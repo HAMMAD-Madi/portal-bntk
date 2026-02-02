@@ -202,7 +202,7 @@ class OrderController extends Controller
         return back()->with('error', 'No orders selected.');
     }
 
-    public function updateTrackOrTraceCodeForOrder(Request $request)
+    public function update_track_or_trace_code_order(Request $request)
     {
         $request->validate([
             'marketplace_order_id' => 'required|integer',
