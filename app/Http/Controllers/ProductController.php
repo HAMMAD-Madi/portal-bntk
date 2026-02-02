@@ -23,67 +23,127 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-    
-public function check_product(Request $request)
-{
-    $item_no   = $request->item_no;
-    $color     = $request->color;
-    $condition = strtolower($request->condition); // normalize
 
-    $exists = DB::table('products')
-        ->where('item_no', $item_no)
-        ->where('color_id', $color)
-        ->whereRaw('LOWER(`condition`) = ?', [$condition])
-        ->exists();
+    public function check_product(Request $request)
+    {
+        $item_no   = $request->item_no;
+        $color     = $request->color;
+        $condition = strtolower($request->condition); // normalize
 
-    return response()->json($exists);
-}
+        $exists = DB::table('products')
+            ->where('item_no', $item_no)
+            ->where('color_id', $color)
+            ->whereRaw('LOWER(`condition`) = ?', [$condition])
+            ->exists();
 
-
-public function updateLocation(Request $request)
-{
-    $ids = $request->ids;          // array of product IDs
-    $location = $request->location;
-
-    if (!is_array($ids) || empty($ids)) {
-        return response()->json(['success' => false, 'message' => 'No products selected']);
+        return response()->json($exists);
     }
 
-    if (!$location || trim($location) === '') {
-        return response()->json(['success' => false, 'message' => 'Location is required']);
-    }
 
-    try {
-        DB::table('products')
-            ->whereIn('id', $ids)
-            ->update([
-                'location_id' => $location,
-                'updated_at' => now()
+    public function updateLocation(Request $request)
+    {
+        $ids = $request->ids;          // array of product IDs
+        $location = $request->location;
+
+        if (!is_array($ids) || empty($ids)) {
+            return response()->json(['success' => false, 'message' => 'No products selected']);
+        }
+
+        if (!$location || trim($location) === '') {
+            return response()->json(['success' => false, 'message' => 'Location is required']);
+        }
+
+        try {
+            DB::table('products')
+                ->whereIn('id', $ids)
+                ->update([
+                    'location_id' => $location,
+                    'updated_at' => now()
+                ]);
+
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error updating location',
+                'error' => $e->getMessage()
             ]);
-
-        return response()->json(['success' => true]);
-
-    } catch (\Exception $e) {
-        return response()->json([
-            'success' => false,
-            'message' => 'Error updating location',
-            'error' => $e->getMessage()
-        ]);
+        }
     }
-}
 
-    
+    public function updateRetired(Request $request)
+    {
+        $ids = $request->ids;          // array of product IDs
+        $retired = $request->retired;
+
+        if (!is_array($ids) || empty($ids)) {
+            return response()->json(['success' => false, 'message' => 'No products selected']);
+        }
+
+        if (trim($retired) === '') {
+            return response()->json(['success' => false, 'message' => 'Retired is required']);
+        }
+
+        try {
+            DB::table('products')
+                ->whereIn('id', $ids)
+                ->update([
+                    'retired' => $retired,
+                    'updated_at' => now()
+                ]);
+
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error updating Retired',
+                'error' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function updateLockPrice(Request $request)
+    {
+        $ids = $request->ids;          // array of product IDs
+        $lock_price = $request->lockPrice;
+
+        if (!is_array($ids) || empty($ids)) {
+            return response()->json(['success' => false, 'message' => 'No products selected']);
+        }
+
+        if (trim($lock_price) === '') {
+            return response()->json(['success' => false, 'message' => 'Lock Price is required']);
+        }
+
+        try {
+            DB::table('products')
+                ->whereIn('id', $ids)
+                ->update([
+                    'lock_price' => $lock_price,
+                    'updated_at' => now()
+                ]);
+
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error updating Lock Price',
+                'error' => $e->getMessage()
+            ]);
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-     
-     public function index(Request $request)
+
+    public function index(Request $request)
     {
         $perPage = $request->input('perPage') === 'Alles' || $request->input('perPage') == -1 ? null : ($request->input('perPage') ?? 12);
         $query = Product::query()->withTrashed();
-    
+
         // Apply filters using AND logic
         // if ($request->filled('category') && $request->input('category') !== 'Alles') {
         //     $query->where('category_id', $request->input('category'));
@@ -92,7 +152,7 @@ public function updateLocation(Request $request)
             $categories = is_array($request->input('category'))
                 ? $request->input('category')
                 : explode(',', $request->input('category'));
-        
+
             $query->where(function ($q) use ($categories) {
                 foreach ($categories as $catId) {
                     $q->orWhereRaw("FIND_IN_SET(?, category_id)", [$catId]);
@@ -100,65 +160,65 @@ public function updateLocation(Request $request)
             });
         }
 
-    if ($request->filled('color') && $request->input('color') !== 'Alles') {
-        $query->where('color_id', $request->input('color'));
-    }
-    
-    // In Laravel controller (example)
-    if ($request->filled('item_no')) {
-      $query->where('item_no', 'like', '%' . $request->item_no . '%');
-    }
+        if ($request->filled('color') && $request->input('color') !== 'Alles') {
+            $query->where('color_id', $request->input('color'));
+        }
 
-    
-    if ($request->filled('brand') && $request->input('brand') !== 'Alles') {
-        $query->where('brand', $request->input('brand'));
+        // In Laravel controller (example)
+        if ($request->filled('item_no')) {
+            $query->where('item_no', 'like', '%' . $request->item_no . '%');
+        }
+
+
+        if ($request->filled('brand') && $request->input('brand') !== 'Alles') {
+            $query->where('brand', $request->input('brand'));
+        }
+
+        if ($request->input('filter') === 'stock') {
+            $query->where('stock', '>', 0);
+        }
+
+        if ($request->filled('condition') && $request->input('condition') !== 'Alles') {
+            $query->where('condition', $request->input('condition'));
+        }
+
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where(function ($q) use ($search) {
+                $columns = ['title', 'description', 'category_id', 'gtin', 'sku', 'brand', 'stock', 'supplier'];
+                foreach ($columns as $col) {
+                    $q->orWhere($col, 'like', '%' . $search . '%');
+                }
+            });
+        }
+
+        // Apply pagination or fetch all
+        if ($perPage === null) {
+            $productsData = $query->get();
+            $products = [
+                'data' => $productsData,
+                'total' => $productsData->count(),
+                'last_page' => 1,
+            ];
+        } else {
+            $paginated = $query->paginate($perPage);
+            $products = $paginated->toArray();
+        }
+
+        // Calculate total stock value (only for non-deleted)
+        $products['totalprice'] = DB::table('products')
+            ->whereNull('deleted_at')
+            ->select(DB::raw('SUM(price * stock) as total'))
+            ->pluck('total')
+            ->first();
+
+        // Pad GTINs to 13 digits
+        foreach ($products['data'] as $key => $product) {
+            $products['data'][$key]['gtin'] = str_pad($product['gtin'], 13, '0', STR_PAD_LEFT);
+        }
+
+        return response()->json($products);
     }
-
-    if ($request->input('filter') === 'stock') {
-        $query->where('stock', '>', 0);
-    }
-
-    if ($request->filled('condition') && $request->input('condition') !== 'Alles') {
-        $query->where('condition', $request->input('condition'));
-    }
-
-    if ($request->filled('search')) {
-        $search = $request->input('search');
-        $query->where(function ($q) use ($search) {
-            $columns = ['title', 'description', 'category_id', 'gtin', 'sku', 'brand', 'stock', 'supplier'];
-            foreach ($columns as $col) {
-                $q->orWhere($col, 'like', '%' . $search . '%');
-            }
-        });
-    }
-
-    // Apply pagination or fetch all
-    if ($perPage === null) {
-        $productsData = $query->get();
-        $products = [
-            'data' => $productsData,
-            'total' => $productsData->count(),
-            'last_page' => 1,
-        ];
-    } else {
-        $paginated = $query->paginate($perPage);
-        $products = $paginated->toArray();
-    }
-
-    // Calculate total stock value (only for non-deleted)
-    $products['totalprice'] = DB::table('products')
-        ->whereNull('deleted_at')
-        ->select(DB::raw('SUM(price * stock) as total'))
-        ->pluck('total')
-        ->first();
-
-    // Pad GTINs to 13 digits
-    foreach ($products['data'] as $key => $product) {
-        $products['data'][$key]['gtin'] = str_pad($product['gtin'], 13, '0', STR_PAD_LEFT);
-    }
-
-    return response()->json($products);
-}
 
     // public function index(Request $request)
     // {
@@ -313,69 +373,68 @@ public function updateLocation(Request $request)
      */
     public function create()
     {
-        $response = Http::get('https://f7e904cd416fc6d2482caab6e7dd5cb5:de2521369af590d5a38332cff00b97ba@api.webshopapp.com/nl/catalog/count.json'); 
+        $response = Http::get('https://f7e904cd416fc6d2482caab6e7dd5cb5:de2521369af590d5a38332cff00b97ba@api.webshopapp.com/nl/catalog/count.json');
         $count = $response->json()['count'];
         $pages = ceil($count / 250);
         $_products = [];
-        for ($page=1; $page < $pages + 1; $page++) { 
-            $response = Http::get('https://f7e904cd416fc6d2482caab6e7dd5cb5:de2521369af590d5a38332cff00b97ba@api.webshopapp.com/nl/catalog.json', 
+        for ($page = 1; $page < $pages + 1; $page++) {
+            $response = Http::get(
+                'https://f7e904cd416fc6d2482caab6e7dd5cb5:de2521369af590d5a38332cff00b97ba@api.webshopapp.com/nl/catalog.json',
                 [
                     'page' => $page,
                     'limit' => 250,
                 ]
-            );  
+            );
 
-            $_products = array_merge_recursive($_products, $response->json());  
+            $_products = array_merge_recursive($_products, $response->json());
         }
         //echo '<pre>' . var_export($_products, true) . '</pre>';
 
         //exit();
 
-        
+
         $gtins = [];
-        foreach($_products['products'] as $product) {
-        
+        foreach ($_products['products'] as $product) {
+
             $inventoryProduct = new Product;
 
-                
-                $inventoryProduct->title = $product['title'];
-                if(isset($product['categories'])) {
-                    if(isset($product['categories'][array_key_first($product['categories'])])) {
-                        $inventoryProduct->category = $product['categories'][array_key_first($product['categories'])]['title'];
 
-                    }
-                } 
-                if(isset($product['variants'])) {
-                    if(isset($product['variants'][array_key_first($product['variants'])]['ean'])) {
-                        if(in_array($product['variants'][array_key_first($product['variants'])]['ean'], $gtins)) {
-                            continue;
-                        } else {
-                            $gtins[] = $product['variants'][array_key_first($product['variants'])]['ean'];
-                        }
-                        $inventoryProduct->gtin = $product['variants'][array_key_first($product['variants'])]['ean']; 
-                    }
-                    if(isset($product['variants'][array_key_first($product['variants'])]['stockLevel'])) {
-                        $inventoryProduct->quantity = $product['variants'][array_key_first($product['variants'])]['stockLevel']; 
-                    }
+            $inventoryProduct->title = $product['title'];
+            if (isset($product['categories'])) {
+                if (isset($product['categories'][array_key_first($product['categories'])])) {
+                    $inventoryProduct->category = $product['categories'][array_key_first($product['categories'])]['title'];
                 }
+            }
+            if (isset($product['variants'])) {
+                if (isset($product['variants'][array_key_first($product['variants'])]['ean'])) {
+                    if (in_array($product['variants'][array_key_first($product['variants'])]['ean'], $gtins)) {
+                        continue;
+                    } else {
+                        $gtins[] = $product['variants'][array_key_first($product['variants'])]['ean'];
+                    }
+                    $inventoryProduct->gtin = $product['variants'][array_key_first($product['variants'])]['ean'];
+                }
+                if (isset($product['variants'][array_key_first($product['variants'])]['stockLevel'])) {
+                    $inventoryProduct->quantity = $product['variants'][array_key_first($product['variants'])]['stockLevel'];
+                }
+            }
 
-                $image = $product['image']['src'];
-                $filename =  $inventoryProduct->gtin . '.'. pathinfo(parse_url($image, PHP_URL_PATH))['extension'];
-                $pathInternal = '/app/public/inventoryImages/' . $filename;
-                $pathPublic= '/storage/inventoryImages/' . $filename;
+            $image = $product['image']['src'];
+            $filename =  $inventoryProduct->gtin . '.' . pathinfo(parse_url($image, PHP_URL_PATH))['extension'];
+            $pathInternal = '/app/public/inventoryImages/' . $filename;
+            $pathPublic = '/storage/inventoryImages/' . $filename;
 
-                file_put_contents(storage_path().$pathInternal, file_get_contents($image));
+            file_put_contents(storage_path() . $pathInternal, file_get_contents($image));
 
-                $inventoryProduct->image = $pathPublic;
-                $inventoryProduct->save();
-                //echo '<pre>' . var_export($product, true) . '</pre>';
+            $inventoryProduct->image = $pathPublic;
+            $inventoryProduct->save();
+            //echo '<pre>' . var_export($product, true) . '</pre>';
 
-            
+
             //echo '<pre>' . var_export($product, true) . '</pre>';
             //echo $product['title'] . '<br>';
             //echo $product['category']['title'] . '<br>';
         }
-
     }
 
     /**
@@ -420,7 +479,7 @@ public function updateLocation(Request $request)
     //         $storage_path = storage_path();
     //         $img = Image::make($request->input('main_image'))->setFileInfoFromPath($request->input('main_image'))->orientate();;
 
-            
+
     //         $extension = explode('/', $img->mime())[1] ?? 'png';
     //         if(!in_array($extension , ['png', 'gif', 'jpg', 'jpeg', 'webp'])) {
     //             return Response()->json(['productImage' => 'incorrect mime']);
@@ -453,25 +512,25 @@ public function updateLocation(Request $request)
     //             if(preg_match('!^data:image\/(png|jpg|jpeg|gif|webp);base64,!', $galleryImage)) {
     //                 $storage_path = storage_path();
     //                 $img = Image::make($galleryImage)->setFileInfoFromPath($galleryImage)->orientate();
-        
-                    
+
+
     //                 $extension = explode('/', $img->mime())[1] ?? 'png';
     //                 if(!in_array($extension , ['png', 'gif', 'jpg', 'jpeg', 'webp'])) {
     //                     return Response()->json(['productImage' => 'incorrect mime']);
     //                 } 
-        
+
     //                 foreach (File::glob($storage_path . '/app/public/inventoryImages/'. $gtin .'*') as $filename) {
     //                     if(File::exists($filename)) File::delete($filename);
     //                     //$oldImage[] = '/img/uploads/' . basename($filename);
     //                 }
-        
-        
+
+
     //                 //$filename = $request->input('gtin') . '.'.$mime;
     //                 $rand_val = date('YMDHIS') . rand(11111, 99999);
     //                 $imagePath = $storage_path . '/app/public/inventory_images/' . $gtin . '_'. md5($rand_val).'.'.$extension;
-        
+
     //                 // unlink($path);
-        
+
     //                 $img->save($imagePath);
     //                 $url = '/storage/inventory_images/'. $gtin . '_'. md5($rand_val).'.'.$extension;
     //                 $_gallery[] = $url;
@@ -484,7 +543,7 @@ public function updateLocation(Request $request)
     //     } else {
     //         $product->gallery_images = [];
     //     }
-        
+
 
     //     $product->imageurl = $request->input('imageurl');
     //     $product->gtin = $request->input('gtin');
@@ -507,8 +566,8 @@ public function updateLocation(Request $request)
     //     }
 
     //     $product->save();
-  
-       
+
+
     //     // $product = Product::updateOrCreate(['gtin' => intval($gtin)], [
     //     //     'gtin' => $gtin,
     //     //     'title' => $request->input('title'),
@@ -518,9 +577,9 @@ public function updateLocation(Request $request)
     //     //     'price' => str_replace(',', '.', $request->input('price')),
     //     //     'category_id' => $request->input('category')
     //     // ]);
-        
+
     //     // if($request->input('meta') != null) {
-      
+
     //     //     $metaInputs = $request->input('meta');
 
     //     //     $meta =  [];
@@ -544,10 +603,10 @@ public function updateLocation(Request $request)
     //     //$product->save();
     // }
     public function store(Request $request)
-{
-    // dd($request->all());
-    // ✅ Validate the incoming request
-    // $request->validate([
+    {
+        // dd($request->all());
+        // ✅ Validate the incoming request
+        // $request->validate([
         // 'gtin' => 'nullable',
         // 'title' => 'required|string',
         // 'item_no' => 'required|string',
@@ -567,128 +626,128 @@ public function updateLocation(Request $request)
         // 'location_id' => 'nullable|exists:stock_locations,id',
         // // 'main_image' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp',
         // // 'gallery_images.*' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp',
-    // ]);
+        // ]);
 
-    // ✅ Create or find product by GTIN
-    $gtin = $request->input('gtin');
-    if($gtin == "undefined"){
-        $gtin = NULL;    
-    }
-    $product = Product::withTrashed()->where('gtin', $gtin)->where('gtin', '!=', NULL)->first();
-    if (!$product) {
-        $product = new Product();
-    }
-
-    if ($product->trashed()) {
-        $product->restore();
-    }
-
-    // ✅ Save main image if uploaded
-    if ($request->hasFile('main_image')) {
-        $mainImage = $request->file('main_image');
-        $path = $mainImage->store('inventory_images', 'public');
-        $product->main_image = '/public/storage/' . $path;
-    }
-
-    // ✅ Save gallery images if uploaded
-    $_gallery = [];
-    if ($request->hasFile('gallery_images')) {
-        foreach ($request->file('gallery_images') as $galleryImage) {
-            $galleryPath = $galleryImage->store('inventory_images', 'public');
-            $_gallery[] = '/public/storage/' . $galleryPath;
+        // ✅ Create or find product by GTIN
+        $gtin = $request->input('gtin');
+        if ($gtin == "undefined") {
+            $gtin = NULL;
         }
+        $product = Product::withTrashed()->where('gtin', $gtin)->where('gtin', '!=', NULL)->first();
+        if (!$product) {
+            $product = new Product();
+        }
+
+        if ($product->trashed()) {
+            $product->restore();
+        }
+
+        // ✅ Save main image if uploaded
+        if ($request->hasFile('main_image')) {
+            $mainImage = $request->file('main_image');
+            $path = $mainImage->store('inventory_images', 'public');
+            $product->main_image = '/public/storage/' . $path;
+        }
+
+        // ✅ Save gallery images if uploaded
+        $_gallery = [];
+        if ($request->hasFile('gallery_images')) {
+            foreach ($request->file('gallery_images') as $galleryImage) {
+                $galleryPath = $galleryImage->store('inventory_images', 'public');
+                $_gallery[] = '/public/storage/' . $galleryPath;
+            }
+        }
+        $product->gallery_images = $_gallery;
+
+        // ✅ Assign other fields
+        $product->gtin = $gtin;
+        $product->title = $request->input('title');
+        $product->item_no = $request->input('item_no');
+        $product->item_type = $request->input('item_type');
+        $product->color_name = $request->input('color_name');
+        $product->color_id = $request->input('color_id');
+        $product->stock = $request->input('stock');
+        $product->price = str_replace(',', '.', $request->input('price'));
+        // $product->category_id = $request->input('category');
+        $product->condition = $request->input('condition', 'new');
+        $product->completeness = $request->input('completeness');
+        $product->sku = $request->input('sku');
+        $product->retain = filter_var($request->input('retain'), FILTER_VALIDATE_BOOLEAN);
+        $product->is_stock_room = filter_var($request->input('is_stock_room'), FILTER_VALIDATE_BOOLEAN);
+        $product->stock_room_id = ($request->input('stock_room_id') == "undefined") ? NULL : $request->input('stock_room_id');
+        $product->imageurl = $request->input('imageurl');
+        $product->location_id = $request->input('location_id');
+
+        // ✅ Investment fields
+        if ($request->has('is_investment')) {
+            $product->is_investment = $request->input('is_investment');
+            $product->purchase_price = $request->input('purchase_price', 0);
+            $product->purchase_date = $request->input('purchase_date', Carbon::now());
+            $product->expected_list_date = $request->input('expected_list_date', null);
+            $product->target_price = $request->input('target_price', null);
+            $product->investment_notes = $request->input('investment_notes', null);
+        }
+
+        /* 5. SAVE MULTIPLE CATEGORIES AS STRING ----------------------------- */
+        $categoryIDs = $request->input('category_ids', []);   // array
+        // store like "3,7,12"
+        $product->category_id = implode(',', $categoryIDs);
+        // dd($product);
+        // ✅ Save product
+        try {
+            $product->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Product saved successfully',
+                'product' => $product
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false, // ❌ It's an error, not success
+                'message' => $e->getMessage(), // ✅ Proper exception message
+            ], 500); // ❗ Use status code 500 for server error
+        }
+
+        // if (is_null($product->bricklink_inventory_id)) {
+        //     $product->bricklink_inventory_id = $product->id;
+        //     $product->save();   // update only that column
+        // }
+
+
     }
-    $product->gallery_images = $_gallery;
 
-    // ✅ Assign other fields
-    $product->gtin = $gtin;
-    $product->title = $request->input('title');
-    $product->item_no = $request->input('item_no');
-    $product->item_type = $request->input('item_type');
-    $product->color_name = $request->input('color_name');
-    $product->color_id = $request->input('color_id');
-    $product->stock = $request->input('stock');
-    $product->price = str_replace(',', '.', $request->input('price'));
-    // $product->category_id = $request->input('category');
-    $product->condition = $request->input('condition', 'new');
-    $product->completeness = $request->input('completeness');
-    $product->sku = $request->input('sku');
-    $product->retain = filter_var($request->input('retain'), FILTER_VALIDATE_BOOLEAN);
-    $product->is_stock_room = filter_var($request->input('is_stock_room'), FILTER_VALIDATE_BOOLEAN);
-    $product->stock_room_id = ($request->input('stock_room_id') == "undefined") ? NULL : $request->input('stock_room_id');
-    $product->imageurl = $request->input('imageurl');
-    $product->location_id = $request->input('location_id');
+    public function sendToWebhookForPostRequest(Request $request)
+    {
+        // dd($request->all());die;
+        $response = Http::post('https://v2.bntk.eu/webhook/portal-bricklink-price', [
+            'item_no' => $request->item_no,
+            'item_type' => $request->item_type,
+            'color_id' => $request->item_color_id,
+            'condition' => $request->item_condition
+        ]);
 
-    // ✅ Investment fields
-    if ($request->has('is_investment')) {
-        $product->is_investment = $request->input('is_investment');
-        $product->purchase_price = $request->input('purchase_price', 0);
-        $product->purchase_date = $request->input('purchase_date', Carbon::now());
-        $product->expected_list_date = $request->input('expected_list_date', null);
-        $product->target_price = $request->input('target_price', null);
-        $product->investment_notes = $request->input('investment_notes', null);
+        return $response->json();
     }
-    
-    /* 5. SAVE MULTIPLE CATEGORIES AS STRING ----------------------------- */
-    $categoryIDs = $request->input('category_ids', []);   // array
-    // store like "3,7,12"
-    $product->category_id = implode(',', $categoryIDs);
-    // dd($product);
-    // ✅ Save product
-try {
-    $product->save(); 
-    
-    return response()->json([
-        'success' => true,
-        'message' => 'Product saved successfully',
-        'product' => $product
-    ]);
-} catch (\Exception $e) {
-    return response()->json([
-        'success' => false, // ❌ It's an error, not success
-        'message' => $e->getMessage(), // ✅ Proper exception message
-    ], 500); // ❗ Use status code 500 for server error
-}
-    
-    // if (is_null($product->bricklink_inventory_id)) {
-    //     $product->bricklink_inventory_id = $product->id;
-    //     $product->save();   // update only that column
-    // }
 
 
-}
+    public function sendToWebhook($itemNo, $itemType)
+    {
+        $response = Http::post('https://v2.bntk.eu/webhook/portal-bricklink-price', [
+            'item_no' => $itemNo,
+            'item_type' => $itemType
+        ]);
 
-public function sendToWebhookForPostRequest(Request $request)
-{
-    // dd($request->all());die;
-    $response = Http::post('https://v2.bntk.eu/webhook/portal-bricklink-price', [
-        'item_no' => $request->item_no,
-        'item_type' => $request->item_type,
-        'color_id' => $request->item_color_id,
-        'condition' => $request->item_condition
-    ]);
-    
-    return $response->json();
-}
-
-
-public function sendToWebhook($itemNo, $itemType)
-{
-    $response = Http::post('https://v2.bntk.eu/webhook/portal-bricklink-price', [
-        'item_no' => $itemNo,
-        'item_type' => $itemType
-    ]);
-    
-    return $response->json();
-}
+        return $response->json();
+    }
 
 
 
     public function add_from_overview_page(Request $request)
-{
-    // dd($request->all());
-    // ✅ Validate the incoming request
-    // $request->validate([
+    {
+        // dd($request->all());
+        // ✅ Validate the incoming request
+        // $request->validate([
         // 'gtin' => 'nullable',
         // 'title' => 'required|string',
         // 'item_no' => 'required|string',
@@ -708,98 +767,98 @@ public function sendToWebhook($itemNo, $itemType)
         // 'location_id' => 'nullable|exists:stock_locations,id',
         // // 'main_image' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp',
         // // 'gallery_images.*' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp',
-    // ]);
+        // ]);
 
-    // ✅ Create or find product by GTIN
-    $gtin = $request->input('gtin');
-    if($gtin == "undefined"){
-        $gtin = NULL;    
-    }
-    $product = Product::withTrashed()->where('gtin', $gtin)->where('gtin', '!=', NULL)->first();
-    if (!$product) {
-        $product = new Product();
-    }
+        // ✅ Create or find product by GTIN
+        $gtin = $request->input('gtin');
+        if ($gtin == "undefined") {
+            $gtin = NULL;
+        }
+        $product = Product::withTrashed()->where('gtin', $gtin)->where('gtin', '!=', NULL)->first();
+        if (!$product) {
+            $product = new Product();
+        }
 
-    if ($product->trashed()) {
-        $product->restore();
-    }
+        if ($product->trashed()) {
+            $product->restore();
+        }
 
 
-/*
+        /*
 |--------------------------------------------------------------------------
 | MAIN IMAGE
 |--------------------------------------------------------------------------
 */
-if ($request->hasFile('main_image')) {
-    $path = $request->file('main_image')->store('inventory_images', 'public');
-    $product->main_image = '/public/storage/' . $path;
-}
+        if ($request->hasFile('main_image')) {
+            $path = $request->file('main_image')->store('inventory_images', 'public');
+            $product->main_image = '/public/storage/' . $path;
+        }
 
-/*
+        /*
 |--------------------------------------------------------------------------
 | GALLERY IMAGES
 |--------------------------------------------------------------------------
 */
-if ($request->hasFile('gallery_images')) {
-    $_gallery = [];
+        if ($request->hasFile('gallery_images')) {
+            $_gallery = [];
 
-    foreach ($request->file('gallery_images') as $file) {
-        if ($file->isValid()) {
-            $path = $file->store('inventory_images', 'public');
-            $_gallery[] = '/public/storage/' . $path;
+            foreach ($request->file('gallery_images') as $file) {
+                if ($file->isValid()) {
+                    $path = $file->store('inventory_images', 'public');
+                    $_gallery[] = '/public/storage/' . $path;
+                }
+            }
+
+            // only set if files were uploaded
+            if (!empty($_gallery)) {
+                $product->gallery_images = $_gallery;
+            }
         }
-    }
 
-    // only set if files were uploaded
-    if (!empty($_gallery)) {
-        $product->gallery_images = $_gallery;
-    }
-}
-
-/*
+        /*
 |--------------------------------------------------------------------------
 | VINTED MAIN IMAGE
 |--------------------------------------------------------------------------
 */
-if ($request->hasFile('vinted_main_image')) {
-    $path = $request->file('vinted_main_image')->store('inventory_images', 'public');
-    $product->vinted_main_image = '/public/storage/' . $path;
-}
+        if ($request->hasFile('vinted_main_image')) {
+            $path = $request->file('vinted_main_image')->store('inventory_images', 'public');
+            $product->vinted_main_image = '/public/storage/' . $path;
+        }
 
-/*
+        /*
 |--------------------------------------------------------------------------
 | VINTED GALLERY IMAGES
 |--------------------------------------------------------------------------
 */
-if ($request->hasFile('vinted_gallery_images')) {
-    $_vinted_gallery = [];
+        if ($request->hasFile('vinted_gallery_images')) {
+            $_vinted_gallery = [];
 
-    foreach ($request->file('vinted_gallery_images') as $file) {
-        if ($file->isValid()) {
-            $path = $file->store('inventory_images', 'public');
-            $_vinted_gallery[] = '/public/storage/' . $path;
+            foreach ($request->file('vinted_gallery_images') as $file) {
+                if ($file->isValid()) {
+                    $path = $file->store('inventory_images', 'public');
+                    $_vinted_gallery[] = '/public/storage/' . $path;
+                }
+            }
+
+            // only set if files were uploaded
+            if (!empty($_vinted_gallery)) {
+                $product->vinted_gallery_images = $_vinted_gallery;
+            }
         }
-    }
-
-    // only set if files were uploaded
-    if (!empty($_vinted_gallery)) {
-        $product->vinted_gallery_images = $_vinted_gallery;
-    }
-}
 
 
-    // vinted end
+        // vinted end
 
-    $data_from_webhook = $this->sendToWebhook($request->input('item_no'), $request->input('item_type'));
-    // print_r($data_from_webhook['avg_price']);die;
+        $data_from_webhook = $this->sendToWebhook($request->input('item_no'), $request->input('item_type'));
+        // print_r($data_from_webhook['avg_price']);die;
 
-    // ✅ Assign other fields
-    
-    $product->vinted_active = (($request->input('vinted_active') == NULL) ? 0 : 1);
-    $product->vinted_item_id = $request->input('vinted_item_id');
-    $product->vinted_bulk_amount = $request->input('vinted_bulk_amount');
-    $product->vinted_status = $request->input('vinted_status');
-    
+        // ✅ Assign other fields
+
+        $product->vinted_active = (($request->input('vinted_active') == NULL) ? 0 : 1);
+        $product->vinted_item_id = $request->input('vinted_item_id');
+        $product->vinted_bulk_amount = $request->input('vinted_bulk_amount');
+        $product->vinted_status = $request->input('vinted_status');
+
         $product->item_no = $request->input('item_no');
         $product->item_type = $request->input('item_type');
         $product->completeness = $request->input('completeness');
@@ -814,9 +873,9 @@ if ($request->hasFile('vinted_gallery_images')) {
         $product->stock = $request->input('stock');
         // $product->category_id = $request->input('category_id');
         $product->color_id = $request->input('color_id');
-        $colordetail = DB::table('colors')->where('bricklink_id',$product->color_id )->get();
+        $colordetail = DB::table('colors')->where('bricklink_id', $product->color_id)->get();
         $product->color_name = $colordetail[0]->bricklink_name ?? null;
-        
+
         $product->condition = $request->input('condition');
         $product->category = $request->input('category');
         //add location_id if provided
@@ -828,7 +887,7 @@ if ($request->hasFile('vinted_gallery_images')) {
         $product->category_id = implode(',', $categoryIDs);
         $product->bricklink_inventory_id = $request->input('bricklink_inventory_id');
         $product->rebrickable_id = $request->input('rebrickable_id');
-        
+
         $product->dim_x = $request->input('dim_x');
         $product->dim_y = $request->input('dim_y');
         $product->dim_z = $request->input('dim_z');
@@ -837,8 +896,9 @@ if ($request->hasFile('vinted_gallery_images')) {
         $product->min_age = $request->input('min_age');
         $product->description = $request->input('description');
         $product->extended_description = $request->input('extended_description');
+        $product->set_minifigures = $request->input('set_minifigures');
         $product->remarks = $request->input('remarks');
-        
+
         $product->price = $request->input('price');
         // $product->price = $data_from_webhook['avg_price'] ?? 0;
         $product->sell_price = $request->input('sell_price');
@@ -851,7 +911,10 @@ if ($request->hasFile('vinted_gallery_images')) {
         $product->tier_quantity3 = $request->input('tier_quantity3');
         $product->tier_price3 = $request->input('tier_price3');
         $product->currency = $request->input('currency');
-        
+
+        $product->shopify_variant_id = $request->input('shopify_variant_id');
+        $product->shopify_product_id = $request->input('shopify_product_id');
+
         $product->amazon_sku = $request->input('amazon_sku');
         $product->amazon_price = $request->input('amazon_price');
         $product->amazon_condition_type = $request->input('amazon_condition_type');
@@ -860,7 +923,7 @@ if ($request->hasFile('vinted_gallery_images')) {
         $product->amazon_listing_id = $request->input('amazon_listing_id');
         $product->amazon_status = $request->input('amazon_status');
         $product->amazon_last_sync = $request->input('amazon_last_sync');
-        
+
         $product->ebay_item_id = $request->input('ebay_item_id');
         $product->ebay_price = $request->input('ebay_price');
         $product->ebay_condition_id = $request->input('ebay_condition_id');
@@ -903,46 +966,46 @@ if ($request->hasFile('vinted_gallery_images')) {
         $product->super_lot_id = $request->input('super_lot_id');
         $product->super_lot_qty = $request->input('super_lot_qty');
 
-    // ✅ Investment fields
-    if ($request->has('is_investment')) {
-        $product->is_investment = $request->input('is_investment');
-        $product->purchase_price = $request->input('purchase_price', 0);
-        $product->purchase_date = $request->input('purchase_date', Carbon::now());
-        $product->expected_list_date = $request->input('expected_list_date', null);
-        $product->target_price = $request->input('target_price', null);
-        $product->investment_notes = $request->input('investment_notes', null);
+        // ✅ Investment fields
+        if ($request->has('is_investment')) {
+            $product->is_investment = $request->input('is_investment');
+            $product->purchase_price = $request->input('purchase_price', 0);
+            $product->purchase_date = $request->input('purchase_date', Carbon::now());
+            $product->expected_list_date = $request->input('expected_list_date', null);
+            $product->target_price = $request->input('target_price', null);
+            $product->investment_notes = $request->input('investment_notes', null);
+        }
+
+        /* 5. SAVE MULTIPLE CATEGORIES AS STRING ----------------------------- */
+        $categoryIDs = $request->input('category_ids', []);   // array
+        // store like "3,7,12"
+        $product->category_id = implode(',', $categoryIDs);
+        // dd($product);
+        // ✅ Save product
+        $product->save();
+        // try {
+        //     $product->save(); 
+
+        //     return response()->json([
+        //         'success' => true,
+        //         'message' => 'Product saved successfully',
+        //         'product' => $product
+        //     ]);
+        // } catch (\Exception $e) {
+        //     return response()->json([
+        //         'success' => false, // ❌ It's an error, not success
+        //         'message' => $e->getMessage(), // ✅ Proper exception message
+        //     ], 500); // ❗ Use status code 500 for server error
+        // }
+        return redirect()->back();
+
+        // if (is_null($product->bricklink_inventory_id)) {
+        //     $product->bricklink_inventory_id = $product->id;
+        //     $product->save();   // update only that column
+        // }
+
+
     }
-    
-    /* 5. SAVE MULTIPLE CATEGORIES AS STRING ----------------------------- */
-    $categoryIDs = $request->input('category_ids', []);   // array
-    // store like "3,7,12"
-    $product->category_id = implode(',', $categoryIDs);
-    // dd($product);
-    // ✅ Save product
-    $product->save();
-// try {
-//     $product->save(); 
-    
-//     return response()->json([
-//         'success' => true,
-//         'message' => 'Product saved successfully',
-//         'product' => $product
-//     ]);
-// } catch (\Exception $e) {
-//     return response()->json([
-//         'success' => false, // ❌ It's an error, not success
-//         'message' => $e->getMessage(), // ✅ Proper exception message
-//     ], 500); // ❗ Use status code 500 for server error
-// }
-return redirect()->back();
-    
-    // if (is_null($product->bricklink_inventory_id)) {
-    //     $product->bricklink_inventory_id = $product->id;
-    //     $product->save();   // update only that column
-    // }
-
-
-}
 
     /**
      * Display the specified resource.
@@ -954,7 +1017,7 @@ return redirect()->back();
     {
         // echo $gtin;die;
         //$gtin = substr($gtin, 0, -1);
-        if(is_numeric($gtin)) {
+        if (is_numeric($gtin)) {
             try {
                 $product = Product::withTrashed()->where('id', intval($gtin))->firstOrFail();
                 return Response()->json($product->toArray());
@@ -967,14 +1030,13 @@ return redirect()->back();
             return Response()->json([
                 'error' => 'gtin_invalid'
 
-            ], 400);     
+            ], 400);
         }
-
     }
 
     public function find($gtin)
     {
-        if(is_numeric($gtin)) {
+        if (is_numeric($gtin)) {
             try {
                 $product = CompliesProduct::where('gtin', intval($gtin))->firstOrFail();
 
@@ -994,7 +1056,7 @@ return redirect()->back();
                 // ], 404);
                 return Response()->json([
                     'error' => 'product_not_found'
-                ], 404); 
+                ], 404);
             }
             try {
                 $product = ApibvProduct::where('gtin', intval($gtin))->firstOrFail();
@@ -1003,18 +1065,17 @@ return redirect()->back();
             } catch (ModelNotFoundException $e) {
                 return Response()->json([
                     'error' => 'product_not_found'
-                ], 404); 
-            }       
+                ], 404);
+            }
             return Response()->json([
                 'error' => 'product_not_found'
-            ], 404);     
-                        
+            ], 404);
         } else {
             return Response()->json([
                 'error' => 'gtin_invalid'
 
-            ], 400);     
-        }        
+            ], 400);
+        }
         //return Response()->json();
     }
 
@@ -1056,30 +1117,30 @@ return redirect()->back();
 
         $gtin = $request->input('gtin');
         $product = Product::withTrashed()->where('id', $id)->first();
-        if(!$product) {
+        if (!$product) {
             $product = new Product();
         }
 
-        if($product->is_trashed) {
+        if ($product->is_trashed) {
             $product->restore();
         }
 
-    // ✅ Save main image if uploaded
-    if ($request->hasFile('mainImage')) {
-        $mainImage = $request->file('mainImage');
-        $path = $mainImage->store('inventory_images', 'public');
-        $product->main_image = '/public/storage/' . $path;
-    }
-
-    // ✅ Save gallery images if uploaded
-    $_gallery = $product->gallery_images;
-    if ($request->hasFile('gallery')) {
-        foreach ($request->file('gallery') as $galleryImage) {
-            $galleryPath = $galleryImage->store('inventory_images', 'public');
-            $_gallery[] = '/public/storage/' . $galleryPath;
+        // ✅ Save main image if uploaded
+        if ($request->hasFile('mainImage')) {
+            $mainImage = $request->file('mainImage');
+            $path = $mainImage->store('inventory_images', 'public');
+            $product->main_image = '/public/storage/' . $path;
         }
-    }
-    $product->gallery_images = $_gallery;
+
+        // ✅ Save gallery images if uploaded
+        $_gallery = $product->gallery_images;
+        if ($request->hasFile('gallery')) {
+            foreach ($request->file('gallery') as $galleryImage) {
+                $galleryPath = $galleryImage->store('inventory_images', 'public');
+                $_gallery[] = '/public/storage/' . $galleryPath;
+            }
+        }
+        $product->gallery_images = $_gallery;
 
 
         $product->item_no = $request->input('item_no');
@@ -1104,10 +1165,10 @@ return redirect()->back();
         $categoryIDs = $request->input('category_id', []);   // array
         // store like "3,7,12"
         $product->category_id = implode(',', $categoryIDs);
-    
+
         $product->save();
-  
-       
+
+
         // $product = Product::updateOrCreate(['gtin' => intval($gtin)], [
         //     'gtin' => $gtin,
         //     'title' => $request->input('title'),
@@ -1117,9 +1178,9 @@ return redirect()->back();
         //     'price' => str_replace(',', '.', $request->input('price')),
         //     'category_id' => $request->input('category')
         // ]);
-        
+
         // if($request->input('meta') != null) {
-      
+
         //     $metaInputs = $request->input('meta');
 
         //     $meta =  [];
@@ -1142,8 +1203,8 @@ return redirect()->back();
 
         //$product->save();
     }
-    
-    
+
+
     public function update_from_overview_page(Request $request, $id)
     {
         // print_r($request->all());die;
@@ -1164,11 +1225,11 @@ return redirect()->back();
 
         $gtin = $request->input('gtin');
         $product = Product::withTrashed()->where('id', $id)->first();
-        if(!$product) {
+        if (!$product) {
             $product = new Product();
         }
 
-        if($product->is_trashed) {
+        if ($product->is_trashed) {
             $product->restore();
         }
 
@@ -1178,79 +1239,79 @@ return redirect()->back();
             $path = $mainImage->store('inventory_images', 'public');
             $product->main_image = '/public/storage/' . $path;
         }
-        
-if ($request->filled('gallery_images')) {
-    $_gallery = [];
-    $galleryArray = json_decode($request->input('gallery_images'), true);
 
-    foreach ($galleryArray as $base64) {
-        if (Str::startsWith($base64, 'data:image')) {
-            $image_parts = explode(";base64,", $base64);
-            $image_type = explode("image/", $image_parts[0])[1];
-            $image_base64 = base64_decode($image_parts[1]);
+        if ($request->filled('gallery_images')) {
+            $_gallery = [];
+            $galleryArray = json_decode($request->input('gallery_images'), true);
 
-            $fileName = uniqid() . '.' . $image_type;
-            $tmpPath = sys_get_temp_dir() . '/' . $fileName;
-            file_put_contents($tmpPath, $image_base64);
+            foreach ($galleryArray as $base64) {
+                if (Str::startsWith($base64, 'data:image')) {
+                    $image_parts = explode(";base64,", $base64);
+                    $image_type = explode("image/", $image_parts[0])[1];
+                    $image_base64 = base64_decode($image_parts[1]);
 
-            $uploadedFile = new UploadedFile($tmpPath, $fileName, null, null, true);
-            $path = $uploadedFile->store('inventory_images', 'public');
+                    $fileName = uniqid() . '.' . $image_type;
+                    $tmpPath = sys_get_temp_dir() . '/' . $fileName;
+                    file_put_contents($tmpPath, $image_base64);
 
-            $_gallery[] = '/public/storage/' . $path;
-            @unlink($tmpPath);
-        } else {
-            $_gallery[] = $base64;
+                    $uploadedFile = new UploadedFile($tmpPath, $fileName, null, null, true);
+                    $path = $uploadedFile->store('inventory_images', 'public');
+
+                    $_gallery[] = '/public/storage/' . $path;
+                    @unlink($tmpPath);
+                } else {
+                    $_gallery[] = $base64;
+                }
+            }
+
+            $product->gallery_images = $_gallery;
         }
-    }
 
-    $product->gallery_images = $_gallery;
-}
-        
-        
+
         // Vinted
         if ($request->hasFile('vinted_main_image')) {
             $mainImage = $request->file('vinted_main_image');
             $path = $mainImage->store('inventory_images', 'public');
             $product->vinted_main_image = '/public/storage/' . $path;
         }
-        
+
         if ($request->filled('vinted_gallery_images')) {
-    $_vinted_gallery = [];
-    $vinted_galleryArray = json_decode($request->input('vinted_gallery_images'), true);
+            $_vinted_gallery = [];
+            $vinted_galleryArray = json_decode($request->input('vinted_gallery_images'), true);
 
-    foreach ($vinted_galleryArray as $base64) {
-        if (Str::startsWith($base64, 'data:image')) {
-            $image_parts = explode(";base64,", $base64);
-            $image_type = explode("image/", $image_parts[0])[1];
-            $image_base64 = base64_decode($image_parts[1]);
+            foreach ($vinted_galleryArray as $base64) {
+                if (Str::startsWith($base64, 'data:image')) {
+                    $image_parts = explode(";base64,", $base64);
+                    $image_type = explode("image/", $image_parts[0])[1];
+                    $image_base64 = base64_decode($image_parts[1]);
 
-            $fileName = uniqid() . '.' . $image_type;
-            $tmpPath = sys_get_temp_dir() . '/' . $fileName;
-            file_put_contents($tmpPath, $image_base64);
+                    $fileName = uniqid() . '.' . $image_type;
+                    $tmpPath = sys_get_temp_dir() . '/' . $fileName;
+                    file_put_contents($tmpPath, $image_base64);
 
-            $uploadedFile = new UploadedFile($tmpPath, $fileName, null, null, true);
-            $path = $uploadedFile->store('inventory_images', 'public');
+                    $uploadedFile = new UploadedFile($tmpPath, $fileName, null, null, true);
+                    $path = $uploadedFile->store('inventory_images', 'public');
 
-            $_vinted_gallery[] = '/public/storage/' . $path;
-            @unlink($tmpPath);
-        } else {
-            $_vinted_gallery[] = $base64;
+                    $_vinted_gallery[] = '/public/storage/' . $path;
+                    @unlink($tmpPath);
+                } else {
+                    $_vinted_gallery[] = $base64;
+                }
+            }
+
+            $product->vinted_gallery_images = $_vinted_gallery;
         }
-    }
-
-    $product->vinted_gallery_images = $_vinted_gallery;
-}
 
         // Vinted End        
-        
-        
 
 
-    $product->vinted_active = (($request->input('vinted_active') == NULL) ? 0 : 1);
-    $product->vinted_item_id = $request->input('vinted_item_id');
-    $product->vinted_bulk_amount = $request->input('vinted_bulk_amount');
-    $product->vinted_status = $request->input('vinted_status');
-    
+
+
+        $product->vinted_active = (($request->input('vinted_active') == NULL) ? 0 : 1);
+        $product->vinted_item_id = $request->input('vinted_item_id');
+        $product->vinted_bulk_amount = $request->input('vinted_bulk_amount');
+        $product->vinted_status = $request->input('vinted_status');
+
         $product->item_no = $request->input('item_no');
         $product->item_type = $request->input('item_type');
         $product->completeness = $request->input('completeness');
@@ -1265,15 +1326,15 @@ if ($request->filled('gallery_images')) {
         $product->stock = $request->input('stock');
         // $product->category_id = $request->input('category_id');
         $product->color_id = $request->input('color_id');
-        $colordetail = DB::table('colors')->where('bricklink_id',$product->color_id )->get();
+        $colordetail = DB::table('colors')->where('bricklink_id', $product->color_id)->get();
         $product->color_name = $colordetail[0]->bricklink_name ?? null;
-    
-    
+
+
         $product->condition = $request->input('condition') ?? "New";
         $product->category = $request->input('category');
         $product->bricklink_inventory_id = $request->input('bricklink_inventory_id');
         $product->rebrickable_id = $request->input('rebrickable_id');
-        
+
         $product->dim_x = $request->input('dim_x');
         $product->dim_y = $request->input('dim_y');
         $product->dim_z = $request->input('dim_z');
@@ -1282,8 +1343,9 @@ if ($request->filled('gallery_images')) {
         $product->min_age = $request->input('min_age');
         $product->description = $request->input('description');
         $product->extended_description = $request->input('extended_description');
+        $product->set_minifigures = $request->input('set_minifigures');
         $product->remarks = $request->input('remarks');
-        
+
         $product->price = $request->input('price');
         $product->sell_price = $request->input('sell_price');
         $product->purchase_price = $request->input('purchase_price');
@@ -1295,7 +1357,10 @@ if ($request->filled('gallery_images')) {
         $product->tier_quantity3 = $request->input('tier_quantity3');
         $product->tier_price3 = $request->input('tier_price3');
         $product->currency = $request->input('currency');
-        
+
+        $product->shopify_variant_id = $request->input('shopify_variant_id');
+        $product->shopify_product_id = $request->input('shopify_product_id');
+
         $product->amazon_sku = $request->input('amazon_sku');
         $product->amazon_price = $request->input('amazon_price');
         $product->amazon_condition_type = $request->input('amazon_condition_type');
@@ -1304,7 +1369,7 @@ if ($request->filled('gallery_images')) {
         $product->amazon_listing_id = $request->input('amazon_listing_id');
         $product->amazon_status = $request->input('amazon_status');
         $product->amazon_last_sync = $request->input('amazon_last_sync');
-        
+
         $product->ebay_item_id = $request->input('ebay_item_id');
         $product->ebay_price = $request->input('ebay_price');
         $product->ebay_condition_id = $request->input('ebay_condition_id');
@@ -1346,8 +1411,8 @@ if ($request->filled('gallery_images')) {
         $product->lot_id = $request->input('lot_id');
         $product->super_lot_id = $request->input('super_lot_id');
         $product->super_lot_qty = $request->input('super_lot_qty');
-        
-        
+
+
         //add location_id if provided
         $product->location_id = $request->input('location_id', null);
 
@@ -1355,10 +1420,10 @@ if ($request->filled('gallery_images')) {
         $categoryIDs = $request->input('category_id', []);   // array
         // store like "3,7,12"
         $product->category_id = implode(',', $categoryIDs);
-    
+
         $product->save();
-  
-       
+
+
         // $product = Product::updateOrCreate(['gtin' => intval($gtin)], [
         //     'gtin' => $gtin,
         //     'title' => $request->input('title'),
@@ -1368,9 +1433,9 @@ if ($request->filled('gallery_images')) {
         //     'price' => str_replace(',', '.', $request->input('price')),
         //     'category_id' => $request->input('category')
         // ]);
-        
+
         // if($request->input('meta') != null) {
-      
+
         //     $metaInputs = $request->input('meta');
 
         //     $meta =  [];
@@ -1392,7 +1457,7 @@ if ($request->filled('gallery_images')) {
         // echo 'was changed: ' . ($product->wasChanged() ? 'true' : 'false') . PHP_EOL;
 
         //$product->save();
-        
+
         return redirect()->back();
     }
     
@@ -1411,30 +1476,30 @@ if ($request->filled('gallery_images')) {
         Product::where('id', $gtin)->delete();
     }
 
-    public function generateGtin() {        
+    public function generateGtin()
+    {
         $ean = PcmanGtin::getNextProductEan();
         $ean = PcmanGtin::addCheck($ean);
         return Response()->json(['ean' => $ean]);
     }
 
-    public function search(Request $request) {
+    public function search(Request $request)
+    {
         $input = $request->input('search');
         $query = Product::query();
         $query->withTrashed();
         $gtinValidator = new GtinValidator($input);
         $gtinObject = $gtinValidator->getGtinObject();
-        if( $gtinObject->isValid()) {
+        if ($gtinObject->isValid()) {
             $products = [];
             $product = $query->where('gtin', $input)->first();
-            if($product) {
+            if ($product) {
                 $products['data'][] = $product->toArray();
-                
             } else {
                 $products['data'] = [];
             }
-            
         } else {
-  
+
             // if(empty($input)) {
             //     $query->get();
             // } else {
@@ -1449,31 +1514,30 @@ if ($request->filled('gallery_images')) {
             $columns = ['title', 'description', 'category', 'gtin', 'sku', 'brand', 'stock', 'supplier'];
             //$query->where('gtin', 'LIKE', '%' . $input . '%');
 
-            foreach($columns as $column){
+            foreach ($columns as $column) {
                 $query->orWhere($column, 'LIKE', '%' . $input . '%');
-
             }
-        
+
             $products = [];
             $perPage = $request->input('perPage');
-            if($perPage == 'Alles') {
+            if ($perPage == 'Alles') {
                 $products['data'] = $query->get()->toArray();
                 $products['total'] = count($products['data']);
                 $products['last_page'] = 1;
             } else {
-                $products = $query->paginate($perPage)->toArray();  
+                $products = $query->paginate($perPage)->toArray();
             }
         }
         //file_put_contents(__DIR__.'/producten_test2.json', json_encode($products));
-        if(isset($products['data'])) {
-            if(count($products['data']) > 0 ) {
-                foreach($products['data'] as $key => $product) {
+        if (isset($products['data'])) {
+            if (count($products['data']) > 0) {
+                foreach ($products['data'] as $key => $product) {
                     $products['data'][$key]['gtin'] =  str_pad($products['data'][$key]['gtin'], 13, "0", STR_PAD_LEFT);
                 }
-            }  
+            }
         }
 
-        return Response()->json($products);  
+        return Response()->json($products);
     }
 
     // public function updateNotify(Request $request) {
@@ -1483,16 +1547,18 @@ if ($request->filled('gallery_images')) {
     //     $product->notify = intval($notify);
     //     $product->save();
     // }
-    
-    public function exportproducts() {
-        $filename = Carbon::now()->format('Ymdhms').'-producten.xlsx';
-        Excel::store(new InventoryProductExport, 'public/productexports/'.$filename);
-        return Response()->json(['url' => 'https://web.pcman.nl/storage/productexports/'.$filename]);
+
+    public function exportproducts()
+    {
+        $filename = Carbon::now()->format('Ymdhms') . '-producten.xlsx';
+        Excel::store(new InventoryProductExport, 'public/productexports/' . $filename);
+        return Response()->json(['url' => 'https://web.pcman.nl/storage/productexports/' . $filename]);
         //return Excel::download(new InventoryProductExport, 'producten.xlsx');
 
     }
 
-    public function updatenotifystatus(Request $request) {
+    public function updatenotifystatus(Request $request)
+    {
         $gtin = $request->input('gtin');
         $status = $request->input('status');
         $product = Product::where('gtin', $gtin)->first();
@@ -1500,32 +1566,35 @@ if ($request->filled('gallery_images')) {
         $product->save();
     }
 
-    public function categories() {
+    public function categories()
+    {
         return Response()->json(Category::all());
     }
 
-    public function quantity(Request $request) {
+    public function quantity(Request $request)
+    {
 
         $id = $request->input('id');
         $operation = $request->input('operation');
 
 
-        if($operation == 'plus') {
+        if ($operation == 'plus') {
             Product::where('id', $id)->increment('stock', 1);
-        } else if($operation == 'minus') {
+        } else if ($operation == 'minus') {
             Product::where('id', $id)->decrement('stock', 1);
         }
 
         return Response()->json(['status' => 'success']);
     }
 
-    public function generateEan() {
+    public function generateEan()
+    {
         return Response()->json(Product::getNextProductEan());
     }
 
     public function batchUpload(Request $request)
     {
-        
+
         try {
             if (!$request->hasFile('file')) {
                 return response()->json([
@@ -1535,7 +1604,7 @@ if ($request->filled('gallery_images')) {
 
             $file = $request->file('file');
             $extension = $file->getClientOriginalExtension();
-            
+
             if (!in_array($extension, ['csv', 'xlsx'])) {
                 return response()->json([
                     ['gtin' => 'Error', 'title' => 'Invalid file type', 'success' => false, 'error' => 'File must be CSV or XLSX']
@@ -1604,7 +1673,6 @@ if ($request->filled('gallery_images')) {
                         'success' => true,
                         'error' => null
                     ];
-
                 } catch (\Exception $e) {
                     $results[] = [
                         'gtin' => $productData['gtin'] ?? 'Unknown',
@@ -1617,8 +1685,7 @@ if ($request->filled('gallery_images')) {
                 }
             }
 
-            return response()->json(['success' => true, 'message' => 'File Uploaded Successfully!','results' => $results]);
-
+            return response()->json(['success' => true, 'message' => 'File Uploaded Successfully!', 'results' => $results]);
         } catch (\Exception $e) {
             return response()->json([
                 ['gtin' => 'Error', 'title' => 'Processing Error', 'success' => false, 'error' => $e->getMessage()]
@@ -1631,15 +1698,15 @@ if ($request->filled('gallery_images')) {
     {
         $products = [];
         $handle = fopen($file->getPathname(), 'r');
-        
+
         // Get headers
         $headers = fgetcsv($handle);
-        
+
         while (($data = fgetcsv($handle)) !== false) {
             $row = array_combine($headers, $data);
             $products[] = $this->formatProductData($row);
         }
-        
+
         fclose($handle);
         return $products;
     }
@@ -1649,17 +1716,17 @@ if ($request->filled('gallery_images')) {
         $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($file->getPathname());
         $worksheet = $spreadsheet->getActiveSheet();
         $rows = $worksheet->toArray();
-        
+
         $headers = array_shift($rows);
         $products = [];
-        
+
         foreach ($rows as $row) {
             if (!empty(array_filter($row))) {
                 $data = array_combine($headers, $row);
                 $products[] = $this->formatProductData($data);
             }
         }
-        
+
         return $products;
     }
 
@@ -1692,7 +1759,7 @@ if ($request->filled('gallery_images')) {
             foreach ($request->updates as $update) {
                 try {
                     $product = Product::where('gtin', $update['gtin'])->first();
-                    
+
                     if ($product) {
                         $oldStock = $product->stock;
                         $product->stock = $update['stock'];
@@ -1728,7 +1795,6 @@ if ($request->filled('gallery_images')) {
                 'message' => 'Bulk stock update completed',
                 'results' => $results
             ]);
-
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json([
@@ -1738,25 +1804,26 @@ if ($request->filled('gallery_images')) {
             ], 500);
         }
     }
-    
-    public function update_stock_from_overview_page(Request $request, $id){
+
+    public function update_stock_from_overview_page(Request $request, $id)
+    {
         // echo 'success';die;
         $product = Product::findOrFail($id);
 
         $amount = (int) $request->input('amount');
         $adjustmentType = $request->input('adjustmentType');
-    
+
         $oldStock = $product->stock;
-    
+
         switch ($adjustmentType) {
             case 'set':
                 $product->stock = $amount;
                 break;
-    
+
             case 'add':
                 $product->stock += $amount;
                 break;
-    
+
             case 'subtract':
                 $product->stock -= $amount;
                 if ($product->stock < 0) {
@@ -1764,7 +1831,7 @@ if ($request->filled('gallery_images')) {
                 }
                 break;
         }
-    
+
         $product->save();
         // echo 'Done';die;
         return redirect()->back();
@@ -1801,7 +1868,6 @@ if ($request->filled('gallery_images')) {
                 'success' => true,
                 'message' => 'Locations updated successfully'
             ]);
-
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json([
@@ -1817,9 +1883,9 @@ if ($request->filled('gallery_images')) {
 
         if ($request->has('search')) {
             $search = $request->search;
-            $query->where(function($q) use ($search) {
+            $query->where(function ($q) use ($search) {
                 $q->where('title', 'like', "%{$search}%")
-                  ->orWhere('gtin', 'like', "%{$search}%");
+                    ->orWhere('gtin', 'like', "%{$search}%");
             });
         }
 
@@ -1829,7 +1895,7 @@ if ($request->filled('gallery_images')) {
     public function convertToRegular($id)
     {
         $product = Product::findOrFail($id);
-        
+
         $product->update([
             'is_investment' => false,
             'investment_notes' => $product->investment_notes . "\nConverted to regular stock on " . now()->format('Y-m-d')
@@ -1862,140 +1928,129 @@ if ($request->filled('gallery_images')) {
 
         return response()->json($product);
     }
-    
+
     public function colors()
     {
         $colors = DB::table('colors')->where('bricklink_name', '!=', NULL)->get();
         return response()->json($colors);
     }
-    
-    public function phpinfo(){
+
+    public function phpinfo()
+    {
         print_r(phpinfo());
     }
-    
-    public function scanFeature(){
+
+    public function scanFeature()
+    {
         $colors = DB::table('colors')->where('bricklink_name', '!=', NULL)->get();
         $categories = DB::table('categories')->orderBy('title', 'asc')->get();
         return view('scan-feature/index', compact('colors', 'categories'));
     }
-    
-public function scanFeatureSave(Request $request)
-{
-    $validated = $request->validate([
-        'modalTitle' => 'required|string|max:255',
-        'modalItemNo' => 'required|string|max:100',
-        'modalItemType' => 'nullable|string|max:100',
-        'modalColorName' => 'nullable|string|max:100',
-        'modalStock' => 'nullable|integer',
-        'modalPrice' => 'nullable|numeric',
-        'modalCondition' => 'nullable|string|max:50',
-        'modalCompleteness' => 'nullable|string|max:255',
-        'modalCategory' => 'nullable|string|max:255',
-        'modalGTIN' => 'nullable|string|max:100',
-        'modalSKU' => 'nullable|string|max:100',
-        'modalUrl' => 'nullable|string|max:255',
-        // 'modalImageFile' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-        // 'modalGallery.*' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-    ]);
-    
+
+    public function scanFeatureSave(Request $request)
+    {
+        $validated = $request->validate([
+            'modalTitle' => 'required|string|max:255',
+            'modalItemNo' => 'required|string|max:100',
+            'modalItemType' => 'nullable|string|max:100',
+            'modalColorName' => 'nullable|string|max:100',
+            'modalStock' => 'nullable|integer',
+            'modalPrice' => 'nullable|numeric',
+            'modalCondition' => 'nullable|string|max:50',
+            'modalCompleteness' => 'nullable|string|max:255',
+            'modalCategory' => 'nullable|string|max:255',
+            'modalGTIN' => 'nullable|string|max:100',
+            'modalSKU' => 'nullable|string|max:100',
+            'modalUrl' => 'nullable|string|max:255',
+            // 'modalImageFile' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            // 'modalGallery.*' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+        ]);
+
         // dd($request->all());
-    
-    $retain = $request->has('retain') ? 1 : 0;
-    $isStockRoom = $request->has('isStockRoom') ? 1 : 0;
-    $stockRoomId = $request->input('modalStockRoomId');
 
-    $data_from_webhook = $this->sendToWebhook($validated['modalItemNo'], $validated['modalItemType']);
+        $retain = $request->has('retain') ? 1 : 0;
+        $isStockRoom = $request->has('isStockRoom') ? 1 : 0;
+        $stockRoomId = $request->input('modalStockRoomId');
 
-    $item = new Product();
+        $data_from_webhook = $this->sendToWebhook($validated['modalItemNo'], $validated['modalItemType']);
+
+        $item = new Product();
 
         // ✅ Save main image if uploaded
-    if ($request->hasFile('modalImageFile')) {
-        $mainImage = $request->file('modalImageFile');
-        $path = $mainImage->store('inventory_images', 'public');
-        $item->main_image = '/public/storage/' . $path;
-    }
-
-    // ✅ Save gallery images if uploaded
-    $_gallery = [];
-    if ($request->hasFile('modalGallery')) {
-        foreach ($request->file('modalGallery') as $galleryImage) {
-            $galleryPath = $galleryImage->store('inventory_images', 'public');
-            $_gallery[] = '/public/storage/' . $galleryPath;
+        if ($request->hasFile('modalImageFile')) {
+            $mainImage = $request->file('modalImageFile');
+            $path = $mainImage->store('inventory_images', 'public');
+            $item->main_image = '/public/storage/' . $path;
         }
+
+        // ✅ Save gallery images if uploaded
+        $_gallery = [];
+        if ($request->hasFile('modalGallery')) {
+            foreach ($request->file('modalGallery') as $galleryImage) {
+                $galleryPath = $galleryImage->store('inventory_images', 'public');
+                $_gallery[] = '/public/storage/' . $galleryPath;
+            }
+        }
+        $item->gallery_images = $_gallery;
+
+        // ✅ Save other fields
+        $item->title = $validated['modalTitle'];
+        $item->item_no = $validated['modalItemNo'];
+        $item->item_type = isset($validated['modalItemType']) ? strtoupper($validated['modalItemType']) : null;
+        $item->color_id = $validated['modalColorName'] ?? null;
+
+        $color = DB::table('colors')->where('bricklink_id', $validated['modalColorName'])->get();
+        $item->color_name = $color[0]->bricklink_name ?? null;
+
+        $item->stock = $validated['modalStock'] ?? 0;
+
+        $item->price = $validated['modalPrice'] ?? 0;
+        // $item->price = $data_from_webhook['avg_price'] ?? 0;
+        $item->condition = $validated['modalCondition'] ?? null;
+        $item->completeness = $validated['modalCompleteness'] ?? null;
+
+
+        $categoriesData = DB::table('categories')->where('id', $validated['modalCategory'])->first();
+        $item->category = $categoriesData->title ?? null;
+        // echo $categoriesData->title;die;
+
+        // $category = DB::table('categories')->where('title', 'like', '%' . $validated['modalCategory'] . '%')->get();
+        // $item->category_id = $category[0]->id ?? null;
+        $item->category_id = $validated['modalCategory'] ?? null;
+
+        $item->gtin = $validated['modalGTIN'] ?? null;
+        $item->sku = $validated['modalSKU'] ?? null;
+        $item->retain = $retain;
+        $item->is_stock_room = $isStockRoom;
+        $item->stock_room_id = $stockRoomId;
+        $item->imageurl = $validated['modalUrl'] ?? null;
+
+        // print_r($item);die;
+
+        // Check if product exists
+        $existingItem = Product::where('item_no', $item->item_no)
+            ->where('color_id', $item->color_id)
+            ->where('condition', $item->condition)
+            ->first();
+
+        if ($existingItem) {
+            // Update existing item
+            $existingItem->stock         += $item->stock;
+            // $existingItem->stock         = $existingItem->stock + 1;
+
+            if ($item->price > $existingItem->price) {
+                $existingItem->price = $item->price;
+            }
+
+            $existingItem->updated_at = date('Y-m-d H:i:s');
+
+            $existingItem->save();
+        } else {
+            // Insert new item
+            $item->save();
+        }
+
+
+        return redirect()->back()->with('success', 'Item saved successfully!');
     }
-    $item->gallery_images = $_gallery;
-
-    // ✅ Save other fields
-    $item->title = $validated['modalTitle'];
-    $item->item_no = $validated['modalItemNo'];
-    $item->item_type = isset($validated['modalItemType']) ? strtoupper($validated['modalItemType']) : null;
-    $item->color_id = $validated['modalColorName'] ?? null;
-    
-    $color = DB::table('colors')->where('bricklink_id',$validated['modalColorName'] )->get();
-    $item->color_name = $color[0]->bricklink_name ?? null;
-    
-    $item->stock = $validated['modalStock'] ?? 0;
-    
-    $item->price = $validated['modalPrice'] ?? 0;
-    // $item->price = $data_from_webhook['avg_price'] ?? 0;
-    $item->condition = $validated['modalCondition'] ?? null;
-    $item->completeness = $validated['modalCompleteness'] ?? null;
-    
-    
-    $categoriesData = DB::table('categories')->where('id', $validated['modalCategory'])->first();
-    $item->category = $categoriesData->title ?? null;
-    // echo $categoriesData->title;die;
-    
-    // $category = DB::table('categories')->where('title', 'like', '%' . $validated['modalCategory'] . '%')->get();
-    // $item->category_id = $category[0]->id ?? null;
-    $item->category_id = $validated['modalCategory'] ?? null;
-    
-    $item->gtin = $validated['modalGTIN'] ?? null;
-    $item->sku = $validated['modalSKU'] ?? null;
-    $item->retain = $retain;
-    $item->is_stock_room = $isStockRoom;
-    $item->stock_room_id = $stockRoomId;
-    $item->imageurl = $validated['modalUrl'] ?? null;
-    
-    // print_r($item);die;
-
-    // Check if product exists
-$existingItem = Product::where('item_no', $item->item_no)
-    ->where('color_id', $item->color_id)
-    ->where('condition', $item->condition)
-    ->first();
-
-if ($existingItem) {
-    // Update existing item
-    $existingItem->stock         += $item->stock;
-    // $existingItem->stock         = $existingItem->stock + 1;
-    
-    if($item->price > $existingItem->price){
-     $existingItem->price = $item->price;   
-    }
-    
-    $existingItem->updated_at = date('Y-m-d H:i:s');
-
-    $existingItem->save();
-} else {
-    // Insert new item
-    $item->save();
-}
-
-
-    return redirect()->back()->with('success', 'Item saved successfully!');
-}
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

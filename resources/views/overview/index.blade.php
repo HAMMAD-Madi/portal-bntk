@@ -3050,7 +3050,7 @@
                                 "
                                 onmouseover="this.style.background='#f1f5f9'"
                                 onmouseout="this.style.background='white'">
-                                📊 Export
+                                Export
                             </button>
 
                             <button
@@ -3066,7 +3066,7 @@
                                 "
                                 onmouseover="this.style.background='#f1f5f9'"
                                 onmouseout="this.style.background='white'">
-                                🔄 Sync All
+                                Sync All
                             </button>
 
                             <button
@@ -3082,7 +3082,39 @@
                                 "
                                 onmouseover="this.style.background='#f1f5f9'"
                                 onmouseout="this.style.background='white'">
-                                📍 Bulk Update
+                                Bulk Location
+                            </button>
+
+                            <button
+                                onclick="bulkUpdateRetired()"
+                                style="
+                                    width:100%;
+                                    padding:10px 14px;
+                                    border:none;
+                                    background:white;
+                                    text-align:left;
+                                    cursor:pointer;
+                                    font-size:14px;
+                                "
+                                onmouseover="this.style.background='#f1f5f9'"
+                                onmouseout="this.style.background='white'">
+                                Bulk Retired
+                            </button>
+
+                            <button
+                                onclick="bulkUpdateLockPrice()"
+                                style="
+                                    width:100%;
+                                    padding:10px 14px;
+                                    border:none;
+                                    background:white;
+                                    text-align:left;
+                                    cursor:pointer;
+                                    font-size:14px;
+                                "
+                                onmouseover="this.style.background='#f1f5f9'"
+                                onmouseout="this.style.background='white'">
+                                Bulk Lock Price
                             </button>
                         </div>
                     </div>
@@ -3264,6 +3296,116 @@
                     </div>
                 </div>
 
+                <!-- Bulk Retied Update Modal -->
+                <div id="retiredModal" class="hidden"
+                    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                        background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center;
+                        z-index: 999999;">
+
+                    <div style="background: #fff; width: 420px; border-radius: 10px; overflow:hidden;
+                        box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+
+                        <!-- Header -->
+                        <div style="display:flex; justify-content:space-between; align-items:center;
+                            padding:15px 20px; border-bottom:1px solid #eee;">
+                            <h2 style="margin:0; font-size:20px;">Update Bulk Retired</h2>
+                            <button onclick="closeModal()"
+                                style="font-size:26px; background:none; border:none; cursor:pointer; line-height:1;">
+                                &times;
+                            </button>
+                        </div>
+
+                        <!-- Body -->
+                        <div style="padding:20px;">
+
+                            <div style="margin-bottom:20px;">
+                                <label style="font-weight:600; display:block; margin-bottom:6px;">
+                                    Retired
+                                </label>
+                                <select id="newRetired"
+                                    style="width:100%; padding:10px; border:1px solid #ccc;
+                                        border-radius:6px; font-size:15px; background:#fff;">
+                                    <option value="">Select Retired</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+
+                            <!-- Actions -->
+                            <div style="display:flex; justify-content:flex-end; gap:10px;">
+
+                                <button onclick="closeModal()"
+                                    style="padding:10px 16px; background:#6c757d; color:#fff;
+                                        border:none; border-radius:6px; cursor:pointer; font-weight:600;">
+                                    Cancel
+                                </button>
+
+                                <button onclick="saveRetired()"
+                                    style="padding:10px 16px; background:#007bff; color:#fff;
+                                        border:none; border-radius:6px; cursor:pointer; font-weight:600;">
+                                    Save
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bulk Lock Price Update Modal -->
+                <div id="lockPriceModal" class="hidden"
+                    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                        background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center;
+                        z-index: 999999;">
+
+                    <div style="background: #fff; width: 420px; border-radius: 10px; overflow:hidden;
+                        box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+
+                        <!-- Header -->
+                        <div style="display:flex; justify-content:space-between; align-items:center;
+                            padding:15px 20px; border-bottom:1px solid #eee;">
+                            <h2 style="margin:0; font-size:20px;">Update Bulk Lock Price</h2>
+                            <button onclick="closeModal()"
+                                style="font-size:26px; background:none; border:none; cursor:pointer; line-height:1;">
+                                &times;
+                            </button>
+                        </div>
+
+                        <!-- Body -->
+                        <div style="padding:20px;">
+
+                            <div style="margin-bottom:20px;">
+                                <label style="font-weight:600; display:block; margin-bottom:6px;">
+                                    Lock Price
+                                </label>
+                                <select id="newLockPrice"
+                                    style="width:100%; padding:10px; border:1px solid #ccc;
+                                        border-radius:6px; font-size:15px; background:#fff;">
+                                    <option value="">Select Lock Price</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+
+                            <!-- Actions -->
+                            <div style="display:flex; justify-content:flex-end; gap:10px;">
+
+                                <button onclick="closeModal()"
+                                    style="padding:10px 16px; background:#6c757d; color:#fff;
+                                        border:none; border-radius:6px; cursor:pointer; font-weight:600;">
+                                    Cancel
+                                </button>
+
+                                <button onclick="saveLockPrice()"
+                                    style="padding:10px 16px; background:#007bff; color:#fff;
+                                        border:none; border-radius:6px; cursor:pointer; font-weight:600;">
+                                    Save
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- =================== JS (NO CHANGES NEEDED) =================== -->
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
@@ -3271,6 +3413,12 @@
                         let currentIds = [];
                         const modal = document.getElementById('locationModal');
                         const input = document.getElementById('newLocation');
+
+                        const retiredModal = document.getElementById('retiredModal');
+                        const retiredInput = document.getElementById('newRetired');
+
+                        const lockPriceModal = document.getElementById('lockPriceModal');
+                        const lockPriceInput = document.getElementById('newLockPrice');
 
                         // OPEN MODAL
                         window.bulkUpdateLocation = function() {
@@ -3283,12 +3431,32 @@
                             modal.style.display = "flex"; // <-- INLINE SHOW
                         };
 
+                        window.bulkUpdateRetired = function() {
+                            currentIds = Array.from(document.querySelectorAll('.card-checkbox:checked'))
+                                .map(cb => cb.closest('.inventory-card').dataset.id);
+
+                            if (!currentIds.length) return alert('Select at least one item.');
+
+                            retiredInput.value = "";
+                            retiredModal.style.display = "flex"; // <-- INLINE SHOW
+                        };
+
+                        window.bulkUpdateLockPrice = function() {
+                            currentIds = Array.from(document.querySelectorAll('.card-checkbox:checked'))
+                                .map(cb => cb.closest('.inventory-card').dataset.id);
+
+                            if (!currentIds.length) return alert('Select at least one item.');
+
+                            lockPriceInput.value = "";
+                            lockPriceModal.style.display = "flex"; // <-- INLINE SHOW
+                        };
+
                         // SAVE BULK LOCATION
                         window.saveLocation = function() {
                             const value = input.value.trim();
                             if (!value) return alert('Please enter a location.');
 
-                            fetch('/update-location', {
+                            fetch('./update-location', {
                                     method: 'POST',
                                     headers: {
                                         'Content-Type': 'application/json',
@@ -3297,6 +3465,76 @@
                                     body: JSON.stringify({
                                         ids: currentIds,
                                         location: value
+                                    })
+                                })
+                                .then(res => res.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        currentIds.forEach(id => {
+                                            const card = document.querySelector(`.inventory-card[data-id='${id}']`);
+                                            if (card) {
+                                                card.dataset.location = value;
+                                                const locText = card.querySelector('.location-text');
+                                                if (locText) locText.textContent = value;
+                                            }
+                                        });
+                                        closeModal();
+                                        window.location.reload();
+                                    } else {
+                                        alert('Failed to update location.');
+                                    }
+                                })
+                                .catch(() => alert('Error updating location.'));
+                        };
+
+                        window.saveRetired = function() {
+                            const value = retiredInput.value.trim();
+                            if (!value) return alert('Please define Retired..');
+
+                            fetch('./update-retired', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-CSRF-TOKEN': '<?= csrf_token(); ?>'
+                                    },
+                                    body: JSON.stringify({
+                                        ids: currentIds,
+                                        retired: value
+                                    })
+                                })
+                                .then(res => res.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        currentIds.forEach(id => {
+                                            const card = document.querySelector(`.inventory-card[data-id='${id}']`);
+                                            if (card) {
+                                                card.dataset.location = value;
+                                                const locText = card.querySelector('.location-text');
+                                                if (locText) locText.textContent = value;
+                                            }
+                                        });
+                                        closeModal();
+                                        window.location.reload();
+                                    } else {
+                                        alert('Failed to update location.');
+                                    }
+                                })
+                                .catch(() => alert('Error updating location.'));
+                        };
+
+                        window.saveLockPrice = function() {
+                            const value = lockPriceInput.value.trim();
+                            if (!value) return alert('Please define Lock Price..');
+
+                            fetch('./update-lock-price', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-CSRF-TOKEN': '<?= csrf_token(); ?>'
+                                    },
+                                    body: JSON.stringify({
+                                        ids: currentIds,
+                                        lockPrice: value
                                     })
                                 })
                                 .then(res => res.json())
@@ -3615,6 +3853,7 @@
                             <button type="button" class="edit-tab-btn" onclick="switchEditTab('details')">Details</button>
                             <button type="button" class="edit-tab-btn" onclick="switchEditTab('pricing')">Prices</button>
                             <button type="button" class="edit-tab-btn" onclick="switchEditTab('vinted')">Vinted</button>
+                            <button type="button" class="edit-tab-btn" onclick="switchEditTab('shopifyIntegration')">Shopify</button>
                             <button type="button" class="edit-tab-btn" onclick="switchEditTab('amazonIntegration')">Amazon Integration</button>
                             <button type="button" class="edit-tab-btn" onclick="switchEditTab('ebayIntegration')">eBay Integration</button>
                             <button type="button" class="edit-tab-btn" onclick="switchEditTab('bolComIntegration')">Bol.com Integration</button>
@@ -3686,10 +3925,10 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="edit_rebrickable_id">Rebrickable ID</label>
                                     <input type="text" id="edit_rebrickable_id" name="rebrickable_id">
-                                </div>
+                                </div> -->
 
                                 <div class="form-group">
                                     <label for="edit_completeness">Completeness</label>
@@ -3804,7 +4043,6 @@
                                     <label for="edit_height">Min age</label>
                                     <input type="number" id="edit_min_age" name="min_age" step="0.1" min="0">
                                 </div>
-
                                 <div class="form-group">
                                     <label for="edit_height">Description</label>
                                     <input type="text" id="edit_description" name="description" step="0.1" min="0">
@@ -3816,6 +4054,10 @@
                                 <div class="form-group">
                                     <label for="edit_remarks">Remarks</label>
                                     <input type="text" id="edit_remarks" name="remarks" step="0.1" min="0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit_set_minifigures">Minifigs</label>
+                                    <input type="text" id="edit_set_minifigures" name="set_minifigures" step="0.1" min="0">
                                 </div>
 
                             </div>
@@ -3956,6 +4198,21 @@
                                         Lock Price
                                         <input type="checkbox" id="edit_lock_price" name="lock_price" style="width:18px; height:18px; cursor:pointer;">
                                     </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- shopifyIntegrationTab Tab -->
+                        <div class="edit-tab-content" id="shopifyIntegrationTab">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="edit_shopify_variant_id">Shopify Varient ID</label>
+                                    <input type="text" id="edit_shopify_variant_id" name="shopify_variant_id">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="edit_shopify_product_id">Shopify Product ID</label>
+                                    <input type="text" id="edit_shopify_product_id" name="shopify_product_id">
                                 </div>
                             </div>
                         </div>
@@ -4147,6 +4404,11 @@
                                 <br>
 
                                 <div class="form-group">
+                                    <label for="edit_rebrickable_id">Rebrickable ID</label>
+                                    <input type="text" id="edit_rebrickable_id" name="rebrickable_id">
+                                </div>
+
+                                <div class="form-group">
                                     <label for="edit_woocommerce_parent_id">WooCommerce Parent ID</label>
                                     <input type="text" id="edit_woocommerce_parent_id" name="woocommerce_parent_id">
                                 </div>
@@ -4312,6 +4574,7 @@
                             <button type="button" class="edit-tab-btn" onclick="switchEditTab('add-details')">Details</button>
                             <button type="button" class="edit-tab-btn" onclick="switchEditTab('add-pricing')">Prices</button>
                             <button type="button" class="edit-tab-btn" onclick="switchEditTab('add-vinted')">Vinted</button>
+                            <button type="button" class="edit-tab-btn" onclick="switchEditTab('add-shopifyIntegration')">Shopify</button>
                             <button type="button" class="edit-tab-btn" onclick="switchEditTab('add-amazonIntegration')">Amazon Integration</button>
                             <button type="button" class="edit-tab-btn" onclick="switchEditTab('add-ebayIntegration')">eBay Integration</button>
                             <button type="button" class="edit-tab-btn" onclick="switchEditTab('add-bolComIntegration')">Bol.com Integration</button>
@@ -4399,10 +4662,10 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="add_rebrickable_id">Rebrickable ID</label>
                                     <input type="text" id="add_rebrickable_id" name="rebrickable_id">
-                                </div>
+                                </div> -->
 
                                 <div class="form-group">
                                     <label for="add_completeness">Completeness</label>
@@ -4535,6 +4798,11 @@
                                 <div class="form-group">
                                     <label for="add_remarks">Remarks</label>
                                     <input type="text" id="add_remarks" name="remarks" step="0.1" min="0">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="add_set_minifigures">Minifigs</label>
+                                    <input type="text" id="add_set_minifigures" name="set_minifigures" step="0.1" min="0">
                                 </div>
                             </div>
                         </div>
@@ -4673,6 +4941,21 @@
                                         Lock Price
                                         <input type="checkbox" id="add_lock_price" name="lock_price" style="width:18px; height:18px; cursor:pointer;">
                                     </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- shopifyIntegrationTab Tab -->
+                        <div class="edit-tab-content" id="add-shopifyIntegrationTab">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="add_shopify_variant_id">Shopify Varient ID</label>
+                                    <input type="text" id="add_shopify_variant_id" name="shopify_variant_id">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="add_shopify_product_id">Shopify Product ID</label>
+                                    <input type="text" id="add_shopify_product_id" name="shopify_product_id">
                                 </div>
                             </div>
                         </div>
@@ -4862,6 +5145,12 @@
                                     </label>
                                 </div>
                                 <br>
+
+                                <div class="form-group">
+                                    <label for="add_rebrickable_id">Rebrickable ID</label>
+                                    <input type="text" id="add_rebrickable_id" name="rebrickable_id">
+                                </div>
+
                                 <div class="form-group">
                                     <label for="add_woocommerce_parent_id">WooCommerce Parent ID</label>
                                     <input type="text" id="add_woocommerce_parent_id" name="woocommerce_parent_id">
@@ -5255,6 +5544,7 @@
                 setField('edit_min_age', product.min_age);
                 setField('edit_description', product.description);
                 setField('edit_extended_description', product.extended_description);
+                setField('edit_set_minifigures', product.set_minifigures);
                 setField('edit_remarks', product.remarks);
                 setField('edit_price', product.price);
                 setField('edit_sell_price', product.sell_price);
@@ -5267,6 +5557,8 @@
                 setField('edit_tier_quantity3', product.tier_quantity3);
                 setField('edit_tier_price3', product.tier_price3);
                 setField('edit_currency', product.currency);
+                setField('edit_shopify_variant_id', product.shopify_variant_id);
+                setField('edit_shopify_product_id', product.shopify_product_id);
                 setField('edit_amazon_sku', product.amazon_sku);
                 setField('edit_amazon_price', product.amazon_price);
                 setField('edit_amazon_condition_type', product.amazon_condition_type);
@@ -5353,7 +5645,7 @@
                         wrapper.style.margin = "5px";
 
                         const img = document.createElement('img');
-                        img.src = ".."+imgUrl.replace(/^\/public/, '');
+                        img.src = ".." + imgUrl.replace(/^\/public/, '');
                         img.classList.add('img-thumbnail');
                         img.style.maxWidth = "100%";
                         img.style.borderRadius = "6px";
@@ -5429,7 +5721,7 @@
                         wrapper.style.margin = "5px";
 
                         const img = document.createElement('img');
-                        img.src = ".."+imgUrl.replace(/^\/public/, '');
+                        img.src = ".." + imgUrl.replace(/^\/public/, '');
                         img.classList.add('img-thumbnail');
                         img.style.maxWidth = "100%";
                         img.style.borderRadius = "6px";
@@ -5494,7 +5786,7 @@
             const preview = document.getElementById('primaryImagePreview');
             preview.innerHTML = '';
             const img = document.createElement('img');
-            img.src = ".."+imgUrl.replace(/^\/public/, '');
+            img.src = ".." + imgUrl.replace(/^\/public/, '');
             img.classList.add('img-thumbnail');
             img.style.maxWidth = "150px";
             img.style.margin = "5px";
@@ -5597,7 +5889,7 @@
             const preview = document.getElementById('vinted_primaryImagePreview');
             preview.innerHTML = '';
             const img = document.createElement('img');
-            img.src = ".."+imgUrl.replace(/^\/public/, '');
+            img.src = ".." + imgUrl.replace(/^\/public/, '');
             img.classList.add('img-thumbnail');
             img.style.maxWidth = "150px";
             img.style.margin = "5px";

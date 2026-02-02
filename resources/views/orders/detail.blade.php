@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,8 +52,8 @@
         }
 
         .back-btn {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
             padding: 8px 12px;
             border-radius: 4px;
@@ -62,7 +63,7 @@
         }
 
         .back-btn:hover {
-            background: rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .order-title {
@@ -83,8 +84,8 @@
         }
 
         .header-btn {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
             padding: 8px 16px;
             border-radius: 4px;
@@ -95,7 +96,7 @@
         }
 
         .header-btn:hover {
-            background: rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .header-btn.primary {
@@ -108,7 +109,7 @@
             margin: 20px;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .payment-alert {
@@ -230,7 +231,10 @@
             gap: 8px;
         }
 
-        .parts-action, .timer-btn, .export-pdf-btn, .toggle-all-btn {
+        .parts-action,
+        .timer-btn,
+        .export-pdf-btn,
+        .toggle-all-btn {
             background: #f8f9fa;
             border: 1px solid #ddd;
             color: #333;
@@ -240,7 +244,10 @@
             border-radius: 4px;
         }
 
-        .parts-action:hover, .timer-btn:hover, .export-pdf-btn:hover, .toggle-all-btn:hover {
+        .parts-action:hover,
+        .timer-btn:hover,
+        .export-pdf-btn:hover,
+        .toggle-all-btn:hover {
             background: #e9ecef;
         }
 
@@ -534,40 +541,47 @@
     </style>
     <style>
         .sidebar-wrapper {
-          position: relative;       /* for ::before positioning */
-          padding: 20px;            /* space around sidebar */
-          box-sizing: border-box;
-          height: 100vh;            /* keep sidebar full height */
+            position: relative;
+            /* for ::before positioning */
+            padding: 20px;
+            /* space around sidebar */
+            box-sizing: border-box;
+            height: 100vh;
+            /* keep sidebar full height */
         }
-        
+
         /* Green background of only 300px height */
         .sidebar-wrapper::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 300px;            /* only this height is green */
-          background-color: #4CAF50;
-          z-index: -1;              /* behind sidebar */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 300px;
+            /* only this height is green */
+            background-color: #4CAF50;
+            z-index: -1;
+            /* behind sidebar */
         }
-        
+
         /* Sidebar stays full height and unchanged */
         .sidebar {
-          width: 250px;
-          height: 100%;             /* full height */
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(20px);
-          border-radius: 24px;
-          box-shadow:
-            0 20px 25px -5px rgba(0, 0, 0, 0.1),
-            0 10px 10px -5px rgba(0, 0, 0, 0.04),
-            inset 0 1px 0 rgba(255, 255, 255, 0.2);
-          padding: 0;
-          position: relative;       /* above ::before */
-          z-index: 1;
-          margin-left: 4px;
-          margin-top: -3px;
+            width: 250px;
+            height: 100%;
+            /* full height */
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow:
+                0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                0 10px 10px -5px rgba(0, 0, 0, 0.04),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            padding: 0;
+            position: relative;
+            /* above ::before */
+            z-index: 1;
+            margin-left: 4px;
+            margin-top: -3px;
         }
 
         .sidebar:hover {
@@ -810,19 +824,19 @@
                 max-width: 320px;
             }
         }
-
     </style>
 </head>
+
 <body>
     <div class="container">
-        
+
         <div class="sidebar-wrapper">
             <div class="sidebar">
                 <div class="logo-section">
                     <div class="logo">CrocoBricks</div>
                     <div class="logo-subtitle">Business Portal</div>
                 </div>
-    
+
                 <div class="nav-container">
                     <div class="nav-section">
                         <div class="nav-item">
@@ -832,7 +846,7 @@
                             </a>
                         </div>
                     </div>
-    
+
                     <div class="nav-section">
                         <div class="nav-item expanded" onclick="toggleSection(this)">
                             <a href="#" class="nav-link">
@@ -848,31 +862,34 @@
                                         <span class="nav-text">Overzicht</span>
                                     </a>
                                 </div>
-    
+
                                 <!-- Put this CSS in your head or your stylesheet -->
                                 <style>
                                     /* Base look */
                                     .sub-item .nav-link {
-                                        color: #374151; /* dark gray */
+                                        color: #374151;
+                                        /* dark gray */
                                         background-color: transparent;
                                         transition: all 0.2s ease-in-out;
                                     }
-                                    
+
                                     /* Active styles */
                                     .sub-item.active .nav-link,
                                     .nav-link[aria-current="page"] {
                                         color: #fff;
-                                        background-color: #60B864 !important; /* green */
+                                        background-color: #60B864 !important;
+                                        /* green */
                                         box-shadow: 0 2px 8px rgba(0, 123, 255, 0.12);
                                     }
-                                    
+
                                     /* Hover styles */
                                     .sub-item .nav-link:hover {
                                         color: black;
-                                        background-color: #4da653; /* slightly darker green */
+                                        background-color: #4da653;
+                                        /* slightly darker green */
                                     }
                                 </style>
-    
+
                                 <!--<div class="sub-item">-->
                                 <!--    <a href="/voorraad/nieuw-product" class="nav-link">-->
                                 <!--        <span class="nav-icon">➕</span>-->
@@ -912,7 +929,7 @@
                             </div>
                         </div>
                     </div>
-    
+
                     <div class="nav-section">
                         <div class="nav-item">
                             <a href="/all-shippings" class="nav-link">
@@ -922,7 +939,7 @@
                             </a>
                         </div>
                     </div>
-    
+
                     <div class="nav-section">
                         <div class="nav-item active">
                             <a href="/all-orders" class="nav-link">
@@ -932,9 +949,9 @@
                             </a>
                         </div>
                     </div>
-    
+
                     <div class="divider"></div>
-    
+
                     <!--<div class="nav-section">-->
                     <!--    <div class="nav-item expanded" onclick="toggleSection(this)">-->
                     <!--        <a href="#" class="nav-link">-->
@@ -973,7 +990,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="main-content">
             <div class="header">
                 <div class="header-left">
@@ -996,26 +1013,26 @@
                     <form action="{{ route('orders.markAsNextStatus', $order[0]->id) }}" method="POST" style="display: inline;">
                         @csrf
                         <input name="order_group" type="hidden" value="{{ $order[0]->order_group }}">
-                        <?php if($order[0]->order_group == "waiting_payment"){ ?>
-                                <button type="submit" class="header-btn primary">Mark as paid</button>
-                        <?php }else if($order[0]->order_group == "waiting_invoice"){ ?>
-                                <button type="submit" class="header-btn primary">Mark as Invoice</button>
-                        <?php }else if($order[0]->order_group == "to_be_picked"){ ?>
-                                <button type="submit" class="header-btn primary">Mark as Picked</button>
-                        <?php }else if($order[0]->order_group == "ready_to_pack"){ ?>
-                                <button type="submit" class="header-btn primary">Mark as Packed</button>
-                        <?php }else { ?>
-                                <button disabled="" style="background-color:gray;" class="header-btn primary">Order has been Shipped!</button>
+                        <?php if ($order[0]->order_group == "waiting_payment") { ?>
+                            <button type="submit" class="header-btn primary">Mark as paid</button>
+                        <?php } else if ($order[0]->order_group == "waiting_invoice") { ?>
+                            <button type="submit" class="header-btn primary">Mark as Invoice</button>
+                        <?php } else if ($order[0]->order_group == "to_be_picked") { ?>
+                            <button type="submit" class="header-btn primary">Mark as Picked</button>
+                        <?php } else if ($order[0]->order_group == "ready_to_pack") { ?>
+                            <button type="submit" class="header-btn primary">Mark as Packed</button>
+                        <?php } else { ?>
+                            <button disabled="" style="background-color:gray;" class="header-btn primary">Order has been Shipped!</button>
                         <?php } ?>
                     </form>
                     <form action="{{ route('orders.markAsNextStatus', $order[0]->id) }}" method="POST" style="display: inline;">
                         @csrf
                         <input name="order_group" type="hidden" value="waiting_payment">
-                            <button type="submit" class="header-btn primary">Mark as paid</button>
+                        <button type="submit" class="header-btn primary">Mark as paid</button>
                     </form>
                 </div>
             </div>
-            
+
             <div class="content">
                 <!--<div class="payment-alert">-->
                 <!--    <span class="alert-icon">⚠️</span>-->
@@ -1023,19 +1040,19 @@
                 <!--</div>-->
                 <div>
                     <style>
-                        .alert-success{
+                        .alert-success {
                             padding: 15px;
                             background-color: #4CAF51;
                             color: white;
                         }
                     </style>
                     @if(session('success'))
-                        <div class="alert alert-success"><strong>{{ session('success') }}</strong></div>
+                    <div class="alert alert-success"><strong>{{ session('success') }}</strong></div>
                     @endif
-                    
+
                     @if(session('error'))
-                        <div class="alert alert-danger"><strong>{{ session('error') }}</strong></div>
-                    @endif  
+                    <div class="alert alert-danger"><strong>{{ session('error') }}</strong></div>
+                    @endif
                 </div>
                 <div class="info-grid">
                     <div class="info-section">
@@ -1152,6 +1169,323 @@
                     <div class="parts-header">
                         <span class="parts-title">Order Items</span>
                         <div class="parts-actions">
+
+
+                            <!-- PICKING ORDER BUTTON -->
+                            <button id="openPickingOrder" class="btn btn-primary timer-btn">
+                                📦 Picking Order
+                            </button>
+
+                            <!-- PICKING MODAL -->
+                            <div id="pickingModal" class="picking-modal">
+                                <div class="picking-card">
+
+                                    <div class="picking-header">
+                                        <h3>📦 Picking Order</h3>
+                                        <span class="close-btn" onclick="closePicking()">×</span>
+                                    </div>
+
+                                    <div class="picking-progress" id="pickingProgress"></div>
+
+                                    <div class="picking-body" id="pickingBody"></div>
+
+                                    <div class="picking-actions">
+                                        <button id="prevBtn" onclick="prevItem()">⬅ Previous</button>
+                                        <button id="nextBtn" onclick="nextItem()">Next ➡</button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- STYLES -->
+                            <style>
+                                .picking-modal {
+                                    display: none;
+                                    position: fixed;
+                                    inset: 0;
+                                    background: rgba(15, 23, 42, 0.65);
+                                    backdrop-filter: blur(4px);
+                                    z-index: 9999;
+                                    justify-content: center;
+                                    align-items: center;
+                                }
+
+                                .picking-card {
+                                    background: #ffffff;
+                                    width: 650px;
+                                    max-width: 96%;
+                                    border-radius: 16px;
+                                    overflow: hidden;
+                                    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+                                    animation: fadeInUp 0.25s ease;
+                                }
+
+                                @keyframes fadeInUp {
+                                    from {
+                                        transform: translateY(18px);
+                                        opacity: 0;
+                                    }
+
+                                    to {
+                                        transform: translateY(0);
+                                        opacity: 1;
+                                    }
+                                }
+
+                                .picking-header {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                    padding: 18px 22px;
+                                    background: #344767;
+                                    color: #fff;
+                                }
+
+                                .picking-header h3 {
+                                    margin: 0;
+                                    font-size: 18px;
+                                }
+
+                                .close-btn {
+                                    font-size: 22px;
+                                    cursor: pointer;
+                                }
+
+                                .picking-progress {
+                                    padding: 10px 22px;
+                                    font-size: 14px;
+                                    color: #64748b;
+                                    background: #f8fafc;
+                                }
+
+                                .picking-body {
+                                    padding: 22px;
+                                }
+
+                                .picking-layout {
+                                    display: grid;
+                                    grid-template-columns: 200px 1fr;
+                                    gap: 22px;
+                                    align-items: flex-start;
+                                }
+
+                                .picking-image {
+                                    display: flex;
+                                    justify-content: center;
+                                }
+
+                                .picking-image img {
+                                    width: 180px;
+                                    height: 180px;
+                                    object-fit: contain;
+                                    background: #f8fafc;
+                                    padding: 12px;
+                                    border-radius: 14px;
+                                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+                                }
+
+                                .picking-info {
+                                    display: flex;
+                                    flex-direction: column;
+                                }
+
+                                .picking-title {
+                                    font-size: 18px;
+                                    font-weight: 700;
+                                    margin-bottom: 10px;
+                                }
+
+                                .picking-location {
+                                    background: #eef2ff;
+                                    color: #4338ca;
+                                    font-weight: 700;
+                                    font-size: 16px;
+                                    padding: 8px 12px;
+                                    border-radius: 8px;
+                                    margin-bottom: 14px;
+                                }
+
+                                .picking-meta {
+                                    display: grid;
+                                    grid-template-columns: repeat(2, 1fr);
+                                    gap: 10px;
+                                    font-size: 14px;
+                                }
+
+                                .picking-meta div {
+                                    background: #f8fafc;
+                                    padding: 10px;
+                                    border-radius: 8px;
+                                }
+
+                                .picking-meta .full {
+                                    grid-column: span 2;
+                                }
+
+                                /* CONDITION BADGES */
+                                .condition-badge {
+                                    display: inline-block;
+                                    padding: 6px 12px;
+                                    border-radius: 999px;
+                                    font-size: 13px;
+                                    font-weight: 700;
+                                    text-transform: uppercase;
+                                }
+
+                                .condition-new {
+                                    background: #e0f2fe;
+                                    color: #0369a1;
+                                }
+
+                                .condition-used {
+                                    background: #fee2e2;
+                                    color: #b91c1c;
+                                }
+
+                                .picking-actions {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    padding: 16px 22px;
+                                    background: #f1f5f9;
+                                }
+
+                                .picking-actions button {
+                                    padding: 10px 18px;
+                                    border-radius: 8px;
+                                    border: none;
+                                    font-weight: 700;
+                                    cursor: pointer;
+                                }
+
+                                #prevBtn {
+                                    background: #e2e8f0;
+                                }
+
+                                #nextBtn {
+                                    background: #344767;
+                                    color: #fff;
+                                }
+                            </style>
+                            <style>
+                                .picking-image {
+                                    display: flex;
+                                    flex-direction: column;
+                                    /* vertical alignment */
+                                    align-items: center;
+                                    /* center horizontally */
+                                    gap: 8px;
+                                }
+
+                                .picking-image img {
+                                    width: 180px;
+                                    height: auto;
+                                    border-radius: 12px;
+                                    background: #f8fafc;
+                                    padding: 8px;
+                                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+                                }
+
+                                .image-url {
+                                    font-size: 12px;
+                                    color: #2563eb;
+                                    word-break: break-all;
+                                    text-align: center;
+                                    max-width: 180px;
+                                }
+                            </style>
+
+                            <!-- SCRIPT -->
+                            <script>
+                                let pickingItems = [];
+                                let currentIndex = 0;
+
+                                document.getElementById('openPickingOrder').addEventListener('click', () => {
+                                    pickingItems = Array.from(document.querySelectorAll('#partsTableBody tr'));
+                                    currentIndex = 0;
+                                    openPicking();
+                                });
+
+                                function openPicking() {
+                                    document.getElementById('pickingModal').style.display = 'flex';
+                                    renderItem();
+                                }
+
+                                function closePicking() {
+                                    document.getElementById('pickingModal').style.display = 'none';
+                                }
+
+                                function renderItem() {
+                                    const row = pickingItems[currentIndex];
+                                    const cells = row.querySelectorAll('td');
+
+                                    const itemName = cells[1].innerText;
+                                    const imageUrl = cells[2].querySelector('img').src;
+                                    const itemNo = cells[3].innerText;
+                                    const itemType = cells[4].innerText;
+                                    const location = cells[5].innerText;
+                                    const color = cells[6].innerText;
+                                    const category = cells[7].innerText;
+                                    const condition = cells[8].innerText.trim().toLowerCase();
+                                    const quantity = cells[9].innerText;
+                                    const price = cells[10].innerText;
+
+                                    document.getElementById('pickingProgress').innerText =
+                                        `Item ${currentIndex + 1} of ${pickingItems.length}`;
+
+                                    document.getElementById('pickingBody').innerHTML = `
+                                        <div class="picking-layout">
+                                            <div class="picking-image">
+                                                <img src="${imageUrl}" alt="Item image">
+                                                <span class="image-url">${imageUrl}</span>
+                                            </div>
+                                            <div class="picking-info">
+                                                <div class="picking-title">${itemName}</div>
+                                                <div class="picking-location">
+                                                    📍 Location: ${location}
+                                                </div>
+                                                <div class="picking-meta">
+                                                    <div><strong>Item No</strong><br>${itemNo}</div>
+                                                    <div><strong>Item Type</strong><br>${itemType}</div>
+                                                    <div><strong>Color</strong><br>${color}</div>
+                                                    <div><strong>Category</strong><br>${category}</div>
+                                                    <div>
+                                                        <strong>Condition</strong><br>
+                                                        <span class="condition-badge ${
+                                                            condition === 'new' ? 'condition-new' : 'condition-used'
+                                                        }">${condition}</span>
+                                                    </div>
+                                                    <div><strong>Quantity</strong><br>${quantity}</div>
+                                                    <div class="full"><strong>Price</strong><br>${price}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+
+                                    document.getElementById('prevBtn').style.display =
+                                        currentIndex === 0 ? 'none' : 'inline-block';
+
+                                    document.getElementById('nextBtn').innerText =
+                                        currentIndex === pickingItems.length - 1 ? 'Close' : 'Next ➡';
+                                }
+
+                                function nextItem() {
+                                    if (currentIndex === pickingItems.length - 1) {
+                                        closePicking();
+                                        return;
+                                    }
+                                    currentIndex++;
+                                    renderItem();
+                                }
+
+                                function prevItem() {
+                                    if (currentIndex > 0) {
+                                        currentIndex--;
+                                        renderItem();
+                                    }
+                                }
+                            </script>
+
+
                             <button class="timer-btn" id="timerBtn" onclick="toggleTimer()">⏱️ Start Picking</button>
                             <button class="export-pdf-btn" onclick="exportOrderToPDF()" disabled>📄 Export as PDF</button>
                             <button class="toggle-all-btn" onclick="toggleAllItems()">☑️ Toggle All</button>
@@ -1198,42 +1532,42 @@
                         </thead>
                         <tbody id="partsTableBody">
                             @foreach ($orderItems as $orderItem)
-                                <tr data-location="A1-B2" data-route-order="1" data-original-index="0">
-                                    <td class="checkbox-cell">
-                                        <input type="checkbox" class="item-checkbox" onchange="updateProgress()" data-part="4081b">
-                                    </td>
-                                    <td style="max-width:215px;">
-                                        <!--<div style="display: flex; align-items: center; gap: 8px;">-->
-                                            <!--<div class="part-image part-blue">🔷</div>-->
-                                            <!--<div class="part-image part-blue"><img src="{{ $orderItem->part_image_url }}"></div>-->
-                                            <!--<div>-->
-                                                <!--<div>Part 4081b <span class="item-timer" id="timer-4081b"></span></div>-->
-                                                <!--<div class="part-number">4081b</div>-->
-                                                <div>{{ $orderItem->title }}</div>
-                                            <!--</div>-->
-                                        <!--</div>-->
-                                    </td>
-                                    <td style="max-width:215px;">
-                                        <a href="{{ $orderItem->image_url }}" target="_blank">
-                                            <img style="width:75px; cursor:pointer;" src="{{ $orderItem->image_url }}">
-                                        </a>
-                                    </td>
+                            <tr data-location="A1-B2" data-route-order="1" data-original-index="0">
+                                <td class="checkbox-cell">
+                                    <input type="checkbox" class="item-checkbox" onchange="updateProgress()" data-part="4081b">
+                                </td>
+                                <td style="max-width:215px;">
+                                    <!--<div style="display: flex; align-items: center; gap: 8px;">-->
+                                    <!--<div class="part-image part-blue">🔷</div>-->
+                                    <!--<div class="part-image part-blue"><img src="{{ $orderItem->part_image_url }}"></div>-->
+                                    <!--<div>-->
+                                    <!--<div>Part 4081b <span class="item-timer" id="timer-4081b"></span></div>-->
+                                    <!--<div class="part-number">4081b</div>-->
+                                    <div>{{ $orderItem->title }}</div>
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                </td>
+                                <td style="max-width:215px;">
+                                    <a href="{{ $orderItem->image_url }}" target="_blank">
+                                        <img style="width:75px; cursor:pointer;" src="{{ $orderItem->image_url }}">
+                                    </a>
+                                </td>
 
-                                    <td>{{ $orderItem->item_no ?? "{not set}" }}</td>
-                                    <td>{{ $orderItem->item_type ?? "{not set}" }}</td>
-                                    <td>{{ $orderItem->location ?? "{not set}" }}</td>
-                                    <!--<td class="location-cell">{{ $orderItem->warehouse_location }}</td>-->
-                                    <td>{{ $orderItem->color_name ?? "{not set}" }}</td>
-                                    <?php
-                                        $categoryDetail = DB::table('categories')->where('id', $orderItem->category_id)->get();
-                                    ?>
-                                    <td>{{ ($categoryDetail[0]->title) ?? $orderItem->category_name }}</td>
-                                    <td>
-                                        <span class="condition-badge {{$orderItem->condition_type == 'new' ? 'condition-new' : 'condition-used'}} ">{{ $orderItem->condition_type }}</span>
-                                        </td>
-                                    <td style="text-align:left;" class="qty-cell">{{ $orderItem->quantity }}</td>
-                                    <td style="text-align:left;" class="price-cell">€{{ $orderItem->total_price }}</td>
-                                </tr>
+                                <td>{{ $orderItem->item_no ?? "{not set}" }}</td>
+                                <td>{{ $orderItem->item_type ?? "{not set}" }}</td>
+                                <td>{{ $orderItem->location ?? "{not set}" }}</td>
+                                <!--<td class="location-cell">{{ $orderItem->warehouse_location }}</td>-->
+                                <td>{{ $orderItem->color_name ?? "{not set}" }}</td>
+                                <?php
+                                $categoryDetail = DB::table('categories')->where('id', $orderItem->category_id)->get();
+                                ?>
+                                <td>{{ ($categoryDetail[0]->title) ?? $orderItem->category_name }}</td>
+                                <td>
+                                    <span class="condition-badge {{$orderItem->condition_type == 'new' ? 'condition-new' : 'condition-used'}} ">{{ $orderItem->condition_type }}</span>
+                                </td>
+                                <td style="text-align:left;" class="qty-cell">{{ $orderItem->quantity }}</td>
+                                <td style="text-align:left;" class="price-cell">€{{ $orderItem->total_price }}</td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -1267,61 +1601,61 @@
             const tbody = document.getElementById('partsTableBody');
             const rows = Array.from(tbody.querySelectorAll('tr'));
             const header = document.querySelector('.sortable-header');
-            
+
             if (!isRouteSorted) {
                 // Sort by optimized route
                 const routeOrder = {
                     'A1-B2': 1,
-                    'B1-C4': 2, 
+                    'B1-C4': 2,
                     'C3-D1': 3,
                     'F2-A3': 4
                 };
-                
+
                 rows.sort((a, b) => {
                     const locationA = a.dataset.location;
                     const locationB = b.dataset.location;
                     const orderA = routeOrder[locationA] || 999;
                     const orderB = routeOrder[locationB] || 999;
-                    
+
                     if (orderA !== orderB) {
                         return orderA - orderB;
                     }
-                    
+
                     // Within same location, maintain original order
                     return parseInt(a.dataset.routeOrder) - parseInt(b.dataset.routeOrder);
                 });
-                
+
                 header.textContent = 'Location ✅ (Route Optimized)';
                 header.classList.add('sorted');
                 isRouteSorted = true;
-                
+
                 // Add visual grouping
                 rows.forEach(row => {
                     row.classList.add('location-grouped');
                 });
-                
+
             } else {
                 // Return to original order
                 rows.sort((a, b) => {
                     return parseInt(a.dataset.originalIndex) - parseInt(b.dataset.originalIndex);
                 });
-                
+
                 header.textContent = 'Location 🔄';
                 header.classList.remove('sorted');
                 isRouteSorted = false;
-                
+
                 // Remove visual grouping
                 rows.forEach(row => {
                     row.classList.remove('location-grouped');
                 });
             }
-            
+
             // Re-append sorted rows
             rows.forEach(row => tbody.appendChild(row));
-            
+
             // Show notification
-            showNotification(isRouteSorted ? 
-                '🗺️ Items sorted by optimized pick route!' : 
+            showNotification(isRouteSorted ?
+                '🗺️ Items sorted by optimized pick route!' :
                 '📋 Items returned to original order'
             );
         }
@@ -1345,14 +1679,14 @@
                 transition: transform 0.3s ease;
             `;
             notification.textContent = message;
-            
+
             document.body.appendChild(notification);
-            
+
             // Animate in
             setTimeout(() => {
                 notification.style.transform = 'translateX(0)';
             }, 100);
-            
+
             // Remove after 3 seconds
             setTimeout(() => {
                 notification.style.transform = 'translateX(100%)';
@@ -1364,20 +1698,20 @@
 
         function toggleTimer() {
             const btn = document.getElementById('timerBtn');
-            
+
             if (!pickingTimer.isRunning) {
                 // Start timer
                 pickingTimer.startTime = Date.now();
                 pickingTimer.isRunning = true;
                 pickingTimer.interval = setInterval(updateTimerDisplay, 1000);
-                
+
                 btn.textContent = '⏹️ Stop Picking';
                 btn.classList.add('active');
             } else {
                 // Stop timer
                 pickingTimer.isRunning = false;
                 clearInterval(pickingTimer.interval);
-                
+
                 btn.textContent = '⏱️ Start Picking';
                 btn.classList.remove('active');
             }
@@ -1385,15 +1719,15 @@
 
         function updateTimerDisplay() {
             if (!pickingTimer.isRunning) return;
-            
+
             const elapsed = Date.now() - pickingTimer.startTime + pickingTimer.totalTime;
             const hours = Math.floor(elapsed / 3600000);
             const minutes = Math.floor((elapsed % 3600000) / 60000);
             const seconds = Math.floor((elapsed % 60000) / 1000);
-            
+
             const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
             document.getElementById('totalTime').textContent = timeString;
-            
+
             updateEfficiencyStats();
         }
 
@@ -1401,20 +1735,20 @@
             const checkedBoxes = document.querySelectorAll('.item-checkbox:checked');
             const totalBoxes = document.querySelectorAll('.item-checkbox');
             const elapsed = (Date.now() - pickingTimer.startTime + pickingTimer.totalTime) / 1000; // in seconds
-            
+
             // Items per minute
             const itemsPerMin = elapsed > 0 ? (checkedBoxes.length / elapsed * 60).toFixed(1) : '0.0';
             document.getElementById('itemsPerMin').textContent = itemsPerMin;
-            
+
             // Average time per item
             if (checkedBoxes.length > 0) {
                 const avgSeconds = elapsed / checkedBoxes.length;
                 const avgMinutes = Math.floor(avgSeconds / 60);
                 const avgRemainingSeconds = Math.floor(avgSeconds % 60);
-                document.getElementById('avgTimePerItem').textContent = 
+                document.getElementById('avgTimePerItem').textContent =
                     `${avgMinutes.toString().padStart(2, '0')}:${avgRemainingSeconds.toString().padStart(2, '0')}`;
             }
-            
+
             // Progress percentage
             const progress = Math.round((checkedBoxes.length / totalBoxes.length) * 100);
             document.getElementById('progressPercentage').textContent = `${progress}%`;
@@ -1424,25 +1758,25 @@
         function updateProgress() {
             const checkboxes = document.querySelectorAll('.item-checkbox');
             const checkedBoxes = document.querySelectorAll('.item-checkbox:checked');
-            
+
             const progress = (checkedBoxes.length / checkboxes.length) * 100;
             document.getElementById('progressFill').style.width = progress + '%';
-            document.getElementById('progressText').textContent = 
+            document.getElementById('progressText').textContent =
                 `${checkedBoxes.length} van ${checkboxes.length} items gepickt`;
-            
+
             // Update row styling and item timers
             checkboxes.forEach((checkbox, index) => {
                 const row = checkbox.closest('tr');
                 const partNumber = checkbox.dataset.part;
-                
+
                 if (checkbox.checked) {
                     row.classList.add('row-checked');
-                    
+
                     // Record picking time for this item
                     if (pickingTimer.isRunning && !pickingTimer.itemTimes[partNumber]) {
                         const itemTime = Date.now() - pickingTimer.startTime;
                         pickingTimer.itemTimes[partNumber] = itemTime;
-                        
+
                         // Display item time
                         const timerSpan = document.getElementById(`timer-${partNumber}`);
                         if (timerSpan) {
@@ -1483,68 +1817,68 @@
         function toggleAllItems() {
             const checkboxes = document.querySelectorAll('.item-checkbox');
             const allChecked = Array.from(checkboxes).every(cb => cb.checked);
-            
+
             checkboxes.forEach(checkbox => {
                 checkbox.checked = !allChecked;
             });
-            
+
             updateProgress();
         }
 
         // Export order to PDF
         function exportOrderToPDF() {
-    const checkedBoxes = document.querySelectorAll('.item-checkbox:checked');
-    const totalBoxes = document.querySelectorAll('.item-checkbox');
+            const checkedBoxes = document.querySelectorAll('.item-checkbox:checked');
+            const totalBoxes = document.querySelectorAll('.item-checkbox');
 
-    if (checkedBoxes.length !== totalBoxes.length) {
-        alert('Alle items moeten eerst gepickt worden voordat je de order kunt exporteren!');
-        return;
-    }
+            if (checkedBoxes.length !== totalBoxes.length) {
+                alert('Alle items moeten eerst gepickt worden voordat je de order kunt exporteren!');
+                return;
+            }
 
-    const orderData = {
-        orderNumber: '<?= $order[0]->marketplace_type ?> #<?= $order[0]->marketplace_order_id ?>',
-        customer: "<?= $order[0]->customer_name ?>",
-        date: new Date().toLocaleDateString('nl-NL'),
-        time: new Date().toLocaleTimeString('nl-NL'),
-        items: [],
-        total: '€<?= $order[0]->total_amount ?>'
-    };
+            const orderData = {
+                orderNumber: '<?= $order[0]->marketplace_type ?> #<?= $order[0]->marketplace_order_id ?>',
+                customer: "<?= $order[0]->customer_name ?>",
+                date: new Date().toLocaleDateString('nl-NL'),
+                time: new Date().toLocaleTimeString('nl-NL'),
+                items: [],
+                total: '€<?= $order[0]->total_amount ?>'
+            };
 
-    const rows = document.querySelectorAll('#partsTableBody tr');
+            const rows = document.querySelectorAll('#partsTableBody tr');
 
-    rows.forEach(row => {
+            rows.forEach(row => {
 
-        const partName = row.querySelector('td:nth-child(2) div')?.textContent.trim() || '';
-        const partNumber = row.querySelector('td:nth-child(4)')?.textContent.trim() || '';
-        const itemType   = row.querySelector('td:nth-child(5)')?.textContent.trim() || '';
-        const location   = row.querySelector('td:nth-child(6)')?.textContent.trim() || '';
-        const color      = row.querySelector('td:nth-child(7)')?.textContent.trim() || '';
-        const category   = row.querySelector('td:nth-child(8)')?.textContent.trim() || '';
-        const condition  = row.querySelector('.condition-badge')?.textContent.trim() || '';
-        const qty        = row.querySelector('.qty-cell')?.textContent.trim() || '';
-        const price      = row.querySelector('.price-cell')?.textContent.trim() || '';
+                const partName = row.querySelector('td:nth-child(2) div')?.textContent.trim() || '';
+                const partNumber = row.querySelector('td:nth-child(4)')?.textContent.trim() || '';
+                const itemType = row.querySelector('td:nth-child(5)')?.textContent.trim() || '';
+                const location = row.querySelector('td:nth-child(6)')?.textContent.trim() || '';
+                const color = row.querySelector('td:nth-child(7)')?.textContent.trim() || '';
+                const category = row.querySelector('td:nth-child(8)')?.textContent.trim() || '';
+                const condition = row.querySelector('.condition-badge')?.textContent.trim() || '';
+                const qty = row.querySelector('.qty-cell')?.textContent.trim() || '';
+                const price = row.querySelector('.price-cell')?.textContent.trim() || '';
 
-        orderData.items.push({
-            partName,
-            partNumber,
-            itemType,
-            location,
-            color,
-            category,
-            condition,
-            qty,
-            price
-        });
-    });
+                orderData.items.push({
+                    partName,
+                    partNumber,
+                    itemType,
+                    location,
+                    color,
+                    category,
+                    condition,
+                    qty,
+                    price
+                });
+            });
 
-    createPDF(orderData);
-}
+            createPDF(orderData);
+        }
 
 
         function createPDF(orderData) {
             // Create a new window for PDF generation
             const printWindow = window.open('', '_blank');
-            
+
             const pdfContent = `
             <!DOCTYPE html>
             <html>
@@ -1663,10 +1997,10 @@
             </body>
             </html>
             `;
-            
+
             printWindow.document.write(pdfContent);
             printWindow.document.close();
-            
+
             // Wait for content to load, then print
             printWindow.onload = function() {
                 printWindow.print();
@@ -1700,19 +2034,20 @@
         });
     </script>
     <script>
-      // Select all parent nav items that have sub-items
-      document.querySelectorAll('.nav-item').forEach(item => {
-        const subItems = item.querySelector('.sub-items');
-        if (subItems) {
-          const link = item.querySelector('.nav-link');
-    
-          // Handle click
-          link.addEventListener('click', function(e) {
-            e.preventDefault();             // Prevent following #
-            item.classList.toggle('expanded'); // Toggle expansion
-          });
-        }
-      });
+        // Select all parent nav items that have sub-items
+        document.querySelectorAll('.nav-item').forEach(item => {
+            const subItems = item.querySelector('.sub-items');
+            if (subItems) {
+                const link = item.querySelector('.nav-link');
+
+                // Handle click
+                link.addEventListener('click', function(e) {
+                    e.preventDefault(); // Prevent following #
+                    item.classList.toggle('expanded'); // Toggle expansion
+                });
+            }
+        });
     </script>
 </body>
+
 </html>

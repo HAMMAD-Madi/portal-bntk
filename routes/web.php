@@ -58,3 +58,8 @@ Route::get('/{any}', function () {
 })->where('any', '^(?!(api|werkorder|auth|storage|phpdb)).*$')->middleware('cache.headers:public;max_age=2628000;etag')->name('index');
 
 Route::post('/update-location', [ProductController::class, 'updateLocation'])->name('update-location');
+Route::post('/update-retired', [ProductController::class, 'updateRetired'])->name('update-retired');
+Route::post('/update-lock-price', [ProductController::class, 'updateLockPrice'])->name('update-lock-price');
+
+Route::post('/update-marketplace-order', [OrderController::class, 'updateTrackOrTraceCodeForOrder'])
+    ->name('update.marketplace.order');

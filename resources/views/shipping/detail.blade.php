@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,13 +53,13 @@
         }
 
         .btn-secondary {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
         }
 
         .btn-secondary:hover {
-            background: rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .btn-success {
@@ -159,7 +160,7 @@
         .content {
             background: white;
             border-radius: 0 0 8px 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .section {
@@ -302,13 +303,13 @@
         }
 
         .carrier-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-    margin-bottom: 15px;
-    padding: 20px;
-    width: 100%;
-}
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 20px;
+            width: 100%;
+        }
 
 
         .carrier-card {
@@ -324,7 +325,7 @@
         .carrier-card:hover {
             border-color: #4CAF50;
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .carrier-card.selected {
@@ -489,9 +490,12 @@
         }
 
         @keyframes pulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 box-shadow: 0 0 0 0 rgba(255, 152, 0, 0.4);
             }
+
             50% {
                 box-shadow: 0 0 0 8px rgba(255, 152, 0, 0);
             }
@@ -755,7 +759,8 @@
                 font-size: 12px;
             }
 
-            th, td {
+            th,
+            td {
                 padding: 8px 4px;
             }
 
@@ -806,8 +811,8 @@
         }
 
         .back-btn {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
             padding: 8px 12px;
             border-radius: 4px;
@@ -817,7 +822,7 @@
         }
 
         .back-btn:hover {
-            background: rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .order-title {
@@ -838,8 +843,8 @@
         }
 
         .header-btn {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
             padding: 8px 16px;
             border-radius: 4px;
@@ -850,7 +855,7 @@
         }
 
         .header-btn:hover {
-            background: rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .header-btn.primary {
@@ -863,7 +868,7 @@
             margin: 20px;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .payment-alert {
@@ -985,7 +990,10 @@
             gap: 8px;
         }
 
-        .parts-action, .timer-btn, .export-pdf-btn, .toggle-all-btn {
+        .parts-action,
+        .timer-btn,
+        .export-pdf-btn,
+        .toggle-all-btn {
             background: #f8f9fa;
             border: 1px solid #ddd;
             color: #333;
@@ -995,7 +1003,10 @@
             border-radius: 4px;
         }
 
-        .parts-action:hover, .timer-btn:hover, .export-pdf-btn:hover, .toggle-all-btn:hover {
+        .parts-action:hover,
+        .timer-btn:hover,
+        .export-pdf-btn:hover,
+        .toggle-all-btn:hover {
             background: #e9ecef;
         }
 
@@ -1289,40 +1300,47 @@
     </style>
     <style>
         .sidebar-wrapper {
-          position: relative;       /* for ::before positioning */
-          padding: 20px;            /* space around sidebar */
-          box-sizing: border-box;
-          height: 100vh;            /* keep sidebar full height */
+            position: relative;
+            /* for ::before positioning */
+            padding: 20px;
+            /* space around sidebar */
+            box-sizing: border-box;
+            height: 100vh;
+            /* keep sidebar full height */
         }
-        
+
         /* Green background of only 300px height */
         .sidebar-wrapper::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 300px;            /* only this height is green */
-          background-color: #4CAF50;
-          z-index: -1;              /* behind sidebar */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 300px;
+            /* only this height is green */
+            background-color: #4CAF50;
+            z-index: -1;
+            /* behind sidebar */
         }
-        
+
         /* Sidebar stays full height and unchanged */
         .sidebar {
-          width: 250px;
-          height: 100%;             /* full height */
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(20px);
-          border-radius: 24px;
-          box-shadow:
-            0 20px 25px -5px rgba(0, 0, 0, 0.1),
-            0 10px 10px -5px rgba(0, 0, 0, 0.04),
-            inset 0 1px 0 rgba(255, 255, 255, 0.2);
-          padding: 0;
-          position: relative;       /* above ::before */
-          z-index: 1;
-          margin-left: 4px;
-          margin-top: -3px;
+            width: 250px;
+            height: 100%;
+            /* full height */
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow:
+                0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                0 10px 10px -5px rgba(0, 0, 0, 0.04),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            padding: 0;
+            position: relative;
+            /* above ::before */
+            z-index: 1;
+            margin-left: 4px;
+            margin-top: -3px;
         }
 
         .sidebar:hover {
@@ -1565,19 +1583,19 @@
                 max-width: 320px;
             }
         }
-
     </style>
 </head>
+
 <body>
     <div class="container">
-        
+
         <div class="sidebar-wrapper">
             <div class="sidebar">
                 <div class="logo-section">
                     <div class="logo">CrocoBricks</div>
                     <div class="logo-subtitle">Business Portal</div>
                 </div>
-    
+
                 <div class="nav-container">
                     <div class="nav-section">
                         <div class="nav-item">
@@ -1587,7 +1605,7 @@
                             </a>
                         </div>
                     </div>
-    
+
                     <div class="nav-section">
                         <div class="nav-item expanded" onclick="toggleSection(this)">
                             <a href="#" class="nav-link">
@@ -1603,31 +1621,34 @@
                                         <span class="nav-text">Overzicht</span>
                                     </a>
                                 </div>
-    
+
                                 <!-- Put this CSS in your head or your stylesheet -->
                                 <style>
                                     /* Base look */
                                     .sub-item .nav-link {
-                                        color: #374151; /* dark gray */
+                                        color: #374151;
+                                        /* dark gray */
                                         background-color: transparent;
                                         transition: all 0.2s ease-in-out;
                                     }
-                                    
+
                                     /* Active styles */
                                     .sub-item.active .nav-link,
                                     .nav-link[aria-current="page"] {
                                         color: #fff;
-                                        background-color: #60B864 !important; /* green */
+                                        background-color: #60B864 !important;
+                                        /* green */
                                         box-shadow: 0 2px 8px rgba(0, 123, 255, 0.12);
                                     }
-                                    
+
                                     /* Hover styles */
                                     .sub-item .nav-link:hover {
                                         color: black;
-                                        background-color: #4da653; /* slightly darker green */
+                                        background-color: #4da653;
+                                        /* slightly darker green */
                                     }
                                 </style>
-    
+
                                 <!--<div class="sub-item">-->
                                 <!--    <a href="/voorraad/nieuw-product" class="nav-link">-->
                                 <!--        <span class="nav-icon">➕</span>-->
@@ -1667,7 +1688,7 @@
                             </div>
                         </div>
                     </div>
-    
+
                     <div class="nav-section">
                         <div class="nav-item active">
                             <a href="/all-shippings" class="nav-link">
@@ -1677,7 +1698,7 @@
                             </a>
                         </div>
                     </div>
-    
+
                     <div class="nav-section">
                         <div class="nav-item">
                             <a href="/all-orders" class="nav-link">
@@ -1687,9 +1708,9 @@
                             </a>
                         </div>
                     </div>
-    
+
                     <div class="divider"></div>
-    
+
                     <!--<div class="nav-section">-->
                     <!--    <div class="nav-item expanded" onclick="toggleSection(this)">-->
                     <!--        <a href="#" class="nav-link">-->
@@ -1728,68 +1749,68 @@
                 </div>
             </div>
         </div>
-        
-        <div class="main-content">
-                    <div class="header">
-            <div class="header-top">
-                <h1>📦 Order Details: #<?= $order->marketplace_order_id ?></h1>
-                <div class="header-actions">
-                    <button class="btn btn-primary" onclick="printPackingSlip()">🖨️ Print Packing Slip</button>
-                    <!--<button class="btn btn-primary" onclick="downloadInvoice()">📄 Download Invoice</button>-->
-                    <button class="btn btn-secondary"> <a style="text-decoration: none; color: white;" href="https://portal.bntk.eu/all-shippings"> ← Back to Orders </a></button>
-                </div>
-            </div>
-            <div class="order-info">
-                <div class="info-item">
-                    <div class="info-label" style="color: white !important;">Order Date</div>
-                    <div class="info-value"><?= $order->created_at ?></div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label" style="color: white !important;">Status</div>
-                    <div class="info-value"><span class="badge badge-packed">PACKED</span></div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label" style="color: white !important;">Platform</div>
-                    <div class="info-value"><span class="platform-badge platform-bol"><?= $order->marketplace_type ?></span></div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label" style="color: white !important;">Customer</div>
-                    <div class="info-value"><?= $order->customer_name ?></div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label" style="color: white !important;">Total Amount</div>
-                    <div class="info-value">€<?= $order->total_amount ?></div>
-                </div>
-            </div>
-        </div>
 
-        <div class="content">
-            <!-- Marketplace Sync Status -->
-            <!--<div class="section">-->
-            <!--    <h3 class="section-title">🔗 Marketplace Synchronization Status</h3>-->
-            <!--    <div class="sync-grid">-->
-            <!--        <div class="sync-card">-->
-            <!--            <div class="sync-header">-->
-            <!--                <div class="sync-name">Bol.com LVB Labels</div>-->
-            <!--                <span class="sync-status active">✓ ACTIVE</span>-->
-            <!--            </div>-->
-            <!--            <div class="sync-time">Last sync: 2 min ago</div>-->
-            <!--        </div>-->
-            <!--        <div class="sync-card">-->
-            <!--            <div class="sync-header">-->
-            <!--                <div class="sync-name">Bricklink Notifications</div>-->
-            <!--                <span class="sync-status active">✓ ACTIVE</span>-->
-            <!--            </div>-->
-            <!--            <div class="sync-time">Last sync: 5 min ago</div>-->
-            <!--        </div>-->
-            <!--        <div class="sync-card">-->
-            <!--            <div class="sync-header">-->
-            <!--                <div class="sync-name">Sendcloud API</div>-->
-            <!--                <span class="sync-status active">✓ ACTIVE</span>-->
-            <!--            </div>-->
-            <!--            <div class="sync-time">Last sync: 1 min ago</div>-->
-            <!--        </div>-->
-            <!--    </div>-->
+        <div class="main-content">
+            <div class="header">
+                <div class="header-top">
+                    <h1>📦 Order Details: #<?= $order->marketplace_order_id ?></h1>
+                    <div class="header-actions">
+                        <button class="btn btn-primary" onclick="printPackingSlip()">🖨️ Print Packing Slip</button>
+                        <!--<button class="btn btn-primary" onclick="downloadInvoice()">📄 Download Invoice</button>-->
+                        <button class="btn btn-secondary"> <a style="text-decoration: none; color: white;" href="https://portal.bntk.eu/all-shippings"> ← Back to Orders </a></button>
+                    </div>
+                </div>
+                <div class="order-info">
+                    <div class="info-item">
+                        <div class="info-label" style="color: white !important;">Order Date</div>
+                        <div class="info-value"><?= $order->created_at ?></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label" style="color: white !important;">Status</div>
+                        <div class="info-value"><span class="badge badge-packed">PACKED</span></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label" style="color: white !important;">Platform</div>
+                        <div class="info-value"><span class="platform-badge platform-bol"><?= $order->marketplace_type ?></span></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label" style="color: white !important;">Customer</div>
+                        <div class="info-value"><?= $order->customer_name ?></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label" style="color: white !important;">Total Amount</div>
+                        <div class="info-value">€<?= $order->total_amount ?></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content">
+                <!-- Marketplace Sync Status -->
+                <!--<div class="section">-->
+                <!--    <h3 class="section-title">🔗 Marketplace Synchronization Status</h3>-->
+                <!--    <div class="sync-grid">-->
+                <!--        <div class="sync-card">-->
+                <!--            <div class="sync-header">-->
+                <!--                <div class="sync-name">Bol.com LVB Labels</div>-->
+                <!--                <span class="sync-status active">✓ ACTIVE</span>-->
+                <!--            </div>-->
+                <!--            <div class="sync-time">Last sync: 2 min ago</div>-->
+                <!--        </div>-->
+                <!--        <div class="sync-card">-->
+                <!--            <div class="sync-header">-->
+                <!--                <div class="sync-name">Bricklink Notifications</div>-->
+                <!--                <span class="sync-status active">✓ ACTIVE</span>-->
+                <!--            </div>-->
+                <!--            <div class="sync-time">Last sync: 5 min ago</div>-->
+                <!--        </div>-->
+                <!--        <div class="sync-card">-->
+                <!--            <div class="sync-header">-->
+                <!--                <div class="sync-name">Sendcloud API</div>-->
+                <!--                <span class="sync-status active">✓ ACTIVE</span>-->
+                <!--            </div>-->
+                <!--            <div class="sync-time">Last sync: 1 min ago</div>-->
+                <!--        </div>-->
+                <!--    </div>-->
 
                 <!--<div class="alert-box">-->
                 <!--    <h4>⚠️ Sync Alerts & Warnings</h4>-->
@@ -1798,380 +1819,478 @@
                 <!--    </div>-->
                 <!--</div>-->
 
-            <!--    <div class="action-section">-->
-            <!--        <button class="btn btn-success btn-sm" onclick="retrySyncAll()">🔄 Retry All Syncs</button>-->
-            <!--        <button class="btn btn-primary btn-sm" onclick="syncToBol()">🔄 Sync to Bol.com</button>-->
-            <!--        <button class="btn btn-primary btn-sm" onclick="syncToBricklink()">🔄 Sync to Bricklink</button>-->
-            <!--    </div>-->
-            <!--</div>-->
-
-            <!-- Sendcloud Carrier Selection -->
-            <!--<div class="section">-->
-            <!--    <div class="sendcloud-section">-->
-            <!--        <div class="sendcloud-header">-->
-            <!--            <div class="sendcloud-logo">SENDCLOUD</div>-->
-            <!--            <h3 style="margin: 0; color: #333;">Select Shipping Carrier</h3>-->
-            <!--        </div>-->
-                    
-            <!--        <div class="carrier-grid">-->
-                        <!-- PostNL -->
-            <!--            <div class="carrier-card" onclick="selectCarrier('postnl', this)">-->
-            <!--                <span class="carrier-recommended">Recommended</span>-->
-            <!--                <div class="carrier-header">-->
-            <!--                    <div class="carrier-logo">📦</div>-->
-            <!--                    <div class="carrier-info">-->
-            <!--                        <div class="carrier-name">PostNL</div>-->
-            <!--                        <div class="carrier-service">Standard Shipping</div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--                <div class="carrier-details">-->
-            <!--                    <div class="carrier-detail">-->
-            <!--                        <div class="carrier-detail-label">Price</div>-->
-            <!--                        <div class="carrier-detail-value carrier-price">€6.95</div>-->
-            <!--                    </div>-->
-            <!--                    <div class="carrier-detail">-->
-            <!--                        <div class="carrier-detail-label">Delivery</div>-->
-            <!--                        <div class="carrier-detail-value">2-3 days</div>-->
-            <!--                    </div>-->
-            <!--                    <div class="carrier-detail">-->
-            <!--                        <div class="carrier-detail-label">Weight</div>-->
-            <!--                        <div class="carrier-detail-value">Up to 10kg</div>-->
-            <!--                    </div>-->
-            <!--                    <div class="carrier-detail">-->
-            <!--                        <div class="carrier-detail-label">Tracking</div>-->
-            <!--                        <div class="carrier-detail-value">✓ Included</div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--            </div>-->
-
-                        <!-- DHL -->
-            <!--            <div class="carrier-card selected" onclick="selectCarrier('dhl', this)">-->
-            <!--                <div class="carrier-header">-->
-            <!--                    <div class="carrier-logo">🚚</div>-->
-            <!--                    <div class="carrier-info">-->
-            <!--                        <div class="carrier-name">DHL Express</div>-->
-            <!--                        <div class="carrier-service">Express Delivery</div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--                <div class="carrier-details">-->
-            <!--                    <div class="carrier-detail">-->
-            <!--                        <div class="carrier-detail-label">Price</div>-->
-            <!--                        <div class="carrier-detail-value carrier-price">€12.50</div>-->
-            <!--                    </div>-->
-            <!--                    <div class="carrier-detail">-->
-            <!--                        <div class="carrier-detail-label">Delivery</div>-->
-            <!--                        <div class="carrier-detail-value">1-2 days</div>-->
-            <!--                    </div>-->
-            <!--                    <div class="carrier-detail">-->
-            <!--                        <div class="carrier-detail-label">Weight</div>-->
-            <!--                        <div class="carrier-detail-value">Up to 20kg</div>-->
-            <!--                    </div>-->
-            <!--                    <div class="carrier-detail">-->
-            <!--                        <div class="carrier-detail-label">Tracking</div>-->
-            <!--                        <div class="carrier-detail-value">✓ Live Updates</div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--            </div>-->
-
-                        <!-- UPS -->
-            <!--            <div class="carrier-card" onclick="selectCarrier('ups', this)">-->
-            <!--                <div class="carrier-header">-->
-            <!--                    <div class="carrier-logo">📮</div>-->
-            <!--                    <div class="carrier-info">-->
-            <!--                        <div class="carrier-name">UPS Standard</div>-->
-            <!--                        <div class="carrier-service">Economy Shipping</div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--                <div class="carrier-details">-->
-            <!--                    <div class="carrier-detail">-->
-            <!--                        <div class="carrier-detail-label">Price</div>-->
-            <!--                        <div class="carrier-detail-value carrier-price">€9.95</div>-->
-            <!--                    </div>-->
-            <!--                    <div class="carrier-detail">-->
-            <!--                        <div class="carrier-detail-label">Delivery</div>-->
-            <!--                        <div class="carrier-detail-value">2-4 days</div>-->
-            <!--                    </div>-->
-            <!--                    <div class="carrier-detail">-->
-            <!--                        <div class="carrier-detail-label">Weight</div>-->
-            <!--                        <div class="carrier-detail-value">Up to 15kg</div>-->
-            <!--                    </div>-->
-            <!--                    <div class="carrier-detail">-->
-            <!--                        <div class="carrier-detail-label">Tracking</div>-->
-            <!--                        <div class="carrier-detail-value">✓ Included</div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--            </div>-->
-
-                        <!-- DPD -->
-            <!--            <div class="carrier-card" onclick="selectCarrier('dpd', this)">-->
-            <!--                <div class="carrier-header">-->
-            <!--                    <div class="carrier-logo">🚐</div>-->
-            <!--                    <div class="carrier-info">-->
-            <!--                        <div class="carrier-name">DPD</div>-->
-            <!--                        <div class="carrier-service">Predict Delivery</div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--                <div class="carrier-details">-->
-            <!--                    <div class="carrier-detail">-->
-            <!--                        <div class="carrier-detail-label">Price</div>-->
-            <!--                        <div class="carrier-detail-value carrier-price">€8.50</div>-->
-            <!--                    </div>-->
-            <!--                    <div class="carrier-detail">-->
-            <!--                        <div class="carrier-detail-label">Delivery</div>-->
-            <!--                        <div class="carrier-detail-value">1-3 days</div>-->
-            <!--                    </div>-->
-            <!--                    <div class="carrier-detail">-->
-            <!--                        <div class="carrier-detail-label">Weight</div>-->
-            <!--                        <div class="carrier-detail-value">Up to 31.5kg</div>-->
-            <!--                    </div>-->
-            <!--                    <div class="carrier-detail">-->
-            <!--                        <div class="carrier-detail-label">Tracking</div>-->
-            <!--                        <div class="carrier-detail-value">✓ Time Window</div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--            </div>-->
-            <!--        </div>-->
-                    
-            <!--        <button class="btn btn-success" onclick="generateSendcloudLabel()" style="margin-top: 15px;">-->
-            <!--            🏷️ Generate Sendcloud Label for Selected Carrier-->
-            <!--        </button>-->
-            <!--    </div>-->
-            <!--</div>-->
-            <div class="carrier-grid" id="carrierGrid">
-                <!-- Dynamic carriers will be injected here -->
-            </div>
-            <button id="generateLabelBtn" class="btn btn-success" onclick="generateSendcloudLabel()" style="margin-left: 20px;">
-                🏷️ Generate Sendcloud Label for Selected Carrier
-            </button>
-            
-
-            <!-- Horizontal Timeline -->
-            <div class="section">
-                <h3 class="section-title">📍 Shipping Status & Timeline</h3>
-                <div class="timeline-horizontal">
-                    <div class="timeline-track">
-                        <div class="timeline-step completed">
-                            <div class="timeline-icon">✓</div>
-                            <div class="timeline-content">
-                                <div class="timeline-title">Order Placed</div>
-                                <div class="timeline-date">20 Jul 2025, 14:32</div>
-                                <!--<div class="timeline-detail">Order received from Bol.com</div>-->
-                            </div>
-                        </div>
-
-                        <div class="timeline-step completed">
-                            <div class="timeline-icon">✓</div>
-                            <div class="timeline-content">
-                                <div class="timeline-title">Payment Confirmed</div>
-                                <div class="timeline-date">20 Jul 2025, 14:35</div>
-                                <!--<div class="timeline-detail">Payment successful via iDEAL</div>-->
-                            </div>
-                        </div>
-
-                        <div class="timeline-step completed">
-                            <div class="timeline-icon">✓</div>
-                            <div class="timeline-content">
-                                <div class="timeline-title">Order Packed</div>
-                                <div class="timeline-date">21 Jul 2025, 09:15</div>
-                                <!--<div class="timeline-detail">Package ready for shipment</div>-->
-                            </div>
-                        </div>
-
-                        <div class="timeline-step active">
-                            <div class="timeline-icon">⏳</div>
-                            <div class="timeline-content">
-                                <div class="timeline-title">Awaiting Shipment</div>
-                                <div class="timeline-date">Expected: 22 Jul 2025</div>
-                                <!--<div class="timeline-detail">Label created, awaiting pickup</div>-->
-                            </div>
-                        </div>
-
-                        <div class="timeline-step">
-                            <div class="timeline-icon">📦</div>
-                            <div class="timeline-content">
-                                <div class="timeline-title">In Transit</div>
-                                <div class="timeline-date">Expected: 23-24 Jul</div>
-                                <!--<div class="timeline-detail">On the way to customer</div>-->
-                            </div>
-                        </div>
-
-                        <div class="timeline-step">
-                            <div class="timeline-icon">🏠</div>
-                            <div class="timeline-content">
-                                <div class="timeline-title">Delivered</div>
-                                <div class="timeline-date">Expected: 25 Jul 2025</div>
-                                <!--<div class="timeline-detail">Package delivered</div>-->
-                            </div>
-                        </div>
-
-                        <div class="timeline-step">
-                            <div class="timeline-icon">⭐</div>
-                            <div class="timeline-content">
-                                <div class="timeline-title">Completed</div>
-                                <div class="timeline-date">Auto: 3 Aug 2025</div>
-                                <!--<div class="timeline-detail">Feedback requested</div>-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--<div class="tracking-info">-->
-                <!--    <div class="tracking-number">-->
-                <!--        <strong>Tracking Number:</strong> -->
-                <!--        <a href="#" onclick="trackPackage('3SABCD1234567'); return false;">3SABCD1234567</a>-->
-                <!--        (DHL Express)-->
-                <!--    </div>-->
-                <!--    <div style="font-size: 13px; color: #666;">-->
-                <!--        📍 Current Status: Package packed and ready at warehouse-->
+                <!--    <div class="action-section">-->
+                <!--        <button class="btn btn-success btn-sm" onclick="retrySyncAll()">🔄 Retry All Syncs</button>-->
+                <!--        <button class="btn btn-primary btn-sm" onclick="syncToBol()">🔄 Sync to Bol.com</button>-->
+                <!--        <button class="btn btn-primary btn-sm" onclick="syncToBricklink()">🔄 Sync to Bricklink</button>-->
                 <!--    </div>-->
                 <!--</div>-->
 
-                <div class="action-section" style="margin-top: 15px;">
+                <!-- Sendcloud Carrier Selection -->
+                <!--<div class="section">-->
+                <!--    <div class="sendcloud-section">-->
+                <!--        <div class="sendcloud-header">-->
+                <!--            <div class="sendcloud-logo">SENDCLOUD</div>-->
+                <!--            <h3 style="margin: 0; color: #333;">Select Shipping Carrier</h3>-->
+                <!--        </div>-->
+
+                <!--        <div class="carrier-grid">-->
+                <!-- PostNL -->
+                <!--            <div class="carrier-card" onclick="selectCarrier('postnl', this)">-->
+                <!--                <span class="carrier-recommended">Recommended</span>-->
+                <!--                <div class="carrier-header">-->
+                <!--                    <div class="carrier-logo">📦</div>-->
+                <!--                    <div class="carrier-info">-->
+                <!--                        <div class="carrier-name">PostNL</div>-->
+                <!--                        <div class="carrier-service">Standard Shipping</div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="carrier-details">-->
+                <!--                    <div class="carrier-detail">-->
+                <!--                        <div class="carrier-detail-label">Price</div>-->
+                <!--                        <div class="carrier-detail-value carrier-price">€6.95</div>-->
+                <!--                    </div>-->
+                <!--                    <div class="carrier-detail">-->
+                <!--                        <div class="carrier-detail-label">Delivery</div>-->
+                <!--                        <div class="carrier-detail-value">2-3 days</div>-->
+                <!--                    </div>-->
+                <!--                    <div class="carrier-detail">-->
+                <!--                        <div class="carrier-detail-label">Weight</div>-->
+                <!--                        <div class="carrier-detail-value">Up to 10kg</div>-->
+                <!--                    </div>-->
+                <!--                    <div class="carrier-detail">-->
+                <!--                        <div class="carrier-detail-label">Tracking</div>-->
+                <!--                        <div class="carrier-detail-value">✓ Included</div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--            </div>-->
+
+                <!-- DHL -->
+                <!--            <div class="carrier-card selected" onclick="selectCarrier('dhl', this)">-->
+                <!--                <div class="carrier-header">-->
+                <!--                    <div class="carrier-logo">🚚</div>-->
+                <!--                    <div class="carrier-info">-->
+                <!--                        <div class="carrier-name">DHL Express</div>-->
+                <!--                        <div class="carrier-service">Express Delivery</div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="carrier-details">-->
+                <!--                    <div class="carrier-detail">-->
+                <!--                        <div class="carrier-detail-label">Price</div>-->
+                <!--                        <div class="carrier-detail-value carrier-price">€12.50</div>-->
+                <!--                    </div>-->
+                <!--                    <div class="carrier-detail">-->
+                <!--                        <div class="carrier-detail-label">Delivery</div>-->
+                <!--                        <div class="carrier-detail-value">1-2 days</div>-->
+                <!--                    </div>-->
+                <!--                    <div class="carrier-detail">-->
+                <!--                        <div class="carrier-detail-label">Weight</div>-->
+                <!--                        <div class="carrier-detail-value">Up to 20kg</div>-->
+                <!--                    </div>-->
+                <!--                    <div class="carrier-detail">-->
+                <!--                        <div class="carrier-detail-label">Tracking</div>-->
+                <!--                        <div class="carrier-detail-value">✓ Live Updates</div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--            </div>-->
+
+                <!-- UPS -->
+                <!--            <div class="carrier-card" onclick="selectCarrier('ups', this)">-->
+                <!--                <div class="carrier-header">-->
+                <!--                    <div class="carrier-logo">📮</div>-->
+                <!--                    <div class="carrier-info">-->
+                <!--                        <div class="carrier-name">UPS Standard</div>-->
+                <!--                        <div class="carrier-service">Economy Shipping</div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="carrier-details">-->
+                <!--                    <div class="carrier-detail">-->
+                <!--                        <div class="carrier-detail-label">Price</div>-->
+                <!--                        <div class="carrier-detail-value carrier-price">€9.95</div>-->
+                <!--                    </div>-->
+                <!--                    <div class="carrier-detail">-->
+                <!--                        <div class="carrier-detail-label">Delivery</div>-->
+                <!--                        <div class="carrier-detail-value">2-4 days</div>-->
+                <!--                    </div>-->
+                <!--                    <div class="carrier-detail">-->
+                <!--                        <div class="carrier-detail-label">Weight</div>-->
+                <!--                        <div class="carrier-detail-value">Up to 15kg</div>-->
+                <!--                    </div>-->
+                <!--                    <div class="carrier-detail">-->
+                <!--                        <div class="carrier-detail-label">Tracking</div>-->
+                <!--                        <div class="carrier-detail-value">✓ Included</div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--            </div>-->
+
+                <!-- DPD -->
+                <!--            <div class="carrier-card" onclick="selectCarrier('dpd', this)">-->
+                <!--                <div class="carrier-header">-->
+                <!--                    <div class="carrier-logo">🚐</div>-->
+                <!--                    <div class="carrier-info">-->
+                <!--                        <div class="carrier-name">DPD</div>-->
+                <!--                        <div class="carrier-service">Predict Delivery</div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="carrier-details">-->
+                <!--                    <div class="carrier-detail">-->
+                <!--                        <div class="carrier-detail-label">Price</div>-->
+                <!--                        <div class="carrier-detail-value carrier-price">€8.50</div>-->
+                <!--                    </div>-->
+                <!--                    <div class="carrier-detail">-->
+                <!--                        <div class="carrier-detail-label">Delivery</div>-->
+                <!--                        <div class="carrier-detail-value">1-3 days</div>-->
+                <!--                    </div>-->
+                <!--                    <div class="carrier-detail">-->
+                <!--                        <div class="carrier-detail-label">Weight</div>-->
+                <!--                        <div class="carrier-detail-value">Up to 31.5kg</div>-->
+                <!--                    </div>-->
+                <!--                    <div class="carrier-detail">-->
+                <!--                        <div class="carrier-detail-label">Tracking</div>-->
+                <!--                        <div class="carrier-detail-value">✓ Time Window</div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--            </div>-->
+                <!--        </div>-->
+
+                <!--        <button class="btn btn-success" onclick="generateSendcloudLabel()" style="margin-top: 15px;">-->
+                <!--            🏷️ Generate Sendcloud Label for Selected Carrier-->
+                <!--        </button>-->
+                <!--    </div>-->
+                <!--</div>-->
+                <div class="carrier-grid" id="carrierGrid">
+                    <!-- Dynamic carriers will be injected here -->
+                </div>
+                <button id="generateLabelBtn" class="btn btn-success" onclick="generateSendcloudLabel()" style="margin-left: 20px;">
+                    🏷️ Generate Sendcloud Label for Selected Carrier
+                </button>
+
+
+                <!-- Horizontal Timeline -->
+                <div class="section">
+                    <h3 class="section-title">📍 Shipping Status & Timeline</h3>
+                    <div class="timeline-horizontal">
+                        <div class="timeline-track">
+                            <div class="timeline-step completed">
+                                <div class="timeline-icon">✓</div>
+                                <div class="timeline-content">
+                                    <div class="timeline-title">Order Placed</div>
+                                    <div class="timeline-date">20 Jul 2025, 14:32</div>
+                                    <!--<div class="timeline-detail">Order received from Bol.com</div>-->
+                                </div>
+                            </div>
+
+                            <div class="timeline-step completed">
+                                <div class="timeline-icon">✓</div>
+                                <div class="timeline-content">
+                                    <div class="timeline-title">Payment Confirmed</div>
+                                    <div class="timeline-date">20 Jul 2025, 14:35</div>
+                                    <!--<div class="timeline-detail">Payment successful via iDEAL</div>-->
+                                </div>
+                            </div>
+
+                            <div class="timeline-step completed">
+                                <div class="timeline-icon">✓</div>
+                                <div class="timeline-content">
+                                    <div class="timeline-title">Order Packed</div>
+                                    <div class="timeline-date">21 Jul 2025, 09:15</div>
+                                    <!--<div class="timeline-detail">Package ready for shipment</div>-->
+                                </div>
+                            </div>
+
+                            <div class="timeline-step active">
+                                <div class="timeline-icon">⏳</div>
+                                <div class="timeline-content">
+                                    <div class="timeline-title">Awaiting Shipment</div>
+                                    <div class="timeline-date">Expected: 22 Jul 2025</div>
+                                    <!--<div class="timeline-detail">Label created, awaiting pickup</div>-->
+                                </div>
+                            </div>
+
+                            <div class="timeline-step">
+                                <div class="timeline-icon">📦</div>
+                                <div class="timeline-content">
+                                    <div class="timeline-title">In Transit</div>
+                                    <div class="timeline-date">Expected: 23-24 Jul</div>
+                                    <!--<div class="timeline-detail">On the way to customer</div>-->
+                                </div>
+                            </div>
+
+                            <div class="timeline-step">
+                                <div class="timeline-icon">🏠</div>
+                                <div class="timeline-content">
+                                    <div class="timeline-title">Delivered</div>
+                                    <div class="timeline-date">Expected: 25 Jul 2025</div>
+                                    <!--<div class="timeline-detail">Package delivered</div>-->
+                                </div>
+                            </div>
+
+                            <div class="timeline-step">
+                                <div class="timeline-icon">⭐</div>
+                                <div class="timeline-content">
+                                    <div class="timeline-title">Completed</div>
+                                    <div class="timeline-date">Auto: 3 Aug 2025</div>
+                                    <!--<div class="timeline-detail">Feedback requested</div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<div class="tracking-info">-->
+                    <!--    <div class="tracking-number">-->
+                    <!--        <strong>Tracking Number:</strong> -->
+                    <!--        <a href="#" onclick="trackPackage('3SABCD1234567'); return false;">3SABCD1234567</a>-->
+                    <!--        (DHL Express)-->
+                    <!--    </div>-->
+                    <!--    <div style="font-size: 13px; color: #666;">-->
+                    <!--        📍 Current Status: Package packed and ready at warehouse-->
+                    <!--    </div>-->
+                    <!--</div>-->
+                    
                     <button class="btn btn-success" onclick="markAsShipped(<?= $order->id ?>, 'shipped')">✓ Mark as Shipped</button>
-                    <!--<button class="btn btn-primary" onclick="sendTrackingEmail()">📧 Send Tracking Email</button>-->
-                    <!--<button class="btn btn-warning" onclick="updateTracking()">🔄 Update Tracking</button>-->
-                </div>
-            </div>
+                    <div class="action-section" style="margin-top: 15px;">
 
-            <!-- Customer Information -->
-            <div class="section">
-                <h3 class="section-title">👤 Customer Information</h3>
-                <div class="customer-info">
-                    <div class="info-card">
-                        <h4>Shipping Address</h4>
-                        <p>
-                            <b>Name: </b><?= $order->shipping_name ?? "--" ?><br>
-                            <b>Shipping Address 1: </b><?= $order->shipping_address_1 ?? "--" ?><br>
-                            <b>Shipping Address 2: </b><?= $order->shipping_address_2 ?? "--" ?><br>
-                            <b>City: </b><?= $order->shipping_city ?? "--" ?><br>
-                            <b>State: </b><?= $order->shipping_state ?? "--" ?><br>
-                            <b>Postcode: </b><?= $order->shipping_postcode ?? "--" ?>
-                            <b>Country Code: </b><?= $order->shipping_country ?? "--" ?><br>
-                        </p>
-                    </div>
-                    <div class="info-card">
-                        <h4>Billing Address</h4>
-                        <p>
-                            <b>Name: </b><?= $order->billing_name ?? "--" ?><br>
-                            <b>Address: </b><?= $order->billing_address_1 ?? "--" ?><br>
-                            <b>Country Code: </b><?= $order->shipping_city ?? "--" ?><br>
-                            <b>City: </b><?= $order->billing_city ?? "--" ?><br>
-                            <b>State: </b>><?= $order->billing_state ?? "--" ?><br>
-                            <b>Postcode: </b><?= $order->billing_postcode ?? "--" ?>
-                        </p>
-                    </div>
-                    <div class="info-card">
-                        <h4>Contact Details</h4>
-                        <p>
-                            <strong>Email:</strong> <?= $order->customer_email ?? "--" ?><br>
-                            <strong>Phone:</strong> <?= $order->customer_phone ?? "--" ?><br>
-                            <strong>Customer:</strong> <?= $order->customer_name ?? "--" ?>
-                        </p>
+                        <div class="order-inputs">
+                            <div class="input-group">
+                                <label>Track Code</label>
+                                <input type="text" class="track-input" value="{{ $order->track_code ?? '' }}" placeholder="Track Code">
+                            </div>
+
+                            <div class="input-group">
+                                <label>Trace Code</label>
+                                <input type="text" class="trace-input" value="{{ $order->trace_code ?? '' }}" placeholder="Trace Code">
+                            </div>
+                        </div>
+                        <style>
+                            .order-inputs {
+                                display: flex;
+                                gap: 16px;
+                                /* space between inputs */
+                                flex-wrap: wrap;
+                                margin-bottom: 12px;
+                            }
+
+                            .input-group {
+                                display: flex;
+                                flex-direction: column;
+                                flex: 1;
+                                /* each takes equal width */
+                            }
+
+                            .input-group label {
+                                font-size: 14px;
+                                font-weight: 600;
+                                color: #344767;
+                                margin-bottom: 4px;
+                            }
+
+                            .input-group input {
+                                padding: 10px 12px;
+                                font-size: 14px;
+                                border: 1px solid #d1d5db;
+                                border-radius: 8px;
+                                transition: all 0.2s ease;
+                            }
+
+                            .input-group input:focus {
+                                outline: none;
+                                border-color: #2563eb;
+                                /* blue focus border */
+                                box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+                            }
+                        </style>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', () => {
+
+                                const updateField = (orderId, field, value) => {
+                                    fetch('{{ route("update.marketplace.order") }}', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                            },
+                                            body: JSON.stringify({
+                                                marketplace_order_id: orderId,
+                                                field: field,
+                                                value: value
+                                            })
+                                        })
+                                        .then(res => res.json())
+                                        .then(data => {
+                                            if (data.success) {
+                                                console.log(`${field} updated for order ${orderId}`);
+                                            } else {
+                                                console.error(`Failed to update ${field} for order ${orderId}`);
+                                            }
+                                        })
+                                        .catch(err => console.error(err));
+                                }
+
+                                // Track Code input
+                                document.querySelectorAll('.track-input').forEach(input => {
+                                    input.addEventListener('keyup', function() {
+                                        const orderId = "<?= $order->marketplace_order_id ?>"
+                                        const value = this.value.trim();
+                                        updateField(orderId, 'track_code', value);
+                                    });
+                                });
+
+                                // Trace Code input
+                                document.querySelectorAll('.trace-input').forEach(input => {
+                                    input.addEventListener('keyup', function() {
+                                        const orderId = "<?= $order->marketplace_order_id ?>"
+                                        const value = this.value.trim();
+                                        updateField(orderId, 'trace_code', value);
+                                    });
+                                });
+
+                            });
+                        </script>
+
+                        <!--<button class="btn btn-primary" onclick="sendTrackingEmail()">📧 Send Tracking Email</button>-->
+                        <!--<button class="btn btn-warning" onclick="updateTracking()">🔄 Update Tracking</button>-->
                     </div>
                 </div>
-            </div>
 
-            <!-- Order Items -->
-            <div class="section">
-                <h3 class="section-title">📦 Order Items</h3>
-                <div style="overflow-x: auto;">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Image</th>
-                                <th>Item & Item No</th>
-                                <th>Color</th>
-                                <th>Condition</th>
-                                <th>Qty</th>
-                                <th>Price</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach($orderItems as $item){ ?>
+                <!-- Customer Information -->
+                <div class="section">
+                    <h3 class="section-title">👤 Customer Information</h3>
+                    <div class="customer-info">
+                        <div class="info-card">
+                            <h4>Shipping Address</h4>
+                            <p>
+                                <b>Name: </b><?= $order->shipping_name ?? "--" ?><br>
+                                <b>Shipping Address 1: </b><?= $order->shipping_address_1 ?? "--" ?><br>
+                                <b>Shipping Address 2: </b><?= $order->shipping_address_2 ?? "--" ?><br>
+                                <b>City: </b><?= $order->shipping_city ?? "--" ?><br>
+                                <b>State: </b><?= $order->shipping_state ?? "--" ?><br>
+                                <b>Postcode: </b><?= $order->shipping_postcode ?? "--" ?>
+                                <b>Country Code: </b><?= $order->shipping_country ?? "--" ?><br>
+                            </p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Billing Address</h4>
+                            <p>
+                                <b>Name: </b><?= $order->billing_name ?? "--" ?><br>
+                                <b>Address: </b><?= $order->billing_address_1 ?? "--" ?><br>
+                                <b>Country Code: </b><?= $order->shipping_city ?? "--" ?><br>
+                                <b>City: </b><?= $order->billing_city ?? "--" ?><br>
+                                <b>State: </b>><?= $order->billing_state ?? "--" ?><br>
+                                <b>Postcode: </b><?= $order->billing_postcode ?? "--" ?>
+                            </p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Contact Details</h4>
+                            <p>
+                                <strong>Email:</strong> <?= $order->customer_email ?? "--" ?><br>
+                                <strong>Phone:</strong> <?= $order->customer_phone ?? "--" ?><br>
+                                <strong>Customer:</strong> <?= $order->customer_name ?? "--" ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Items -->
+                <div class="section">
+                    <h3 class="section-title">📦 Order Items</h3>
+                    <div style="overflow-x: auto;">
+                        <table>
+                            <thead>
                                 <tr>
-                                    <td>
-                                        <span class="item-image">
-                                            <a href="<?= $item->image_url ?>" target="_blank">
-                                                <img style="width: 40px; cursor: pointer;" src="<?= $item->image_url ?>">
-                                            </a>
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <div class="item-info"><?= $item->title ?></div>
-                                        <div class="part-id">Part: <?= $item->item_no ?></div>
-                                    </td>
-                                    <td><span class="color-badge"><?= $item->color_name ?></span></td>
-                                    <td><span class="condition-badge condition-new"><?= $item->condition_type ?></span></td>
-                                    <td><?= $item->quantity ?></td>
-                                    <td>€ <?= $item->unit_price ?></td>
-                                    <td>€ <?= $item->total_price ?></td>
+                                    <th>Image</th>
+                                    <th>Item & Item No</th>
+                                    <th>Color</th>
+                                    <th>Condition</th>
+                                    <th>Qty</th>
+                                    <th>Price</th>
+                                    <th>Total</th>
                                 </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($orderItems as $item) { ?>
+                                    <tr>
+                                        <td>
+                                            <span class="item-image">
+                                                <a href="<?= $item->image_url ?>" target="_blank">
+                                                    <img style="width: 40px; cursor: pointer;" src="<?= $item->image_url ?>">
+                                                </a>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="item-info"><?= $item->title ?></div>
+                                            <div class="part-id">Part: <?= $item->item_no ?></div>
+                                        </td>
+                                        <td><span class="color-badge"><?= $item->color_name ?></span></td>
+                                        <td><span class="condition-badge condition-new"><?= $item->condition_type ?></span></td>
+                                        <td><?= $item->quantity ?></td>
+                                        <td>€ <?= $item->unit_price ?></td>
+                                        <td>€ <?= $item->total_price ?></td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
 
-                <div class="summary-grid" style="margin-top: 20px;">
-                    <div class="summary-label">Subtotal (<?= count($orderItems) ?> items)</div>
-                    <div class="summary-value">€ <?= $order->subtotal ?></div>
-                    
-                    <!--<div class="summary-label">Shipping (DHL Express)</div>-->
-                    <!--<div class="summary-value">€12.50</div>-->
-                    
-                    <!--<div class="summary-label">VAT (21%)</div>-->
-                    <!--<div class="summary-value">€5.05</div>-->
-                    
-                    <!--<div class="summary-label">Bol.com Fee (15%)</div>-->
-                    <!--<div class="summary-value">-€17.33</div>-->
-                    
-                    <!--<div class="summary-total">-->
+                    <div class="summary-grid" style="margin-top: 20px;">
+                        <div class="summary-label">Subtotal (<?= count($orderItems) ?> items)</div>
+                        <div class="summary-value">€ <?= $order->subtotal ?></div>
+
+                        <!--<div class="summary-label">Shipping (DHL Express)</div>-->
+                        <!--<div class="summary-value">€12.50</div>-->
+
+                        <!--<div class="summary-label">VAT (21%)</div>-->
+                        <!--<div class="summary-value">€5.05</div>-->
+
+                        <!--<div class="summary-label">Bol.com Fee (15%)</div>-->
+                        <!--<div class="summary-value">-€17.33</div>-->
+
+                        <!--<div class="summary-total">-->
                         <div class="summary-label">Total Amount</div>
                         <div class="summary-value">€ <?= $order->total_amount ?></div>
-                    <!--</div>-->
-                    
-                    <!--<div style="padding-top: 10px; border-top: 1px solid #e0e0e0; margin-top: 10px;">-->
-                    <!--    <div class="summary-label">Net Profit</div>-->
-                    <!--    <div class="summary-value" style="color: #4CAF50;">€92.67</div>-->
+                        <!--</div>-->
+
+                        <!--<div style="padding-top: 10px; border-top: 1px solid #e0e0e0; margin-top: 10px;">-->
+                        <!--    <div class="summary-label">Net Profit</div>-->
+                        <!--    <div class="summary-value" style="color: #4CAF50;">€92.67</div>-->
+                        <!--</div>-->
+                    </div>
+
+                    <!--<div class="payment-status">-->
+                    <!--    ✓ Payment confirmed on 20 Jul at 14:35. Refund eligible until 27 Jul.-->
                     <!--</div>-->
                 </div>
 
-                <!--<div class="payment-status">-->
-                <!--    ✓ Payment confirmed on 20 Jul at 14:35. Refund eligible until 27 Jul.-->
+                <!-- Special Notes -->
+                <div class="section">
+                    <h3 class="section-title">📝 Order Notes & Instructions</h3>
+                    <div class="notes-section">
+                        <h4>⚠️ Customer Note:</h4>
+                        <p>"Please pack carefully! These pieces are for a birthday gift. If possible, include a small LEGO sticker or card. Thank you!"</p>
+                    </div>
+
+                    <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 6px;">
+                        <h4 style="font-size: 14px; color: #666; margin-bottom: 8px;">📋 Internal Notes:</h4>
+                        <p style="font-size: 13px; color: #333; line-height: 1.6;">
+                            • Priority order - customer is a repeat buyer<br>
+                            • Use bubble wrap for minifigure heads<br>
+                            • Check all pieces for quality before packing<br>
+                            • Include CrocoBricks business card
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <!--<div class="section">-->
+                <!--    <h3 class="section-title">⚙️ Order Actions</h3>-->
+                <!--    <div class="action-section">-->
+                <!--        <button class="btn btn-success" onclick="markAsShipped(<?= $order->id ?>, 'shipped')">✓ Mark as Shipped</button>-->
+                <!--        <button class="btn btn-primary" onclick="sendTrackingEmail()">📧 Send Tracking Email</button>-->
+                <!--        <button class="btn btn-primary" onclick="syncToBol()">🔄 Sync to Bol.com</button>-->
+                <!--        <button class="btn btn-primary" onclick="syncToBricklink()">🔄 Sync to Bricklink</button>-->
+                <!--        <button class="btn btn-danger" onclick="cancelOrder()">✗ Cancel Order</button>-->
+                <!--    </div>-->
                 <!--</div>-->
             </div>
-
-            <!-- Special Notes -->
-            <div class="section">
-                <h3 class="section-title">📝 Order Notes & Instructions</h3>
-                <div class="notes-section">
-                    <h4>⚠️ Customer Note:</h4>
-                    <p>"Please pack carefully! These pieces are for a birthday gift. If possible, include a small LEGO sticker or card. Thank you!"</p>
-                </div>
-
-                <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 6px;">
-                    <h4 style="font-size: 14px; color: #666; margin-bottom: 8px;">📋 Internal Notes:</h4>
-                    <p style="font-size: 13px; color: #333; line-height: 1.6;">
-                        • Priority order - customer is a repeat buyer<br>
-                        • Use bubble wrap for minifigure heads<br>
-                        • Check all pieces for quality before packing<br>
-                        • Include CrocoBricks business card
-                    </p>
-                </div>
-            </div>
-
-            <!-- Actions -->
-            <!--<div class="section">-->
-            <!--    <h3 class="section-title">⚙️ Order Actions</h3>-->
-            <!--    <div class="action-section">-->
-            <!--        <button class="btn btn-success" onclick="markAsShipped(<?= $order->id ?>, 'shipped')">✓ Mark as Shipped</button>-->
-            <!--        <button class="btn btn-primary" onclick="sendTrackingEmail()">📧 Send Tracking Email</button>-->
-            <!--        <button class="btn btn-primary" onclick="syncToBol()">🔄 Sync to Bol.com</button>-->
-            <!--        <button class="btn btn-primary" onclick="syncToBricklink()">🔄 Sync to Bricklink</button>-->
-            <!--        <button class="btn btn-danger" onclick="cancelOrder()">✗ Cancel Order</button>-->
-            <!--    </div>-->
-            <!--</div>-->
-        </div>
         </div>
     </div>
 
@@ -2187,13 +2306,13 @@
         // Carrier Selection
         function sselectCarrier(carrier, element) {
             selectedCarrier = carrier;
-            
+
             // Update selected state
             document.querySelectorAll('.carrier-card').forEach(card => {
                 card.classList.remove('selected');
             });
             element.classList.add('selected');
-            
+
             // Get carrier data
             const carrierNames = {
                 'postnl': 'PostNL Standard',
@@ -2201,9 +2320,9 @@
                 'ups': 'UPS Standard',
                 'dpd': 'DPD Predict'
             };
-            
+
             selectedCarrierData.name = carrierNames[carrier];
-            
+
             console.log(`Selected carrier: ${carrier}`);
         }
 
@@ -2231,26 +2350,26 @@
         }
 
         // Shipping Functions
-function markAsShipped(orderId, section) {
-    // Ensure orderId is always an array
-    let orderIds = Array.isArray(orderId) ? orderId : [orderId];
+        function markAsShipped(orderId, section) {
+            // Ensure orderId is always an array
+            let orderIds = Array.isArray(orderId) ? orderId : [orderId];
 
-    $.ajax({
-        url: "/orders/change-status/" + section,
-        type: "POST",
-        data: {
-            _token: "{{ csrf_token() }}",
-            orders: orderIds // send as array
-        },
-        success: function(res) {
-            console.log("Status updated successfully");
-        },
-        error: function(xhr) {
-            console.log(xhr.responseText);
-            alert("Error updating orders");
+            $.ajax({
+                url: "/orders/change-status/" + section,
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    orders: orderIds // send as array
+                },
+                success: function(res) {
+                    console.log("Status updated successfully");
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText);
+                    alert("Error updating orders");
+                }
+            });
         }
-    });
-}
 
 
         function updateTracking() {
@@ -2298,47 +2417,46 @@ function markAsShipped(orderId, section) {
         function goBack() {
             window.history.back();
         }
+    </script>
 
-</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
+            const url = "https://portal.bntk.eu/get-shipping-options" +
+                "?order_id={{ $order->id }}" +
+                "&order_number={{ urlencode($order->order_number) }}" +
+                "&weight={{ urlencode($order->package_weight_grams) }}" +
+                "&postcode={{ urlencode($order->shipping_postcode) }}" +
+                "&country={{ urlencode($order->shipping_country) }}";
 
-    const url = "https://portal.bntk.eu/get-shipping-options" +
-        "?order_id={{ $order->id }}" +
-        "&order_number={{ urlencode($order->order_number) }}" +
-        "&weight={{ urlencode($order->package_weight_grams) }}" +
-        "&postcode={{ urlencode($order->shipping_postcode) }}" +
-        "&country={{ urlencode($order->shipping_country) }}";
+            fetch(url, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && Array.isArray(data.data)) {
+                        renderCarriers(data.data); // ✅ FIXED
+                    } else {
+                        alert('No shipping options available');
+                    }
+                })
+                .catch(console.error);
+        });
 
-    fetch(url, {
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success && Array.isArray(data.data)) {
-            renderCarriers(data.data);   // ✅ FIXED
-        } else {
-            alert('No shipping options available');
-        }
-    })
-    .catch(console.error);
-});
+        let selectedCarrier = null;
 
-let selectedCarrier = null;
+        function renderCarriers(carriers) {
+            const grid = document.getElementById('carrierGrid');
+            grid.innerHTML = '';
 
-function renderCarriers(carriers) {
-    const grid = document.getElementById('carrierGrid');
-    grid.innerHTML = '';
+            carriers.forEach((carrier, index) => {
+                const card = document.createElement('div');
+                card.className = 'carrier-card' + (index === 0 ? ' selected' : '');
+                card.onclick = () => selectCarrier(carrier, card);
 
-    carriers.forEach((carrier, index) => {
-        const card = document.createElement('div');
-        card.className = 'carrier-card' + (index === 0 ? ' selected' : '');
-        card.onclick = () => selectCarrier(carrier, card);
-
-        card.innerHTML = `
+                card.innerHTML = `
             <div class="carrier-header">
                 <div class="carrier-logo">🚚</div>
                 <div class="carrier-info">
@@ -2374,81 +2492,81 @@ function renderCarriers(carriers) {
             </div>
         `;
 
-        grid.appendChild(card);
+                grid.appendChild(card);
 
-        if (index === 0) selectedCarrier = carrier;
-    });
-}
-
-function selectCarrier(carrier, el) {
-    document.querySelectorAll('.carrier-card').forEach(c => c.classList.remove('selected'));
-    el.classList.add('selected');
-    selectedCarrier = carrier;
-}
-
-function generateSendcloudLabel() {
-    
-    // Disable button and show loading text
-    const btn = document.getElementById('generateLabelBtn');
-    btn.disabled = true;
-    const originalText = btn.innerHTML;
-    btn.innerHTML = '⏳ Generating Label...';
-    
-    if (!selectedCarrier) {
-        alert('Please select a shipping carrier');
-        return;
-    }
-
-    const payload = {
-        order_id: "{{ $order->id }}",
-        marketplace_order_id: "{{ $order->marketplace_order_id }}",
-        marketplace_type: "{{ $order->marketplace_type }}",
-
-        customer_name: "{{ addslashes($order->shipping_name) }}",
-        customer_email: "{{ $order->customer_email }}",
-
-        address_line_1: "{{ addslashes($order->shipping_address_1) }}",
-        address_line_2: "{{ addslashes($order->shipping_address_2) }}",
-        city: "{{ addslashes($order->shipping_city) }}",
-        postal_code: "{{ $order->shipping_postcode }}",
-        country_code: "{{ $order->shipping_country }}",
-
-        weight: "{{ $order->package_weight_grams }}",
-
-        shipping_method_id: selectedCarrier.method_id,
-        carrier: selectedCarrier.carrier
-    };
-    
-    const query = new URLSearchParams(payload).toString();
-
-    fetch("{{ route('create-shipping-label') }}?" + query, {
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
+                if (index === 0) selectedCarrier = carrier;
+            });
         }
-    }).then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                window.location.href = data.pdf_url;
-                // alert('✅ Shipping label created successfully');
-                console.log('Label response:', data.data);
-            } else {
-                alert('❌ Failed to create shipping label');
-                console.error(data);
-            }
-        })
-        .catch(err => {
-            console.error('Label error:', err);
-            alert('Something went wrong while creating label');
-        }).finally(() => {
-        // Re-enable button and restore original text
-        btn.disabled = false;
-        btn.innerHTML = originalText;
-    });
-    }
 
-</script>
+        function selectCarrier(carrier, el) {
+            document.querySelectorAll('.carrier-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            selectedCarrier = carrier;
+        }
+
+        function generateSendcloudLabel() {
+
+            // Disable button and show loading text
+            const btn = document.getElementById('generateLabelBtn');
+            btn.disabled = true;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '⏳ Generating Label...';
+
+            if (!selectedCarrier) {
+                alert('Please select a shipping carrier');
+                return;
+            }
+
+            const payload = {
+                order_id: "{{ $order->id }}",
+                marketplace_order_id: "{{ $order->marketplace_order_id }}",
+                marketplace_type: "{{ $order->marketplace_type }}",
+
+                customer_name: "{{ addslashes($order->shipping_name) }}",
+                customer_email: "{{ $order->customer_email }}",
+
+                address_line_1: "{{ addslashes($order->shipping_address_1) }}",
+                address_line_2: "{{ addslashes($order->shipping_address_2) }}",
+                city: "{{ addslashes($order->shipping_city) }}",
+                postal_code: "{{ $order->shipping_postcode }}",
+                country_code: "{{ $order->shipping_country }}",
+
+                weight: "{{ $order->package_weight_grams }}",
+
+                shipping_method_id: selectedCarrier.method_id,
+                carrier: selectedCarrier.carrier
+            };
+
+            const query = new URLSearchParams(payload).toString();
+
+            fetch("{{ route('create-shipping-label') }}?" + query, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                }).then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = data.pdf_url;
+                        // alert('✅ Shipping label created successfully');
+                        console.log('Label response:', data.data);
+                    } else {
+                        alert('❌ Failed to create shipping label');
+                        console.error(data);
+                    }
+                })
+                .catch(err => {
+                    console.error('Label error:', err);
+                    alert('Something went wrong while creating label');
+                }).finally(() => {
+                    // Re-enable button and restore original text
+                    btn.disabled = false;
+                    btn.innerHTML = originalText;
+                });
+        }
+    </script>
 
 
 
 </body>
+
 </html>
