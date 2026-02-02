@@ -2102,29 +2102,31 @@
                         <script>
                             document.addEventListener('DOMContentLoaded', () => {
 
-                                const updateField = (orderId, field, value) => {
-                                    fetch('https://portal.bntk.eu/update-marketplace-order', {
-                                            method: 'POST',
-                                            headers: {
-                                                'Content-Type': 'application/json',
-                                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                                            },
-                                            body: JSON.stringify({
-                                                marketplace_order_id: orderId,
-                                                field: field,
-                                                value: value
-                                            })
-                                        })
-                                        .then(res => res.json())
-                                        .then(data => {
-                                            if (data.success) {
-                                                console.log(`${field} updated for order ${orderId}`);
-                                            } else {
-                                                console.error(`Failed to update ${field} for order ${orderId}`);
-                                            }
-                                        })
-                                        .catch(err => console.error(err));
-                                }
+const updateField = (orderId, field, value) => {
+    fetch('./update-marketplace-order', {
+        method: 'POST',
+        credentials: 'same-origin', // important to send cookies/session
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': "{{ csrf_token() }}" // correct CSRF header
+        },
+        body: JSON.stringify({
+            marketplace_order_id: orderId,
+            field: field,
+            value: value
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            console.log(`${field} updated for order ${orderId}`);
+        } else {
+            console.error(`Failed to update ${field} for order ${orderId}`);
+        }
+    })
+    .catch(err => console.error(err));
+}
+
 
                                 // Track Code input
                                 document.querySelectorAll('.track-input').forEach(input => {

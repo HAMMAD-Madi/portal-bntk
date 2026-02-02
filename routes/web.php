@@ -61,5 +61,4 @@ Route::post('/update-location', [ProductController::class, 'updateLocation'])->n
 Route::post('/update-retired', [ProductController::class, 'updateRetired'])->name('update-retired');
 Route::post('/update-lock-price', [ProductController::class, 'updateLockPrice'])->name('update-lock-price');
 
-Route::post('/update-marketplace-order', [OrderController::class, 'updateTrackOrTraceCodeForOrder'])
-    ->name('update.marketplace.order');
+Route::post('/shipping-detail/update-marketplace-order', [OrderController::class, 'updateTrackOrTraceCodeForOrder'])->name('update.marketplace.order');
