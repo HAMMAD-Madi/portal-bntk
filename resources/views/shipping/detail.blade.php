@@ -2103,12 +2103,11 @@
                             document.addEventListener('DOMContentLoaded', () => {
 
                                 const updateField = (orderId, field, value) => {
-                                    fetch('{{route("update.marketplace.order")}}', {
+                                    fetch('./update-marketplace-order', {
                                             method: 'POST',
-                                            credentials: 'same-origin', // important to send cookies/session
                                             headers: {
                                                 'Content-Type': 'application/json',
-                                                'X-CSRF-TOKEN': "{{ csrf_token() }}" // correct CSRF header
+                                                'X-CSRF-TOKEN': '<?= csrf_token(); ?>'
                                             },
                                             body: JSON.stringify({
                                                 marketplace_order_id: orderId,

@@ -215,7 +215,8 @@ class OrderController extends Controller
             ->update([$request->field => $request->value]);
 
         return response()->json([
-            'success' => $updated ? true : false
+            'success' => true,
+            'message' => 'Updated successfully!',
         ]);
     }
 }
