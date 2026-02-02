@@ -2103,7 +2103,7 @@
                             document.addEventListener('DOMContentLoaded', () => {
 
                                 const updateField = (orderId, field, value) => {
-                                    fetch('{{ route("update.marketplace.order") }}', {
+                                    fetch('https://portal.bntk.eu/update-marketplace-order', {
                                             method: 'POST',
                                             headers: {
                                                 'Content-Type': 'application/json',
