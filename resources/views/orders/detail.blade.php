@@ -1010,6 +1010,16 @@
                 <div class="header-actions">
                     <!--<button class="header-btn">← Details</button>-->
                     <!--<button class="header-btn">✉ Messages</button>-->
+                    @if($order[0]->status == "cancelled")
+                        <button class="btn" disabled style="background-color:#6b7280; color:#fff; cursor:not-allowed; opacity:0.7;">Cancelled</button>
+                    @else
+                        <form action="{{ route('orders.cancelOrderRstoreItems', $order[0]->id) }}" method="POST" style="display: inline;">
+                            @csrf
+                            <input name="marketplace_order_id" type="hidden" value="{{$order[0]->marketplace_order_id}}">
+                            <button style="background-color:red;" class="header-btn">Cancel Order & Restore Items</button>
+                        </form>
+                    @endif
+
                     <form action="{{ route('orders.markAsNextStatus', $order[0]->id) }}" method="POST" style="display: inline;">
                         @csrf
                         <input name="order_group" type="hidden" value="{{ $order[0]->order_group }}">
@@ -1418,6 +1428,10 @@
                                     const row = pickingItems[currentIndex];
                                     const cells = row.querySelectorAll('td');
 
+                                    const itemId = row.dataset.id;
+                                    const isPicked = row.dataset.picked === '1';
+                                    const quantityValue = cells[9].innerText;
+
                                     const itemName = cells[1].innerText;
                                     const imageUrl = cells[2].querySelector('img').src;
                                     const itemNo = cells[3].innerText;
@@ -1426,7 +1440,6 @@
                                     const color = cells[6].innerText;
                                     const category = cells[7].innerText;
                                     const condition = cells[8].innerText.trim().toLowerCase();
-                                    const quantity = cells[9].innerText;
                                     const price = cells[10].innerText;
 
                                     document.getElementById('pickingProgress').innerText =
@@ -1435,31 +1448,95 @@
                                     document.getElementById('pickingBody').innerHTML = `
                                         <div class="picking-layout">
                                             <div class="picking-image">
-                                                <img src="${imageUrl}" alt="Item image">
+                                                <img src="${imageUrl}">
                                                 <span class="image-url">${imageUrl}</span>
                                             </div>
+
                                             <div class="picking-info">
                                                 <div class="picking-title">${itemName}</div>
-                                                <div class="picking-location">
-                                                    📍 Location: ${location}
-                                                </div>
+
+                                                <div class="picking-location">📍 Location: ${location}</div>
+
                                                 <div class="picking-meta">
                                                     <div><strong>Item No</strong><br>${itemNo}</div>
                                                     <div><strong>Item Type</strong><br>${itemType}</div>
                                                     <div><strong>Color</strong><br>${color}</div>
                                                     <div><strong>Category</strong><br>${category}</div>
+
                                                     <div>
                                                         <strong>Condition</strong><br>
                                                         <span class="condition-badge ${
                                                             condition === 'new' ? 'condition-new' : 'condition-used'
                                                         }">${condition}</span>
                                                     </div>
-                                                    <div><strong>Quantity</strong><br>${quantity}</div>
-                                                    <div class="full"><strong>Price</strong><br>${price}</div>
+
+                                                    <!-- ✅ QUANTITY EDITABLE -->
+                                                    <div>
+                                                        <strong>Quantity</strong><br>
+                                                        <input type="number" id="quantityInput" value="${quantityValue}" min="0" style="width:100%;padding:6px;border-radius:6px;border:1px solid #ccc;">
+                                                    </div>
+
+                                                    <div><strong>Price</strong><br>${price}</div>
+
+                                                    <!-- ✅ PICKED CHECKBOX -->
+                                                    <div class="full">
+                                                        <label style="display:flex;align-items:center;gap:10px;font-weight:700;">
+                                                            <input type="checkbox" id="pickedCheckbox" ${isPicked ? 'checked' : ''}>
+                                                            Picked
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     `;
+
+                                    // 🔁 SAVE PICKED STATUS
+                                    document.getElementById('pickedCheckbox').addEventListener('change', function() {
+                                        const pickedValue = this.checked ? 1 : 0;
+
+                                        fetch("https://portal.bntk.eu/update-order-item-is-picked", {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/json',
+                                                    'X-CSRF-TOKEN': '<?= csrf_token(); ?>'
+                                                },
+                                                body: JSON.stringify({
+                                                    id: itemId,
+                                                    is_picked: pickedValue
+                                                })
+                                            })
+                                            .then(() => {
+                                                row.dataset.picked = pickedValue;
+                                            })
+                                            .catch(() => {
+                                                alert('Failed to update pick status');
+                                                this.checked = !this.checked;
+                                            });
+                                    });
+
+                                    // 🔁 SAVE QUANTITY
+                                    document.getElementById('quantityInput').addEventListener('change', function() {
+                                        const newQuantity = this.value;
+
+                                        fetch("https://portal.bntk.eu/update-order-item-quantity", {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/json',
+                                                    'X-CSRF-TOKEN': '<?= csrf_token(); ?>'
+                                                },
+                                                body: JSON.stringify({
+                                                    id: itemId,
+                                                    quantity: newQuantity
+                                                })
+                                            })
+                                            .then(() => {
+                                                cells[9].innerText = newQuantity; // update table
+                                            })
+                                            .catch(() => {
+                                                alert('Failed to update quantity');
+                                                this.value = quantityValue;
+                                            });
+                                    });
 
                                     document.getElementById('prevBtn').style.display =
                                         currentIndex === 0 ? 'none' : 'inline-block';
@@ -1532,7 +1609,13 @@
                         </thead>
                         <tbody id="partsTableBody">
                             @foreach ($orderItems as $orderItem)
-                            <tr data-location="A1-B2" data-route-order="1" data-original-index="0">
+                            <tr
+                                data-id="{{ $orderItem->id }}"
+                                data-picked="{{ $orderItem->is_picked ?? 0 }}"
+                                data-location="A1-B2"
+                                data-route-order="1"
+                                data-original-index="0">
+
                                 <td class="checkbox-cell">
                                     <input type="checkbox" class="item-checkbox" onchange="updateProgress()" data-part="4081b">
                                 </td>

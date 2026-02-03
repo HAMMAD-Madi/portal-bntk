@@ -110,6 +110,28 @@ class OrderController extends Controller
         return view('orders/detail', compact('order', 'orderItems'));
     }
 
+    public function update_order_item_is_picked(Request $request)
+    {
+        DB::table('marketplaces_order_items')
+            ->where('id', $request->id)
+            ->update([
+                'is_picked' => $request->is_picked
+            ]);
+
+        return response()->json(['success' => true]);
+    }
+
+    public function update_order_item_quantity(Request $request)
+    {
+        DB::table('marketplaces_order_items')
+            ->where('id', $request->id)
+            ->update([
+                'quantity' => $request->quantity
+            ]);
+
+        return response()->json(['success' => true]);
+    }
+
     public function mark_as_next_status($orderId, Request $request)
     {
         if ($request->order_group == "waiting_payment") {
@@ -218,5 +240,37 @@ class OrderController extends Controller
             'success' => true,
             'message' => 'Updated successfully!',
         ]);
+    }
+
+    public function cancel_order_restore_items($orderId, Request $request)
+    {
+        DB::table('marketplaces_orders')
+            ->where('marketplace_order_id', $request->marketplace_order_id)
+            ->update([
+                'status' => 'cancelled',
+                'updated_at' => now(),
+                'cancelled_at' => now(),
+            ]);
+
+        $all_items = DB::table('marketplaces_order_items')
+            ->where('marketplace_order_id', $request->marketplace_order_id)
+            ->get();
+
+        foreach ($all_items as $item) {
+            $stock_to_be_update = $item->quantity;
+
+            // Get current stock
+            $currentStock = DB::table('products')
+                ->where('id', $item->inventory_id)
+                ->value('stock'); // fetch single value
+
+            // Update stock
+            DB::table('products')
+                ->where('id', $item->inventory_id)
+                ->update([
+                    'stock' => $currentStock + $stock_to_be_update,
+                ]);
+        }
+        return redirect()->back();
     }
 }

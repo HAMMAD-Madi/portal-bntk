@@ -25,9 +25,11 @@ Route::post('/scan-feature-save', [ProductController::class, 'scanFeatureSave'])
 
 Route::get('/all-orders', [OrderController::class, 'orders'])->middleware('auth');
 Route::get('/order-detail/{any}', [OrderController::class, 'order_detail'])->middleware('auth');
+Route::post('/update-order-item-is-picked', [OrderController::class, 'update_order_item_is_picked'])->middleware('auth');
+Route::post('/update-order-item-quantity', [OrderController::class, 'update_order_item_quantity'])->middleware('auth');;
 // Route::get('/mark-as-paid/{any}', [OrderController::class, 'mark_as_paid'])->name('mark-as-paid')->middleware('auth');
 Route::post('/orders/{id}/mark-as-next-status', [OrderController::class, 'mark_as_next_status'])->name('orders.markAsNextStatus')->middleware('auth');
-
+Route::post('/orders/{id}/cancel-order-restore-items', [OrderController::class, 'cancel_order_restore_items'])->name('orders.cancelOrderRstoreItems')->middleware('auth');
 
 Route::get('/all-shippings', [ShippingController::class, 'shippings'])->middleware('auth');
 Route::get('/shipping-detail/{any}', [ShippingController::class, 'shipping_detail'])->middleware('auth');

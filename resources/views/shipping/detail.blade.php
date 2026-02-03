@@ -2056,10 +2056,10 @@
                                 <input type="text" class="track-input" value="{{ $order->track_code ?? '' }}" placeholder="Track Code">
                             </div>
 
-                            <div class="input-group">
+                            <!-- <div class="input-group">
                                 <label>Trace Code</label>
                                 <input type="text" class="trace-input" value="{{ $order->trace_code ?? '' }}" placeholder="Trace Code">
-                            </div>
+                            </div> -->
                         </div>
                         <style>
                             .order-inputs {
