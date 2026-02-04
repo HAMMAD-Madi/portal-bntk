@@ -1011,13 +1011,20 @@
                     <!--<button class="header-btn">← Details</button>-->
                     <!--<button class="header-btn">✉ Messages</button>-->
                     @if($order[0]->status == "cancelled")
-                        <button class="btn" disabled style="background-color:#6b7280; color:#fff; cursor:not-allowed; opacity:0.7;">Cancelled</button>
+                    <button class="btn" disabled style="background-color:#6b7280; color:#fff; cursor:not-allowed; opacity:0.7;">Cancelled</button>
                     @else
-                        <form action="{{ route('orders.cancelOrderRstoreItems', $order[0]->id) }}" method="POST" style="display: inline;">
-                            @csrf
-                            <input name="marketplace_order_id" type="hidden" value="{{$order[0]->marketplace_order_id}}">
-                            <button style="background-color:red;" class="header-btn">Cancel Order & Restore Items</button>
-                        </form>
+                    <form
+                        action="{{ route('orders.cancelOrderRstoreItems', $order[0]->id) }}"
+                        method="POST"
+                        style="display: inline;"
+                        onsubmit="return confirm('Are you sure you want to cancel this order and restore all items? This action cannot be undone.')">
+                        @csrf
+                        <input name="marketplace_order_id" type="hidden" value="{{ $order[0]->marketplace_order_id }}">
+                        <button style="background-color:red;" class="header-btn">
+                            Cancel Order & Restore Items
+                        </button>
+                    </form>
+
                     @endif
 
                     <form action="{{ route('orders.markAsNextStatus', $order[0]->id) }}" method="POST" style="display: inline;">
@@ -1431,6 +1438,7 @@
                                     const itemId = row.dataset.id;
                                     const isPicked = row.dataset.picked === '1';
                                     const quantityValue = cells[9].innerText;
+                                    const stockValue = cells[10].innerText;
 
                                     const itemName = cells[1].innerText;
                                     const imageUrl = cells[2].querySelector('img').src;
@@ -1440,7 +1448,7 @@
                                     const color = cells[6].innerText;
                                     const category = cells[7].innerText;
                                     const condition = cells[8].innerText.trim().toLowerCase();
-                                    const price = cells[10].innerText;
+                                    const price = cells[11].innerText;
 
                                     document.getElementById('pickingProgress').innerText =
                                         `Item ${currentIndex + 1} of ${pickingItems.length}`;
@@ -1450,7 +1458,13 @@
                                             <div class="picking-image">
                                                 <img src="${imageUrl}">
                                                 <span class="image-url">${imageUrl}</span>
+                                                 <!-- ✅ STOCK EDITABLE -->
+                                                <div>
+                                                    <strong>Stock</strong><br>
+                                                    <input type="number" id="stockInput" value="${stockValue}" min="0" style="width:100%;padding:6px;border-radius:6px;border:1px solid #ccc;">
+                                                </div>
                                             </div>
+                                           
 
                                             <div class="picking-info">
                                                 <div class="picking-title">${itemName}</div>
@@ -1518,7 +1532,7 @@
                                     document.getElementById('quantityInput').addEventListener('change', function() {
                                         const newQuantity = this.value;
 
-                                        fetch("https://portal.bntk.eu/update-order-item-quantity", {
+                                        fetch("http://localhost/portal-bntk/public/update-order-item-quantity", {
                                                 method: 'POST',
                                                 headers: {
                                                     'Content-Type': 'application/json',
@@ -1535,6 +1549,30 @@
                                             .catch(() => {
                                                 alert('Failed to update quantity');
                                                 this.value = quantityValue;
+                                            });
+                                    });
+
+                                    // 🔁 UPDATE PRODUCT STOCK
+                                    document.getElementById('stockInput').addEventListener('change', function() {
+                                        const newStock = this.value;
+
+                                        fetch("http://localhost/portal-bntk/public/update-product-stock", {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/json',
+                                                    'X-CSRF-TOKEN': '<?= csrf_token(); ?>'
+                                                },
+                                                body: JSON.stringify({
+                                                    id: itemId,
+                                                    stock: newStock
+                                                })
+                                            })
+                                            .then(() => {
+                                                cells[10].innerText = newStock; // update table
+                                            })
+                                            .catch(() => {
+                                                alert('Failed to update quantity');
+                                                this.value = stockValue;
                                             });
                                     });
 
@@ -1604,13 +1642,14 @@
                                 <th>Category</th>
                                 <th>Condition</th>
                                 <th>Qty</th>
+                                <th>Stock</th>
                                 <th>Price</th>
                             </tr>
                         </thead>
                         <tbody id="partsTableBody">
                             @foreach ($orderItems as $orderItem)
                             <tr
-                                data-id="{{ $orderItem->id }}"
+                                data-id="{{ $orderItem->inventory_id }}"
                                 data-picked="{{ $orderItem->is_picked ?? 0 }}"
                                 data-location="A1-B2"
                                 data-route-order="1"
@@ -1649,6 +1688,7 @@
                                     <span class="condition-badge {{$orderItem->condition_type == 'new' ? 'condition-new' : 'condition-used'}} ">{{ $orderItem->condition_type }}</span>
                                 </td>
                                 <td style="text-align:left;" class="qty-cell">{{ $orderItem->quantity }}</td>
+                                <td style="text-align:left;" class="stock-cell">{{ $orderItem->stock }}</td>
                                 <td style="text-align:left;" class="price-cell">€{{ $orderItem->total_price }}</td>
                             </tr>
                             @endforeach

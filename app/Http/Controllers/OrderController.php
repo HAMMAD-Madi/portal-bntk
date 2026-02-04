@@ -102,11 +102,18 @@ class OrderController extends Controller
     {
         $order = DB::table('marketplaces_orders')->where('marketplace_order_id', $OrderId)->get();
         // $orderItems = DB::table('marketplaces_order_items')->where('marketplace_order_id', $OrderId)->get();
-        $orderItems = DB::table('marketplaces_order_items')
-            ->where('marketplace_order_id', $OrderId)
-            ->orderBy('condition_type', 'asc')
-            ->orderBy('color_name', 'asc')
+        $orderItems = DB::table('marketplaces_order_items as moi')
+            ->join('products as p', 'p.id', '=', 'moi.inventory_id')
+            ->where('moi.marketplace_order_id', $OrderId)
+            ->orderBy('moi.condition_type', 'asc')
+            ->orderBy('p.color_name', 'asc')
+            ->select(
+                'moi.*',
+                'p.stock',
+                'p.id as product_id'
+            )
             ->get();
+            // print_r($orderItems);die;
         return view('orders/detail', compact('order', 'orderItems'));
     }
 
@@ -127,6 +134,17 @@ class OrderController extends Controller
             ->where('id', $request->id)
             ->update([
                 'quantity' => $request->quantity
+            ]);
+
+        return response()->json(['success' => true]);
+    }
+
+    public function update_product_stock(Request $request)
+    {
+        DB::table('products')
+            ->where('id', $request->id)
+            ->update([
+                'stock' => $request->stock
             ]);
 
         return response()->json(['success' => true]);
