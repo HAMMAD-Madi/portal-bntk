@@ -17,6 +17,7 @@ Route::get('/logout', [AuthController::class,'logout'])->name('logout');
 
 
 Route::get('/check-product', [ProductController::class, 'check_product'])->name('check-product');
+Route::get('/checkini', [ProductController::class, 'inichecking'])->name('checkini');
 // Route::get('/scan-feature', [ProductController::class, 'scanFeature']);
 Route::get('/', [HomeController::class, 'index'])->middleware('auth');
 Route::get('/home', [HomeController::class, 'index'])->middleware('auth');

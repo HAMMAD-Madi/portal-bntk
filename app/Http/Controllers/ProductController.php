@@ -2069,4 +2069,12 @@ class ProductController extends Controller
 
         return redirect()->back()->with('success', 'Item saved successfully!');
     }
+
+    public function inichecking() {
+        dd(
+            ini_get('upload_max_filesize'),
+            ini_get('post_max_size'),
+            $_SERVER['CONTENT_LENGTH'] ?? null,
+        );
+    }
 }
