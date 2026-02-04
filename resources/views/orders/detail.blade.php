@@ -1532,7 +1532,7 @@
                                     document.getElementById('quantityInput').addEventListener('change', function() {
                                         const newQuantity = this.value;
 
-                                        fetch("http://localhost/portal-bntk/public/update-order-item-quantity", {
+                                        fetch("https://portal.bntk.eu/update-order-item-quantity", {
                                                 method: 'POST',
                                                 headers: {
                                                     'Content-Type': 'application/json',
@@ -1556,7 +1556,7 @@
                                     document.getElementById('stockInput').addEventListener('change', function() {
                                         const newStock = this.value;
 
-                                        fetch("http://localhost/portal-bntk/public/update-product-stock", {
+                                        fetch("https://portal.bntk.eu/update-product-stock", {
                                                 method: 'POST',
                                                 headers: {
                                                     'Content-Type': 'application/json',
