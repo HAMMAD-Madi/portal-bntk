@@ -1207,258 +1207,274 @@ class ProductController extends Controller
 
     public function update_from_overview_page(Request $request, $id)
     {
-        // print_r($request->all());die;
-        $request->validate([
-            // 'gtin' => 'required|string',
-            // 'title' => 'required|string',
-            // 'quantity' => 'required|integer',
-            // 'price' => 'required|numeric',
-            // 'category' => 'required|exists:categories,id',
-            // 'condition' => 'nullable|string',
-            // 'mainImage' => 'nullable|string',
-            // 'gallery' => 'nullable|array',
-            // 'gallery.*' => 'nullable|string',
-            // 'imageurl' => 'nullable|string',
-            // 'location_id' => 'nullable|exists:stock_locations,id',
-            // 'shelf_position' => 'nullable|string|max:50'
-        ]);
+        try {
+            // print_r($request->all());die;
+            $request->validate([
+                // 'gtin' => 'required|string',
+                // 'title' => 'required|string',
+                // 'quantity' => 'required|integer',
+                // 'price' => 'required|numeric',
+                // 'category' => 'required|exists:categories,id',
+                // 'condition' => 'nullable|string',
+                // 'mainImage' => 'nullable|string',
+                // 'gallery' => 'nullable|array',
+                // 'gallery.*' => 'nullable|string',
+                // 'imageurl' => 'nullable|string',
+                // 'location_id' => 'nullable|exists:stock_locations,id',
+                // 'shelf_position' => 'nullable|string|max:50'
+            ]);
 
-        $gtin = $request->input('gtin');
-        $product = Product::withTrashed()->where('id', $id)->first();
-        if (!$product) {
-            $product = new Product();
-        }
-
-        if ($product->is_trashed) {
-            $product->restore();
-        }
-
-
-        if ($request->hasFile('main_image')) {
-            $mainImage = $request->file('main_image');
-            $path = $mainImage->store('inventory_images', 'public');
-            $product->main_image = '/public/storage/' . $path;
-        }
-
-        if ($request->filled('gallery_images')) {
-            $_gallery = [];
-            $galleryArray = json_decode($request->input('gallery_images'), true);
-
-            foreach ($galleryArray as $base64) {
-                if (Str::startsWith($base64, 'data:image')) {
-                    $image_parts = explode(";base64,", $base64);
-                    $image_type = explode("image/", $image_parts[0])[1];
-                    $image_base64 = base64_decode($image_parts[1]);
-
-                    $fileName = uniqid() . '.' . $image_type;
-                    $tmpPath = sys_get_temp_dir() . '/' . $fileName;
-                    file_put_contents($tmpPath, $image_base64);
-
-                    $uploadedFile = new UploadedFile($tmpPath, $fileName, null, null, true);
-                    $path = $uploadedFile->store('inventory_images', 'public');
-
-                    $_gallery[] = '/public/storage/' . $path;
-                    @unlink($tmpPath);
-                } else {
-                    $_gallery[] = $base64;
-                }
+            $gtin = $request->input('gtin');
+            $product = Product::withTrashed()->where('id', $id)->first();
+            if (!$product) {
+                $product = new Product();
             }
 
-            $product->gallery_images = $_gallery;
-        }
-
-
-        // Vinted
-        if ($request->hasFile('vinted_main_image')) {
-            $mainImage = $request->file('vinted_main_image');
-            $path = $mainImage->store('inventory_images', 'public');
-            $product->vinted_main_image = '/public/storage/' . $path;
-        }
-
-        if ($request->filled('vinted_gallery_images')) {
-            $_vinted_gallery = [];
-            $vinted_galleryArray = json_decode($request->input('vinted_gallery_images'), true);
-
-            foreach ($vinted_galleryArray as $base64) {
-                if (Str::startsWith($base64, 'data:image')) {
-                    $image_parts = explode(";base64,", $base64);
-                    $image_type = explode("image/", $image_parts[0])[1];
-                    $image_base64 = base64_decode($image_parts[1]);
-
-                    $fileName = uniqid() . '.' . $image_type;
-                    $tmpPath = sys_get_temp_dir() . '/' . $fileName;
-                    file_put_contents($tmpPath, $image_base64);
-
-                    $uploadedFile = new UploadedFile($tmpPath, $fileName, null, null, true);
-                    $path = $uploadedFile->store('inventory_images', 'public');
-
-                    $_vinted_gallery[] = '/public/storage/' . $path;
-                    @unlink($tmpPath);
-                } else {
-                    $_vinted_gallery[] = $base64;
-                }
+            if ($product->is_trashed) {
+                $product->restore();
             }
 
-            $product->vinted_gallery_images = $_vinted_gallery;
+
+            if ($request->hasFile('main_image')) {
+                $mainImage = $request->file('main_image');
+                $path = $mainImage->store('inventory_images', 'public');
+                $product->main_image = '/public/storage/' . $path;
+            }
+
+            if ($request->filled('gallery_images')) {
+                $_gallery = [];
+                $galleryArray = json_decode($request->input('gallery_images'), true);
+
+                foreach ($galleryArray as $base64) {
+                    if (Str::startsWith($base64, 'data:image')) {
+                        $image_parts = explode(";base64,", $base64);
+                        $image_type = explode("image/", $image_parts[0])[1];
+                        $image_base64 = base64_decode($image_parts[1]);
+
+                        $fileName = uniqid() . '.' . $image_type;
+                        $tmpPath = sys_get_temp_dir() . '/' . $fileName;
+                        file_put_contents($tmpPath, $image_base64);
+
+                        $uploadedFile = new UploadedFile($tmpPath, $fileName, null, null, true);
+                        $path = $uploadedFile->store('inventory_images', 'public');
+
+                        $_gallery[] = '/public/storage/' . $path;
+                        @unlink($tmpPath);
+                    } else {
+                        $_gallery[] = $base64;
+                    }
+                }
+
+                $product->gallery_images = $_gallery;
+            }
+
+
+            // Vinted
+            if ($request->hasFile('vinted_main_image')) {
+                $mainImage = $request->file('vinted_main_image');
+                $path = $mainImage->store('inventory_images', 'public');
+                $product->vinted_main_image = '/public/storage/' . $path;
+            }
+
+            if ($request->filled('vinted_gallery_images')) {
+                $_vinted_gallery = [];
+                $vinted_galleryArray = json_decode($request->input('vinted_gallery_images'), true);
+
+                foreach ($vinted_galleryArray as $base64) {
+                    if (Str::startsWith($base64, 'data:image')) {
+                        $image_parts = explode(";base64,", $base64);
+                        $image_type = explode("image/", $image_parts[0])[1];
+                        $image_base64 = base64_decode($image_parts[1]);
+
+                        $fileName = uniqid() . '.' . $image_type;
+                        $tmpPath = sys_get_temp_dir() . '/' . $fileName;
+                        file_put_contents($tmpPath, $image_base64);
+
+                        $uploadedFile = new UploadedFile($tmpPath, $fileName, null, null, true);
+                        $path = $uploadedFile->store('inventory_images', 'public');
+
+                        $_vinted_gallery[] = '/public/storage/' . $path;
+                        @unlink($tmpPath);
+                    } else {
+                        $_vinted_gallery[] = $base64;
+                    }
+                }
+
+                $product->vinted_gallery_images = $_vinted_gallery;
+            }
+
+            // Vinted End        
+
+
+
+
+            $product->vinted_active = (($request->input('vinted_active') == NULL) ? 0 : 1);
+            $product->vinted_item_id = $request->input('vinted_item_id');
+            $product->vinted_bulk_amount = $request->input('vinted_bulk_amount');
+            $product->vinted_status = $request->input('vinted_status');
+
+            $product->item_no = $request->input('item_no');
+            $product->item_type = $request->input('item_type');
+            $product->completeness = $request->input('completeness');
+            $product->imageurl = $request->input('image_url');
+            $product->gtin = $request->input('ean');
+            $product->sku = $request->input('sku');
+            $product->title = $request->input('title');
+            $product->retain = $request->input('retain');
+            $product->weight = $request->input('weight');
+            $product->is_stock_room = $request->input('is_stock_room');
+            $product->stock_room_id = $request->input('stock_room_id');
+            $product->stock = $request->input('stock');
+            // $product->category_id = $request->input('category_id');
+            $product->color_id = $request->input('color_id');
+            $colordetail = DB::table('colors')->where('bricklink_id', $product->color_id)->get();
+            $product->color_name = $colordetail[0]->bricklink_name ?? null;
+
+
+            $product->condition = $request->input('condition') ?? "New";
+            $product->category = $request->input('category');
+            $product->bricklink_inventory_id = $request->input('bricklink_inventory_id');
+            $product->rebrickable_id = $request->input('rebrickable_id');
+
+            $product->dim_x = $request->input('dim_x');
+            $product->dim_y = $request->input('dim_y');
+            $product->dim_z = $request->input('dim_z');
+            $product->pieces = $request->input('pieces');
+            $product->year = $request->input('year');
+            $product->min_age = $request->input('min_age');
+            $product->description = $request->input('description');
+            $product->extended_description = $request->input('extended_description');
+            $product->set_minifigures = $request->input('set_minifigures');
+            $product->remarks = $request->input('remarks');
+
+            $product->price = $request->input('price');
+            $product->sell_price = $request->input('sell_price');
+            $product->purchase_price = $request->input('purchase_price');
+            $product->sale_rate = $request->input('sale_rate');
+            $product->tier_quantity1 = $request->input('tier_quantity1');
+            $product->tier_price1 = $request->input('tier_price1');
+            $product->tier_quantity2 = $request->input('tier_quantity2');
+            $product->tier_price2 = $request->input('tier_price2');
+            $product->tier_quantity3 = $request->input('tier_quantity3');
+            $product->tier_price3 = $request->input('tier_price3');
+            $product->currency = $request->input('currency');
+
+            $product->shopify_variant_id = $request->input('shopify_variant_id');
+            $product->shopify_product_id = $request->input('shopify_product_id');
+
+            $product->amazon_sku = $request->input('amazon_sku');
+            $product->amazon_price = $request->input('amazon_price');
+            $product->amazon_condition_type = $request->input('amazon_condition_type');
+            $product->amazon_fulfillment_channel = $request->input('amazon_fulfillment_channel');
+            $product->amazon_target_age_min = $request->input('amazon_target_age_min');
+            $product->amazon_listing_id = $request->input('amazon_listing_id');
+            $product->amazon_status = $request->input('amazon_status');
+            $product->amazon_last_sync = $request->input('amazon_last_sync');
+
+            $product->ebay_item_id = $request->input('ebay_item_id');
+            $product->ebay_price = $request->input('ebay_price');
+            $product->ebay_condition_id = $request->input('ebay_condition_id');
+            $product->ebay_category_id = $request->input('ebay_category_id');
+            $product->ebay_listing_type = $request->input('ebay_listing_type');
+            $product->ebay_listing_duration = $request->input('ebay_listing_duration');
+            $product->ebay_primary_image = $request->input('ebay_primary_image');
+            $product->ebay_item_specifics = $request->input('ebay_item_specifics');
+            $product->ebay_handling_time = $request->input('ebay_handling_time');
+            $product->ebay_sku = $request->input('ebay_sku');
+            $product->ebay_status = $request->input('ebay_status');
+            $product->ebay_last_sync = $request->input('ebay_last_sync');
+
+            $product->bol_active = $request->input('bol_active');
+            $product->bol_offerId = $request->input('bol_offerId');
+            $product->bol_price = $request->input('bol_price');
+            $product->bol_fulfilment_method = $request->input('bol_fulfilment_method');
+            $product->bol_delivery_code = $request->input('bol_delivery_code');
+
+            $product->woocommerce_parent_id = $request->input('woocommerce_parent_id');
+            $product->woocommerce_id = $request->input('woocommerce_id');
+            $product->bricklink_inventory_id = $request->input('bricklink_inventory_id');
+            $product->brickowl_id = $request->input('brickowl_id');
+            $product->element_id = $request->input('element_id');
+            $product->notifyvalues = $request->input('notifyvalues');
+            $product->notifyselected = $request->input('notifyselected');
+            $product->notifystatus = $request->input('notifystatus');
+            $product->bind_id = $request->input('bind_id');
+            $product->reserved_for = $request->input('reserved_for');
+            $product->date = $request->input('date');
+            $product->new_or_used = $request->input('new_or_used');
+            $product->upgrades = $request->input('upgrades');
+            $product->retired = (($request->input('retired') == NULL) ? 0 : 1);
+            $product->lock_price = (($request->input('lock_price') == NULL) ? 0 : 1);
+
+            $product->supplier = $request->input('supplier');
+            $product->stockSupplier = $request->input('stockSupplier');
+            $product->location_id = $request->input('location_id');
+            $product->lot_id = $request->input('lot_id');
+            $product->super_lot_id = $request->input('super_lot_id');
+            $product->super_lot_qty = $request->input('super_lot_qty');
+
+
+            //add location_id if provided
+            $product->location_id = $request->input('location_id', null);
+
+            /* 5. SAVE MULTIPLE CATEGORIES AS STRING ----------------------------- */
+            $categoryIDs = $request->input('category_id', []);   // array
+            // store like "3,7,12"
+            $product->category_id = implode(',', $categoryIDs);
+
+            $product->save();
+
+
+            // $product = Product::updateOrCreate(['gtin' => intval($gtin)], [
+            //     'gtin' => $gtin,
+            //     'title' => $request->input('title'),
+            //     'stock' => $request->input('quantity'),
+            //     'main_image' => $url,
+            //     'gallery_images' => $_gallery,
+            //     'price' => str_replace(',', '.', $request->input('price')),
+            //     'category_id' => $request->input('category')
+            // ]);
+
+            // if($request->input('meta') != null) {
+
+            //     $metaInputs = $request->input('meta');
+
+            //     $meta =  [];
+            //     foreach($metaInputs as $metaInput) {
+            //         $meta[$metaInput['key']] = ['value' => $metaInput['value']['value'], 'order' => $metaInput['value']['order']];
+            //     }
+            //     $meta = collect($meta);
+            //     $metasDiff = $product->getMeta()->diffKeys($meta);
+            //     // echo var_export($metasDiff->toArray(), true);
+            //     // exit();   
+            //     //$product->unsetMeta($metasDiff->keys()->toArray());
+
+
+            //     //$product->setMeta($meta->toArray());
+            //     $product->save();
+
+            // }
+            // echo 'was created: ' .  ($product->wasRecentlyCreated ? 'true' : 'false') . PHP_EOL;
+            // echo 'was changed: ' . ($product->wasChanged() ? 'true' : 'false') . PHP_EOL;
+
+            //$product->save();
+
+            return redirect()->back()->with('success', 'Product updated successfully');
+        } catch (\Throwable $e) {
+
+            // Log full error for debugging (recommended)
+            \Log::error('Product update failed', [
+                'error' => $e->getMessage(),
+                'file'  => $e->getFile(),
+                'line'  => $e->getLine(),
+            ]);
+
+            // Send ORIGINAL error message to view
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', $e->getMessage());
         }
-
-        // Vinted End        
-
-
-
-
-        $product->vinted_active = (($request->input('vinted_active') == NULL) ? 0 : 1);
-        $product->vinted_item_id = $request->input('vinted_item_id');
-        $product->vinted_bulk_amount = $request->input('vinted_bulk_amount');
-        $product->vinted_status = $request->input('vinted_status');
-
-        $product->item_no = $request->input('item_no');
-        $product->item_type = $request->input('item_type');
-        $product->completeness = $request->input('completeness');
-        $product->imageurl = $request->input('image_url');
-        $product->gtin = $request->input('ean');
-        $product->sku = $request->input('sku');
-        $product->title = $request->input('title');
-        $product->retain = $request->input('retain');
-        $product->weight = $request->input('weight');
-        $product->is_stock_room = $request->input('is_stock_room');
-        $product->stock_room_id = $request->input('stock_room_id');
-        $product->stock = $request->input('stock');
-        // $product->category_id = $request->input('category_id');
-        $product->color_id = $request->input('color_id');
-        $colordetail = DB::table('colors')->where('bricklink_id', $product->color_id)->get();
-        $product->color_name = $colordetail[0]->bricklink_name ?? null;
-
-
-        $product->condition = $request->input('condition') ?? "New";
-        $product->category = $request->input('category');
-        $product->bricklink_inventory_id = $request->input('bricklink_inventory_id');
-        $product->rebrickable_id = $request->input('rebrickable_id');
-
-        $product->dim_x = $request->input('dim_x');
-        $product->dim_y = $request->input('dim_y');
-        $product->dim_z = $request->input('dim_z');
-        $product->pieces = $request->input('pieces');
-        $product->year = $request->input('year');
-        $product->min_age = $request->input('min_age');
-        $product->description = $request->input('description');
-        $product->extended_description = $request->input('extended_description');
-        $product->set_minifigures = $request->input('set_minifigures');
-        $product->remarks = $request->input('remarks');
-
-        $product->price = $request->input('price');
-        $product->sell_price = $request->input('sell_price');
-        $product->purchase_price = $request->input('purchase_price');
-        $product->sale_rate = $request->input('sale_rate');
-        $product->tier_quantity1 = $request->input('tier_quantity1');
-        $product->tier_price1 = $request->input('tier_price1');
-        $product->tier_quantity2 = $request->input('tier_quantity2');
-        $product->tier_price2 = $request->input('tier_price2');
-        $product->tier_quantity3 = $request->input('tier_quantity3');
-        $product->tier_price3 = $request->input('tier_price3');
-        $product->currency = $request->input('currency');
-
-        $product->shopify_variant_id = $request->input('shopify_variant_id');
-        $product->shopify_product_id = $request->input('shopify_product_id');
-
-        $product->amazon_sku = $request->input('amazon_sku');
-        $product->amazon_price = $request->input('amazon_price');
-        $product->amazon_condition_type = $request->input('amazon_condition_type');
-        $product->amazon_fulfillment_channel = $request->input('amazon_fulfillment_channel');
-        $product->amazon_target_age_min = $request->input('amazon_target_age_min');
-        $product->amazon_listing_id = $request->input('amazon_listing_id');
-        $product->amazon_status = $request->input('amazon_status');
-        $product->amazon_last_sync = $request->input('amazon_last_sync');
-
-        $product->ebay_item_id = $request->input('ebay_item_id');
-        $product->ebay_price = $request->input('ebay_price');
-        $product->ebay_condition_id = $request->input('ebay_condition_id');
-        $product->ebay_category_id = $request->input('ebay_category_id');
-        $product->ebay_listing_type = $request->input('ebay_listing_type');
-        $product->ebay_listing_duration = $request->input('ebay_listing_duration');
-        $product->ebay_primary_image = $request->input('ebay_primary_image');
-        $product->ebay_item_specifics = $request->input('ebay_item_specifics');
-        $product->ebay_handling_time = $request->input('ebay_handling_time');
-        $product->ebay_sku = $request->input('ebay_sku');
-        $product->ebay_status = $request->input('ebay_status');
-        $product->ebay_last_sync = $request->input('ebay_last_sync');
-
-        $product->bol_active = $request->input('bol_active');
-        $product->bol_offerId = $request->input('bol_offerId');
-        $product->bol_price = $request->input('bol_price');
-        $product->bol_fulfilment_method = $request->input('bol_fulfilment_method');
-        $product->bol_delivery_code = $request->input('bol_delivery_code');
-
-        $product->woocommerce_parent_id = $request->input('woocommerce_parent_id');
-        $product->woocommerce_id = $request->input('woocommerce_id');
-        $product->bricklink_inventory_id = $request->input('bricklink_inventory_id');
-        $product->brickowl_id = $request->input('brickowl_id');
-        $product->element_id = $request->input('element_id');
-        $product->notifyvalues = $request->input('notifyvalues');
-        $product->notifyselected = $request->input('notifyselected');
-        $product->notifystatus = $request->input('notifystatus');
-        $product->bind_id = $request->input('bind_id');
-        $product->reserved_for = $request->input('reserved_for');
-        $product->date = $request->input('date');
-        $product->new_or_used = $request->input('new_or_used');
-        $product->upgrades = $request->input('upgrades');
-        $product->retired = (($request->input('retired') == NULL) ? 0 : 1);
-        $product->lock_price = (($request->input('lock_price') == NULL) ? 0 : 1);
-
-        $product->supplier = $request->input('supplier');
-        $product->stockSupplier = $request->input('stockSupplier');
-        $product->location_id = $request->input('location_id');
-        $product->lot_id = $request->input('lot_id');
-        $product->super_lot_id = $request->input('super_lot_id');
-        $product->super_lot_qty = $request->input('super_lot_qty');
-
-
-        //add location_id if provided
-        $product->location_id = $request->input('location_id', null);
-
-        /* 5. SAVE MULTIPLE CATEGORIES AS STRING ----------------------------- */
-        $categoryIDs = $request->input('category_id', []);   // array
-        // store like "3,7,12"
-        $product->category_id = implode(',', $categoryIDs);
-
-        $product->save();
-
-
-        // $product = Product::updateOrCreate(['gtin' => intval($gtin)], [
-        //     'gtin' => $gtin,
-        //     'title' => $request->input('title'),
-        //     'stock' => $request->input('quantity'),
-        //     'main_image' => $url,
-        //     'gallery_images' => $_gallery,
-        //     'price' => str_replace(',', '.', $request->input('price')),
-        //     'category_id' => $request->input('category')
-        // ]);
-
-        // if($request->input('meta') != null) {
-
-        //     $metaInputs = $request->input('meta');
-
-        //     $meta =  [];
-        //     foreach($metaInputs as $metaInput) {
-        //         $meta[$metaInput['key']] = ['value' => $metaInput['value']['value'], 'order' => $metaInput['value']['order']];
-        //     }
-        //     $meta = collect($meta);
-        //     $metasDiff = $product->getMeta()->diffKeys($meta);
-        //     // echo var_export($metasDiff->toArray(), true);
-        //     // exit();   
-        //     //$product->unsetMeta($metasDiff->keys()->toArray());
-
-
-        //     //$product->setMeta($meta->toArray());
-        //     $product->save();
-
-        // }
-        // echo 'was created: ' .  ($product->wasRecentlyCreated ? 'true' : 'false') . PHP_EOL;
-        // echo 'was changed: ' . ($product->wasChanged() ? 'true' : 'false') . PHP_EOL;
-
-        //$product->save();
-
-        return redirect()->back();
     }
     
     
