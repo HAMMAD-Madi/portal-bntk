@@ -1668,7 +1668,14 @@
                                         background-color: #4da653; /* slightly darker green */
                                     }
                                 </style>
-    
+
+                                <div class="sub-item" id="low-stock-item">
+                                    <a href="https://portal.bntk.eu/low-stock" class="nav-link" id="low-stock-link">
+                                        <span class="nav-icon">📊</span>
+                                        <span class="nav-text">Out/Low Stocks</span>
+                                    </a>
+                                </div>
+
                                 <!--<div class="sub-item">-->
                                 <!--    <a href="/voorraad/nieuw-product" class="nav-link">-->
                                 <!--        <span class="nav-icon">➕</span>-->
