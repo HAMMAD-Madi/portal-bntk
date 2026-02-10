@@ -2641,45 +2641,35 @@
                                 <span class="expand-icon">▶</span>
                             </a>
                             <div class="sub-items">
-                                <!-- HTML -->
-                                <div class="sub-item active" id="voorraad-overzicht-item">
+                                <div class="sub-item" id="voorraad-overzicht-item">
                                     <a href="https://portal.bntk.eu/overview" class="nav-link" id="voorraad-overzicht-link">
                                         <span class="nav-icon">📊</span>
                                         <span class="nav-text">Overzicht</span>
                                     </a>
                                 </div>
 
-                                <div class="sub-item" id="low-stock-item">
+                                <div class="sub-item active" id="low-stock-item">
                                     <a href="https://portal.bntk.eu/low-stock" class="nav-link" id="low-stock-link">
                                         <span class="nav-icon">📊</span>
                                         <span class="nav-text">Out/Low Stocks</span>
                                     </a>
                                 </div>
 
-                                <!-- Put this CSS in your head or your stylesheet -->
                                 <style>
-                                    /* Base look */
                                     .sub-item .nav-link {
                                         color: #374151;
-                                        /* dark gray */
                                         background-color: transparent;
                                         transition: all 0.2s ease-in-out;
                                     }
-
-                                    /* Active styles */
                                     .sub-item.active .nav-link,
                                     .nav-link[aria-current="page"] {
                                         color: #fff;
                                         background-color: #60B864 !important;
-                                        /* green */
                                         box-shadow: 0 2px 8px rgba(0, 123, 255, 0.12);
                                     }
-
-                                    /* Hover styles */
                                     .sub-item .nav-link:hover {
                                         color: black;
                                         background-color: #4da653;
-                                        /* slightly darker green */
                                     }
                                 </style>
                                 <div class="sub-item">
@@ -2717,8 +2707,8 @@
         <div class="main-content">
             <div class="header">
                 <div>
-                    <div class="breadcrumb">Pages / Voorraad / Overzicht</div>
-                    <h1>Inventory Overzicht</h1>
+                    <div class="breadcrumb">Pages / Voorraad / Low Stocks</div>
+                    <h1>Out/Low Stocks</h1>
                 </div>
                 <button class="logout-btn">Log out</button>
             </div>
@@ -2736,7 +2726,7 @@
                 </div>
                 @endif
 
-                <div class="stats-grid">
+                <!-- <div class="stats-grid">
                     <div class="stat-card"><span class="stat-icon">📦</span>
                         <div class="stat-value"><?= $products_in_stock; ?></div>
                         <div class="stat-label">TOTAAL ITEMS</div>
@@ -2757,14 +2747,13 @@
                         <div class="stat-value"><?= number_format($average_margin, 2); ?>%</div>
                         <div class="stat-label">WINST MARGE</div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="toolbar">
                     <div class="search-box">
                         <form method="GET" action="">
                             <input type="hidden" name="general_search" value="{{ request('general_search') }}">
                             <input type="hidden" name="desc_products" value="{{ request('desc_products') }}">
-                            <input type="hidden" name="item_type" value="{{ request('item_type') }}">
                             <input type="hidden" name="category" value="{{ request('category') }}">
                             <input type="hidden" name="color" value="{{ request('color') }}">
                             <input type="hidden" name="condition" value="{{ request('condition') }}">
@@ -2780,7 +2769,6 @@
                     <form method="GET" action="">
                         <input type="hidden" name="general_search" value="{{ request('general_search') }}">
                         <input type="hidden" name="desc_products" value="{{ request('desc_products') }}">
-                        <input type="hidden" name="item_type" value="{{ request('item_type') }}">
                         <input type="hidden" name="category" value="{{ request('category') }}">
                         <input type="hidden" name="color" value="{{ request('color') }}">
                         <input type="hidden" name="condition" value="{{ request('condition') }}">
@@ -2928,7 +2916,7 @@
                     </form>
 
                     {{-- Location --}}
-                    <div class="search-box">
+                    <!-- <div class="search-box">
                         <form method="GET" action="">
                             <input type="hidden" name="category" value="{{ request('general_search') }}">
                             <input type="hidden" name="desc_products" value="{{ request('desc_products') }}">
@@ -2940,7 +2928,7 @@
                             <input type="hidden" name="stock" value="{{ request('stock') }}">
                             <input type="text" placeholder="Location" id="location" name="location" value="<?= $_GET['location'] ?? NULL ?>" onkeyup="searchItems()">
                         </form>
-                    </div>
+                    </div> -->
 
                     {{-- Stock filter --}}
                     <form method="GET" action="">
@@ -2952,12 +2940,12 @@
                         <input type="hidden" name="color" value="{{ request('color') }}">
                         <input type="hidden" name="condition" value="{{ request('condition') }}">
                         <input type="hidden" name="stock" value="{{ request('stock') }}">
-                        <select class="filter-btn" name="stock" onchange="this.form.submit()">
+                        <!-- <select class="filter-btn" name="stock" onchange="this.form.submit()">
                             <option value="">All Stock</option>
                             <option value="in" {{ request('stock')=='in' ? 'selected' : '' }}>In Stock</option>
                             <option value="low" {{ request('stock')=='low' ? 'selected' : '' }}>Low Stock</option>
                             <option value="out" {{ request('stock')=='out' ? 'selected' : '' }}>Out of Stock</option>
-                        </select>
+                        </select> -->
                     </form>
 
                     <!--<button class="action-btn" onclick="exportInventory()">📊 Export</button>-->
@@ -3028,124 +3016,11 @@
                         }
                     </style>
 
-                    <div style="position: relative; display: inline-block;" id="actionsDropdown">
-
-                        <!-- Dropdown Toggle -->
-                        <button
-                            style="
-                                background:#3b82f6;
-                                color:white;
-                                padding:10px 16px;
-                                border:none;
-                                border-radius:6px;
-                                cursor:pointer;
-                                font-size:14px;
-                            "
-                            onclick="toggleActionsDropdown()">
-                            ⚙️ Actions
-                        </button>
-
-                        <!-- Dropdown Menu -->
-                        <div
-                            id="actionsMenu"
-                            style="
-                                display:none;
-                                position:absolute;
-                                background:white;
-                                min-width:180px;
-                                border-radius:6px;
-                                box-shadow:0px 4px 8px rgba(0,0,0,0.15);
-                                overflow:hidden;
-                                z-index:999;
-                            ">
-                            <button
-                                onclick="exportInventory()"
-                                style="
-                                    width:100%;
-                                    padding:10px 14px;
-                                    border:none;
-                                    background:white;
-                                    text-align:left;
-                                    cursor:pointer;
-                                    font-size:14px;
-                                "
-                                onmouseover="this.style.background='#f1f5f9'"
-                                onmouseout="this.style.background='white'">
-                                Export
-                            </button>
-
-                            <button
-                                onclick="syncAllMarketplaces(this)"
-                                style="
-                                    width:100%;
-                                    padding:10px 14px;
-                                    border:none;
-                                    background:white;
-                                    text-align:left;
-                                    cursor:pointer;
-                                    font-size:14px;
-                                "
-                                onmouseover="this.style.background='#f1f5f9'"
-                                onmouseout="this.style.background='white'">
-                                Sync All
-                            </button>
-
-                            <button
-                                onclick="bulkUpdateLocation()"
-                                style="
-                                    width:100%;
-                                    padding:10px 14px;
-                                    border:none;
-                                    background:white;
-                                    text-align:left;
-                                    cursor:pointer;
-                                    font-size:14px;
-                                "
-                                onmouseover="this.style.background='#f1f5f9'"
-                                onmouseout="this.style.background='white'">
-                                Bulk Location
-                            </button>
-
-                            <button
-                                onclick="bulkUpdateRetired()"
-                                style="
-                                    width:100%;
-                                    padding:10px 14px;
-                                    border:none;
-                                    background:white;
-                                    text-align:left;
-                                    cursor:pointer;
-                                    font-size:14px;
-                                "
-                                onmouseover="this.style.background='#f1f5f9'"
-                                onmouseout="this.style.background='white'">
-                                Bulk Retired
-                            </button>
-
-                            <button
-                                onclick="bulkUpdateLockPrice()"
-                                style="
-                                    width:100%;
-                                    padding:10px 14px;
-                                    border:none;
-                                    background:white;
-                                    text-align:left;
-                                    cursor:pointer;
-                                    font-size:14px;
-                                "
-                                onmouseover="this.style.background='#f1f5f9'"
-                                onmouseout="this.style.background='white'">
-                                Bulk Lock Price
-                            </button>
-                        </div>
-                    </div>
-
                     @php
                     $isDesc = request('desc_products') == 1;
                     @endphp
 
-                    <form method="GET" action="">
-                        <!-- Preserve filters -->
+                    <!-- <form method="GET" action="">
                         <input type="hidden" name="general_search" value="{{ request('general_search') }}">
                         <input type="hidden" name="category" value="{{ request('category') }}">
                         <input type="hidden" name="item_type" value="{{ request('item_type') }}">
@@ -3155,7 +3030,6 @@
                         <input type="hidden" name="stock" value="{{ request('stock') }}">
 
                         @if($isDesc)
-                        <!-- Clear descending -->
                         <button
                             type="submit"
                             name="desc_products"
@@ -3172,7 +3046,6 @@
                             ✕ Clear Descending
                         </button>
                         @else
-                        <!-- Apply descending -->
                         <button
                             type="submit"
                             name="desc_products"
@@ -3189,7 +3062,7 @@
                             ↓ Descending Products
                         </button>
                         @endif
-                    </form>
+                    </form> -->
 
 
                     <script>
@@ -3231,7 +3104,7 @@
                             data-item="<?= $product->item_no; ?>"
                             data-location="<?= $product->location ?? '' ?>">
 
-                            <input type="checkbox" class="card-checkbox">
+                            <!-- <input type="checkbox" class="card-checkbox"> -->
 
                             <div class="card-image" style="position: relative; width: auto; height: 240px; overflow: hidden; border: 1px solid #ddd; border-radius: 6px; background: #fff; display:flex; align-items:center; justify-content:center;">
                                 <img src="<?= !empty($product->imageurl) ? asset($product->imageurl) : asset($product->main_image) ?>"
@@ -3255,11 +3128,11 @@
                                 <div class="item-price">
                                     <span class="current-price">€<?= $product->price; ?></span>
                                 </div>
-                                <div class="card-actions">
-                                    <button class="icon-btn" onclick="editItem('<?= $product->id; ?>')">✏️ Edit</button>
-                                    <button class="icon-btn" onclick="adjustStock('<?= $product->id; ?>')">📊 Stock</button>
-                                </div>
                             </div>
+                            <div class="" style="padding-left: 20px; padding-right: 20px;">
+                                    <!-- <button class="icon-btn" onclick="editItem('<?= $product->id; ?>')">✏️ Edit</button> -->
+                                    <button style="width: 100%; font-size: 16px;" class="icon-btn" onclick="adjustStock('<?= $product->id; ?>')">Update Stock</button>
+                                </div>
                         </div>
                     <?php } ?>
 
@@ -3592,7 +3465,7 @@
                             <tr>
                                 <th width="30"><input type="checkbox" id="selectAllTable" onclick="selectAllItems()">
                                 </th>
-                                <th width="60">Afbeelding</th>
+                                <th width="it60">Afbeelding</th>
                                 <th>Item Nummer</th>
                                 <th>Naam</th>
                                 <th>Categorie</th>
@@ -5375,224 +5248,7 @@
     <!-- Notification container -->
     <div class="notification" id="notification"></div>
 
-    <!-- FAB -->
-    <div class="fab-container" id="fab">
-        <button class="quick-add-fab main-fab" onclick="toggleFab()">+</button>
-
-        <div class="fab-options">
-            <button class="fab-option" onclick="addNewItem()" title="Quick Add">
-                ➕
-            </button>
-
-            <button class="fab-option" onclick="openModal()" title="Add with Form">
-                📝
-            </button>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal-overlay" id="myModal">
-        <div class="modal modal-large">
-            <div class="modal-header">
-                <h2>Quick Information</h2>
-                <button class="close-btn" onclick="closeMyModal()">&times;</button>
-            </div>
-
-            <div class="modal-body">
-                <form id="addFormQuick" class="edit-form" method="POST" action="{{ route('add-product') }}" enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group" style="margin-bottom: 15px !important;">
-                        <label for="add_name_quick">Product Name</label>
-                        <input type="text" id="add_name_quick" name="title">
-                    </div>
-
-                    <div class="form-group" style="margin-bottom: 15px !important;">
-                        <label for="add_item_no_quick">Item Number</label>
-                        <input type="text" id="add_item_no_quick" name="item_no">
-                    </div>
-
-                    <div class="form-group" style="margin-bottom: 15px !important;">
-                        <label for="add_item_type_quick">Item Type</label>
-                        <select id="add_item_type_quick" name="item_type">
-                            <option value="">Select Item Type...</option>
-                            <option value="MINIFIG">MINIFIG</option>
-                            <option value="PART">PART</option>
-                            <option value="SET">SET</option>
-                            <option value="BOOK">BOOK</option>
-                            <option value="GEAR">GEAR</option>
-                            <option value="CATALOG">CATALOG</option>
-                            <option value="INSTRUCTION">INSTRUCTION</option>
-                            <option value="UNSORTED_LOT">UNSORTED_LOT</option>
-                            <option value="ORIGINAL_BOX">ORIGINAL_BOX</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group" style="margin-bottom: 15px !important;">
-                        <label for="add_color_id_quick">Color</label>
-                        <select id="add_color_id_quick" name="color_id">
-                            <option value="">Select Color...</option>
-                            @foreach ($colors as $color)
-                            <option value="{{ $color->bricklink_id }}">
-                                {{ $color->bricklink_name }}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            new Choices('#add_color_id_quick', {
-                                searchEnabled: true,
-                                itemSelectText: '',
-                                placeholderValue: 'Search category...',
-                                allowHTML: true
-                            });
-                        });
-                    </script>
-
-                    <div class="form-group" style="margin-bottom: 15px !important;">
-                        <label for="add_category_quick">Category</label>
-                        <select id="add_category_quick" name="category" required>
-                            <option value="">Select category...</option>
-                            @foreach ($categories as $category)
-                            <option value="{{ $category->title }}">{{ $category->title }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            new Choices('#add_category_quick', {
-                                searchEnabled: true,
-                                itemSelectText: '',
-                                placeholderValue: 'Search category...',
-                                allowHTML: true
-                            });
-                        });
-                    </script>
-
-                    <div class="form-group" style="margin-bottom: 15px !important;">
-                        <label for="add_condition_quick">Condition</label>
-                        <select id="add_condition_quick" name="condition">
-                            <option value="New">New</option>
-                            <option value="Used">Used</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group" style="margin-bottom: 15px !important;">
-                        <label for="add_stock_quick">Stock</label>
-                        <input type="text" id="add_stock_quick" name="stock">
-                    </div>
-
-                    <div class="form-group" style="margin-bottom: 15px !important;">
-                        <label for="add_price_quick">Price</label>
-                        <input type="number" id="add_price_quick" name="price" step="0.01" min="0">
-                    </div>
-
-                    <div class="form-actions">
-                        <button type="submit" class="btn-primary">Save Product</button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
-
-
-    <style>
-        /* ===== FAB ===== */
-        .fab-container {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 1000;
-        }
-
-        .main-fab {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            border: none;
-            background: #4CAF51;
-            color: #fff;
-            font-size: 28px;
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, .2);
-            transition: transform .25s ease;
-        }
-
-        .fab-options {
-            position: absolute;
-            bottom: 70px;
-            right: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(10px);
-            transition: all .25s ease;
-            margin-right: 12px;
-        }
-
-        .fab-option {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            border: none;
-            background: #fff;
-            color: #2563eb;
-            font-size: 18px;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
-            transition: transform .2s ease, background .2s ease;
-        }
-
-        .fab-option:hover {
-            transform: scale(1.1);
-            background: #eff6ff;
-        }
-
-        /* ACTIVE STATE */
-        .fab-container.active .fab-options {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translateY(0);
-        }
-
-        .fab-container.active .main-fab {
-            transform: rotate(45deg);
-        }
-    </style>
-
-    <script>
-        /* FAB TOGGLE */
-        function toggleFab() {
-            document.getElementById('fab').classList.toggle('active');
-        }
-
-        /* CLOSE FAB WHEN CLICKING OUTSIDE */
-        document.addEventListener('click', function(e) {
-            const fab = document.getElementById('fab');
-            if (!fab.contains(e.target)) {
-                fab.classList.remove('active');
-            }
-        });
-
-        /* ACTIONS */
-        function addNewItem() {
-            alert('Quick add clicked');
-            document.getElementById('fab').classList.remove('active');
-        }
-
-        function openModal() {
-            document.getElementById('myModal').classList.add('show');
-            document.getElementById('fab').classList.remove('active');
-        }
-
-        function closeMyModal() {
-            document.getElementById('myModal').classList.remove('show');
-        }
-    </script>
-
+    <!-- <button class="quick-add-fab" onclick="addNewItem()">+</button> -->
 
     <style>
         .gallery-item button {

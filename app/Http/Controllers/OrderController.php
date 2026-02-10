@@ -103,17 +103,18 @@ class OrderController extends Controller
         $order = DB::table('marketplaces_orders')->where('marketplace_order_id', $OrderId)->get();
         // $orderItems = DB::table('marketplaces_order_items')->where('marketplace_order_id', $OrderId)->get();
         $orderItems = DB::table('marketplaces_order_items as moi')
-            ->join('products as p', 'p.id', '=', 'moi.inventory_id')
+            ->leftJoin('products as p', 'p.id', '=', 'moi.inventory_id')
             ->where('moi.marketplace_order_id', $OrderId)
             ->orderBy('moi.condition_type', 'asc')
             ->orderBy('p.color_name', 'asc')
             ->select(
                 'moi.*',
-                'p.stock',
-                'p.id as product_id'
+                'moi.inventory_id as product_id',
+                DB::raw("COALESCE(p.stock, '--') as stock")
             )
             ->get();
-            // print_r($orderItems);die;
+
+        // print_r($orderItems);die;
         return view('orders/detail', compact('order', 'orderItems'));
     }
 

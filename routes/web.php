@@ -6,8 +6,7 @@ use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OverviewController;
 use App\Http\Controllers\AuthController;
-
-
+use App\Http\Controllers\LowStockController;
 
 // Login
 Route::get('/login', [AuthController::class,'showLogin'])->name('login');
@@ -48,6 +47,7 @@ Route::get('/download-sendcloud-pdf/{any}', [ShippingController::class, 'downloa
 Route::post('/orders/change-status/{status}', [OrderController::class, 'change_status'])->name('orders.changeStatus')->middleware('auth');
 
 Route::get('/overview', [OverviewController::class, 'index'])->middleware('auth');
+Route::get('/low-stock', [LowStockController::class, 'index'])->middleware('auth');
 Route::post('/update-product/{any}', [ProductController::class, 'update_from_overview_page'])->middleware('auth')->name('update-product');
 Route::post('/add-product', [ProductController::class, 'add_from_overview_page'])->middleware('auth')->name('add-product');
 Route::post('/update-stock/{any}', [ProductController::class, 'update_stock_from_overview_page'])->middleware('auth')->name('update-stock');
