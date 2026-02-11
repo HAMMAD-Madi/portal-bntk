@@ -5509,10 +5509,10 @@
                             btn.textContent = "Fetching...";
 
                             const payload = {
-                                item_no: document.getElementById("add_item_no")?.value || "ABC123",
-                                item_type: document.getElementById("add_item_type")?.value || "ABC123",
-                                item_color_id: document.getElementById("add_color_id")?.value || "ABC123",
-                                item_condition: document.getElementById("add_condition")?.value || "ABC123"
+                                item_no: document.getElementById("add_item_no_quick")?.value || "ABC123",
+                                item_type: document.getElementById("add_item_type_quick")?.value || "ABC123",
+                                item_color_id: document.getElementById("add_color_id_quick")?.value || "ABC123",
+                                item_condition: document.getElementById("add_condition_quick")?.value || "ABC123"
                             };
 
                             fetch("https://portal.bntk.eu/send-to-webhook", {
