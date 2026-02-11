@@ -3102,19 +3102,19 @@
                         $item_type = $product->item_type;
                         $bricklink = NULL;
                         if ($item_type == "MINIFIG") {
-                            $bricklink = "https://www.bricklink.com/v2/catalog/catalogitem.page?M=" . $product->item_no;
+                            $bricklink = "https://www.bricklink.com/v2/catalog/catalogitem.page?M=" . $product->item_no . "&C=". $product->color_id;
                         } else if ($item_type == "SET") {
-                            $bricklink = "https://www.bricklink.com/v2/catalog/catalogitem.page?S=" . $product->item_no;
+                            $bricklink = "https://www.bricklink.com/v2/catalog/catalogitem.page?S=" . $product->item_no . "&C=". $product->color_id;
                         } else if ($item_type == "PART") {
-                            $bricklink = "https://www.bricklink.com/v2/catalog/catalogitem.page?P=" . $product->item_no;
+                            $bricklink = "https://www.bricklink.com/v2/catalog/catalogitem.page?P=" . $product->item_no . "&C=". $product->color_id;
                         } else if ($item_type == "BOOK") {
-                            $bricklink = "https://www.bricklink.com/v2/catalog/catalogitem.page?B=" . $product->item_no;
+                            $bricklink = "https://www.bricklink.com/v2/catalog/catalogitem.page?B=" . $product->item_no . "&C=". $product->color_id;
                         } else if ($item_type == "GEAR") {
-                            $bricklink = "https://www.bricklink.com/v2/catalog/catalogitem.page?G=" . $product->item_no;
+                            $bricklink = "https://www.bricklink.com/v2/catalog/catalogitem.page?G=" . $product->item_no . "&C=". $product->color_id;
                         } else if ($item_type == "CATALOG") {
-                            $bricklink = "https://www.bricklink.com/v2/catalog/catalogitem.page?C=" . $product->item_no;
+                            $bricklink = "https://www.bricklink.com/v2/catalog/catalogitem.page?C=" . $product->item_no . "&C=". $product->color_id;
                         } else if ($item_type == "INSTRUCTION") {
-                            $bricklink = "https://www.bricklink.com/v2/catalog/catalogitem.page?I=" . $product->item_no;
+                            $bricklink = "https://www.bricklink.com/v2/catalog/catalogitem.page?I=" . $product->item_no . "&C=". $product->color_id;
                         }
                         ?>
                         <div class="inventory-card"
