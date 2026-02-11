@@ -2661,12 +2661,14 @@
                                         background-color: transparent;
                                         transition: all 0.2s ease-in-out;
                                     }
+
                                     .sub-item.active .nav-link,
                                     .nav-link[aria-current="page"] {
                                         color: #fff;
                                         background-color: #60B864 !important;
                                         box-shadow: 0 2px 8px rgba(0, 123, 255, 0.12);
                                     }
+
                                     .sub-item .nav-link:hover {
                                         color: black;
                                         background-color: #4da653;
@@ -3096,6 +3098,25 @@
                 <div class="inventory-grid" id="gridView">
 
                     <?php foreach ($products as $product) { ?>
+                        <?php
+                        $item_type = $product->item_type;
+                        $bricklink = NULL;
+                        if ($item_type == "MINIFIG") {
+                            $bricklink = "https://www.bricklink.com/v2/catalog/catalogitem.page?M=" . $product->item_no;
+                        } else if ($item_type == "SET") {
+                            $bricklink = "https://www.bricklink.com/v2/catalog/catalogitem.page?S=" . $product->item_no;
+                        } else if ($item_type == "PART") {
+                            $bricklink = "https://www.bricklink.com/v2/catalog/catalogitem.page?P=" . $product->item_no;
+                        } else if ($item_type == "BOOK") {
+                            $bricklink = "https://www.bricklink.com/v2/catalog/catalogitem.page?B=" . $product->item_no;
+                        } else if ($item_type == "GEAR") {
+                            $bricklink = "https://www.bricklink.com/v2/catalog/catalogitem.page?G=" . $product->item_no;
+                        } else if ($item_type == "CATALOG") {
+                            $bricklink = "https://www.bricklink.com/v2/catalog/catalogitem.page?C=" . $product->item_no;
+                        } else if ($item_type == "INSTRUCTION") {
+                            $bricklink = "https://www.bricklink.com/v2/catalog/catalogitem.page?I=" . $product->item_no;
+                        }
+                        ?>
                         <div class="inventory-card"
                             data-id="<?= $product->id; ?>"
                             data-category="<?= $product->category; ?>"
@@ -3115,7 +3136,9 @@
                             </div>
 
                             <div class="card-content">
-                                <a href="https://www.bricklink.com/v2/catalog/catalogitem.page?S=<?= $product->item_no; ?>"><div class="item-title"><?= $product->title; ?></div></a>
+                                <a href="https://www.bricklink.com/v2/catalog/catalogitem.page?S=<?= $product->item_no; ?>">
+                                    <div class="item-title"><?= $product->title; ?></div>
+                                </a>
                                 <div class="item-details">
                                     <div><strong>Item # </strong> <?= $product->item_no; ?></div>
                                     <div><strong>Categorie:</strong> <?= $product->category; ?></div>
@@ -3130,9 +3153,9 @@
                                 </div>
                             </div>
                             <div class="" style="padding-left: 20px; padding-right: 20px;">
-                                    <!-- <button class="icon-btn" onclick="editItem('<?= $product->id; ?>')">✏️ Edit</button> -->
-                                    <button style="width: 100%; font-size: 16px;" class="icon-btn" onclick="adjustStock('<?= $product->id; ?>')">Update Stock</button>
-                                </div>
+                                <!-- <button class="icon-btn" onclick="editItem('<?= $product->id; ?>')">✏️ Edit</button> -->
+                                <button style="width: 100%; font-size: 16px;" class="icon-btn" onclick="adjustStock('<?= $product->id; ?>')">Update Stock</button>
+                            </div>
                         </div>
                     <?php } ?>
 
