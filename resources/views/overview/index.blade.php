@@ -5486,6 +5486,69 @@
                         <label for="add_price_quick">Price</label>
                         <input type="number" id="add_price_quick" name="price" step="0.01" min="0">
                     </div>
+                    <button type="button" class="btn-primary" style="
+                        text-align: center;
+                        height: 25px;
+                        width: 100%;
+                        background: #4CAF51;
+                        color: #fff;
+                        border-radius: 5px;
+                        padding: 10px 18px;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center; /* ✅ Center horizontally */
+                        gap: 8px;
+                        box-shadow: 0 3px 8px rgba(0,0,0,0.2);" id="fetchQuickPriceBtn">Fetch Price</button>
+
+                    <script>
+                        document.getElementById("fetchQuickPriceBtn").addEventListener("click", function() {
+                            const btn = this;
+                            btn.disabled = true;
+                            btn.textContent = "Fetching...";
+
+                            const payload = {
+                                item_no: document.getElementById("add_item_no")?.value || "ABC123",
+                                item_type: document.getElementById("add_item_type")?.value || "ABC123",
+                                item_color_id: document.getElementById("add_color_id")?.value || "ABC123",
+                                item_condition: document.getElementById("add_condition")?.value || "ABC123"
+                            };
+
+                            fetch("https://portal.bntk.eu/send-to-webhook", {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+                                    },
+                                    body: JSON.stringify(payload)
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    console.log("Response:", data);
+
+                                    if (data.avg_price !== undefined) {
+                                        const priceField = document.getElementById("add_price_quick");
+                                        priceField.value = data.avg_price;
+                                        priceField.removeAttribute("disabled");
+                                    } else {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Invalid Item No',
+                                            text: 'Please provide the valid Item No, Item Type, Color ID & Condition to fetch the price!'
+                                        });
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error("Error fetching price:", error);
+                                    alert("Failed to fetch price.");
+                                })
+                                .finally(() => {
+                                    btn.disabled = false;
+                                    btn.textContent = "Fetch Price";
+                                });
+                        });
+                    </script>
 
                     <div class="form-actions">
                         <button type="submit" class="btn-primary">Save Product</button>

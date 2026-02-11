@@ -1,10 +1,14 @@
-docker cp a400wsckk88ogos84woksgog-215942115315:/app/storage/app/public/uploads_backup.zip /data/portal-bntk/storage/app/public/uploads_backup.zip
+- docker cp a400wsckk88ogos84woksgog-215942115315:/app/storage/app/public/uploads_backup.zip /data/portal-bntk/storage/app/public/uploads_backup.zip
 
-docker cp /data/portal-bntk/storage/app/public/uploads_backup.zip a400wsckk88ogos84woksgog-205041519174:/app/storage/app/public/uploads_backup.zip
+- docker cp /data/portal-bntk/storage/app/public/uploads_backup.zip a400wsckk88ogos84woksgog-210457060595:/app/storage/app/public/uploads_backup.zip
 
-sed -i '/http {/a\    client_max_body_size 128M;' nginx.conf
+- php artisan storage:link
 
-nginx -s reload
+- sudo chmod -R 777 storage
+
+- sed -i '/http {/a\    client_max_body_size 128M;' nginx.conf
+
+- nginx -s reload
 
 cat > /assets/php-fpm.conf << 'EOF'
 [www]

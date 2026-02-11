@@ -3115,7 +3115,7 @@
                             </div>
 
                             <div class="card-content">
-                                <div class="item-title"><?= $product->title; ?></div>
+                                <a href="https://www.bricklink.com/v2/catalog/catalogitem.page?S=<?= $product->item_no; ?>"><div class="item-title"><?= $product->title; ?></div></a>
                                 <div class="item-details">
                                     <div><strong>Item # </strong> <?= $product->item_no; ?></div>
                                     <div><strong>Categorie:</strong> <?= $product->category; ?></div>
