@@ -74,7 +74,8 @@ class OrderController extends Controller
         $all_orders = DB::table('marketplaces_orders')->get();
         $order_this_month = DB::table('marketplaces_orders')->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->count();
         $revenue_this_month = DB::table('marketplaces_orders')->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->sum('total_amount');
-        $items_sold_this_month = DB::table('marketplaces_order_items')->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->count();
+        // $items_sold_this_month = DB::table('marketplaces_order_items')->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->count();
+        $items_sold_this_month = DB::table('marketplaces_order_items')->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->sum('quantity');
         // Get number of days passed so far (including today)
         $daysSoFar = Carbon::now()->day;
         // Calculate average
