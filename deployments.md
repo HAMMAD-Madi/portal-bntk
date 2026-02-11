@@ -1,6 +1,6 @@
 - docker cp a400wsckk88ogos84woksgog-215942115315:/app/storage/app/public/uploads_backup.zip /data/portal-bntk/storage/app/public/uploads_backup.zip
 
-- docker cp /data/portal-bntk/storage/app/public/uploads_backup.zip a400wsckk88ogos84woksgog-114544361004:/app/storage/app/public/uploads_backup.zip
+- docker cp /data/portal-bntk/storage/app/public/uploads_backup.zip a400wsckk88ogos84woksgog-160037442062:/app/storage/app/public/uploads_backup.zip
 
 - php artisan storage:link
 

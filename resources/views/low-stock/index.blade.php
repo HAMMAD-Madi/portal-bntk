@@ -3136,7 +3136,7 @@
                             </div>
 
                             <div class="card-content">
-                                <a href="https://www.bricklink.com/v2/catalog/catalogitem.page?S=<?= $product->item_no; ?>">
+                                <a target="_blank" href="<?= $bricklink; ?>">
                                     <div class="item-title"><?= $product->title; ?></div>
                                 </a>
                                 <div class="item-details">
