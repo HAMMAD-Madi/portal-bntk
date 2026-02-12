@@ -1196,7 +1196,7 @@
 
 
                             <!-- PICKING ORDER BUTTON -->
-                            <button id="openPickingOrder" class="btn btn-primary timer-btn">
+                            <button id="openPickingOrder" class="btn btn-primary timer-btn" onclick="toggleTimer()">
                                 📦 Picking Order
                             </button>
 
