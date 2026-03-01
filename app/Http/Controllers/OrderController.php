@@ -86,6 +86,8 @@ class OrderController extends Controller
         $to_be_picked_orders = DB::table('marketplaces_orders')->where('order_group', 'to_be_picked')->get();
         $ready_to_packed_orders = DB::table('marketplaces_orders')->where('order_group', 'ready_to_pack')->get();
 
+        $cancelled_orders = DB::table('marketplaces_orders')->where('status', 'cancelled')->get();
+
         return view('orders/index', compact(
             'all_orders',
             'order_this_month',
@@ -95,7 +97,8 @@ class OrderController extends Controller
             'waiting_invoice_orders',
             'to_be_picked_orders',
             'ready_to_packed_orders',
-            'waiting_for_payment_orders'
+            'waiting_for_payment_orders',
+            'cancelled_orders'
         ));
     }
 
@@ -122,7 +125,7 @@ class OrderController extends Controller
     public function update_order_item_is_picked(Request $request)
     {
         DB::table('marketplaces_order_items')
-            ->where('id', $request->id)
+            ->where('inventory_id', $request->id)
             ->update([
                 'is_picked' => $request->is_picked
             ]);

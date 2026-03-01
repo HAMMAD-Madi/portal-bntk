@@ -91,6 +91,8 @@ class ShippingController extends Controller
         $packed_orders = DB::table('marketplaces_orders')->where('order_group', 'waiting_payment')->get();
         $shipped_orders = DB::table('marketplaces_orders')->where('order_group', 'shipped')->get();
         $completed_orders = DB::table('marketplaces_orders')->where('order_group', 'completed')->get();
+
+        $cancelled_orders = DB::table('marketplaces_orders')->where('status', 'cancelled')->get();
         
         $pending_returns = DB::table('marketplaces_returns')->where('return_status', 'requested')->count();
         $approved_returns = DB::table('marketplaces_returns')->where('return_status', 'approved')->count();
@@ -135,7 +137,7 @@ class ShippingController extends Controller
         
         return view('shipping/index', compact(
             'all_orders', 'order_this_month', 'revenue_this_month', 'averageDailyRevenue', 'items_sold_this_month',
-            'waiting_invoice_orders', 'to_be_picked_orders', 'ready_to_packed_orders', 'packed_orders', 'shipped_orders', 'completed_orders', 'return_orders',
+            'waiting_invoice_orders', 'to_be_picked_orders', 'ready_to_packed_orders', 'packed_orders', 'shipped_orders', 'completed_orders', 'cancelled_orders', 'return_orders',
             'pending_returns', 'approved_returns', 'rejected_returns', 'processed_returns_this_month', 'top_return_reasons'
         ));
     }

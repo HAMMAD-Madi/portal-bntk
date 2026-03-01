@@ -1306,6 +1306,7 @@ $sections = [
     ['orders' => $to_be_picked_orders, 'id' => 'to-be-picked', 'title' => 'To be picked', 'status' => 'ready_to_pack', 'checkboxClass' => 'order-checkbox', 'button' => 'Mark as Picked'],
     ['orders' => $ready_to_packed_orders, 'id' => 'ready-to-be-packed', 'title' => 'Ready to be packed', 'status' => 'shipped', 'checkboxClass' => 'order-checkbox-ready', 'button' => 'Mark as Packed'],
     ['orders' => $waiting_for_payment_orders, 'id' => 'waiting-payment', 'title' => 'Waiting for a payment', 'status' => 'waiting_invoice', 'checkboxClass' => 'order-checkbox-payment', 'button' => 'Mark as Paid'],
+    ['orders' => $cancelled_orders, 'id' => 'cancelled-orders', 'title' => 'Cancelled Orders', 'status' => 'cancelled', 'checkboxClass' => '', 'button' => ''],
 ];
 @endphp
 
@@ -1326,7 +1327,9 @@ $sections = [
             <table class="orders-table">
                 <thead>
                     <tr>
-                        <th><input type="checkbox" class="select-all" data-checkbox-class="{{ $section['checkboxClass'] }}" style="cursor:pointer;"></th>
+                        @if($section['title'] != "Cancelled Orders")
+                            <th><input type="checkbox" class="select-all" data-checkbox-class="{{ $section['checkboxClass'] }}" style="cursor:pointer;"></th>
+                        @endif
                         <th></th>
                         <th>Created</th>
                         <th>Status</th>
@@ -1348,7 +1351,9 @@ $sections = [
                             };
                         @endphp
                         <tr>
-                            <td><input type="checkbox" name="orders[]" value="{{ $order->id }}" class="{{ $section['checkboxClass'] }}"></td>
+                            @if($section['title'] != "Cancelled Orders")
+                                <td><input type="checkbox" name="orders[]" value="{{ $order->id }}" class="{{ $section['checkboxClass'] }}"></td>
+                            @endif
                             <td class="platform-cell">
                                 <div class="platform-icon">{{ substr($order->marketplace_type, 0, 2) }}</div>
                             </td>

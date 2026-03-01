@@ -1215,7 +1215,7 @@
 
                                     <div class="picking-actions">
                                         <button id="prevBtn" onclick="prevItem()">⬅ Previous</button>
-                                        <button id="nextBtn" onclick="nextItem()">Next ➡</button>
+                                        <button id="nextBtn" onclick="nextItem()">Picked ➡</button>
                                     </div>
 
                                 </div>
@@ -1528,6 +1528,28 @@
                                             })
                                             .then(() => {
                                                 row.dataset.picked = pickedValue;
+                                            })
+                                            .catch(() => {
+                                                alert('Failed to update pick status');
+                                                this.checked = !this.checked;
+                                            });
+                                    });
+                                    document.getElementById('nextBtn').addEventListener('click', function() {
+                                        const pickedValue = this.checked ? 1 : 0;
+
+                                        fetch("https://portal.bntk.eu/update-order-item-is-picked", {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/json',
+                                                    'X-CSRF-TOKEN': '<?= csrf_token(); ?>'
+                                                },
+                                                body: JSON.stringify({
+                                                    id: itemId,
+                                                    is_picked: 1
+                                                })
+                                            })
+                                            .then(() => {
+                                                row.dataset.picked = 1;
                                             })
                                             .catch(() => {
                                                 alert('Failed to update pick status');

@@ -322,6 +322,11 @@
             color: #004085;
         }
 
+        .badge-cancelled {
+            background-color: #F8D7DA;
+            color: #721C24;
+        }
+
         .badge-pending {
             background-color: #FFF3CD;
             color: #856404;
@@ -1825,6 +1830,11 @@
                     <div class="stat-chart"></div>
                 </div>
                 <div class="stat-card">
+                    <div class="stat-label">Cancelled Orders</div>
+                    <div class="stat-number"><?= count($cancelled_orders) ?></div>
+                    <div class="stat-chart"></div>
+                </div>
+                <div class="stat-card">
                     <div class="stat-label">Pending Returns</div>
                     <div class="stat-number">8</div>
                     <div class="stat-chart"></div>
@@ -2039,6 +2049,67 @@
                                             <td><input type="checkbox" class="order-check"></td>
                                             <td><?= $order->created_at ?></td>
                                             <td><span class="badge badge-completed">COMPLETED</span></td>
+                                            <td> <a href="https://portal.bntk.eu/shipping-detail/<?= $order->marketplace_order_id ?>"># <?= $order->marketplace_order_id ?></a></a></td>
+                                            <td><?= $order->customer_name ?></td>
+                                            <td><span class="platform-badge platform-bl"><?= $order->marketplace_type ?></span></td>
+                                            <td>€ <?= $order->subtotal ?></td>
+                                            <td>€ <?= $order->total_amount ?></td>
+                                            <!--<td>26 Jul 2025</td>-->
+                                            <!--<td><span style="color: #ff9800;">⏳ Waiting</span></td>-->
+                                            <!--<td>-->
+                                            <!--    <div class="action-buttons">-->
+                                            <!--        <button class="btn btn-primary btn-sm" onclick="viewOrder('A0007CAAA')">👁️</button>-->
+                                            <!--        <button class="btn btn-success btn-sm" onclick="requestFeedback('A0007CAAA')">✓</button>-->
+                                            <!--    </div>-->
+                                            <!--</td>-->
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <br><br>
+                <!-- Cancelled Orders -->
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection('cancelled')">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span class="toggle-icon collapsed" id="cancelled-icon">▼</span>
+                            <span class="section-title">
+                                Cancelled Orders
+                                <span class="section-count"><?= count($cancelled_orders) ?></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="section-content collapsed" id="cancelled-content">
+                        <div class="bulk-actions">
+                            <span class="bulk-label"><span id="cancelled-selected">0</span> orders selected</span>
+                            <!--<button class="btn btn-primary btn-sm" onclick="bulkBricklinkFeedback('cancelled')">⭐ Bricklink Feedback</button>-->
+                            <!--<button class="btn btn-secondary btn-sm" onclick="bulkReviews('cancelled')">⭐ Reviews</button>-->
+                            <!--<button class="btn btn-secondary btn-sm" onclick="exportSelected('cancelled')">📥 Export</button>-->
+                        </div>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Created</th>
+                                        <th>Status</th>
+                                        <th>Order</th>
+                                        <th>Customer</th>
+                                        <th>Platform</th>
+                                        <th>Subtotal</th>
+                                        <th>Total</th>
+                                        <!--<th>Delivered</th>-->
+                                        <!--<th>Feedback</th>-->
+                                        <!--<th>Actions</th>-->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($cancelled_orders as $order){ ?>
+                                        <tr>
+                                            <td><?= $order->created_at ?></td>
+                                            <td><span class="badge badge-cancelled">Cancelled</span></td>
                                             <td> <a href="https://portal.bntk.eu/shipping-detail/<?= $order->marketplace_order_id ?>"># <?= $order->marketplace_order_id ?></a></a></td>
                                             <td><?= $order->customer_name ?></td>
                                             <td><span class="platform-badge platform-bl"><?= $order->marketplace_type ?></span></td>

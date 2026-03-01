@@ -226,10 +226,39 @@ function renderResults(items) {
       }
 
       modal.classList.remove('hidden');
+      syncFilterToModal();
     });
 
     result.appendChild(card);
   });
+}
+
+function syncFilterToModal() {
+
+    const filterColor = document.getElementById("color-pre-selection");
+    const filterCondition = document.getElementById("add_condition");
+
+    const modalColor = document.getElementById("modalColor");
+    const modalCondition = document.getElementById("modalCondition");
+
+    if (!filterColor || !modalColor) return;
+
+    // ---- COLOR MAPPING (match by text, select by value) ----
+    const selectedColorText = filterColor.options[filterColor.selectedIndex]?.text?.trim();
+
+    if (selectedColorText && selectedColorText !== "All Colors") {
+        Array.from(modalColor.options).forEach(option => {
+            if (option.text.trim() === selectedColorText) {
+                modalColor.value = option.value; // sets bricklink_id
+            }
+        });
+    }
+
+    // ---- CONDITION MAPPING ----
+    if (filterCondition && modalCondition) {
+        const conditionValue = filterCondition.value.toLowerCase(); 
+        modalCondition.value = conditionValue; // "New" -> "new"
+    }
 }
 
 // Init

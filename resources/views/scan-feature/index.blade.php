@@ -1316,10 +1316,10 @@
                   </select>
                     
                    <!--EAN -->
-                  <input type="text" name="modalGTIN" class="form-control" id="modalEan" placeholder="EAN Code" />
+                  <input style="display: none;" value="" type="text" name="modalGTIN" class="form-control" id="modalEan" placeholder="EAN Code" />
             
                    <!--SKU -->
-                  <input type="text" name="modalSKU" class="form-control" id="modalSku" placeholder="SKU" />
+                  <input style="display: none;" value="" type="text" name="modalSKU" class="form-control" id="modalSku" placeholder="SKU" />
             
                    <!--Retain Checkbox -->
                   <div class="checkbox-container">
@@ -1343,9 +1343,9 @@
                   </div>
             
                    <!--Image & Gallery -->
-                  <input type="text" name="modalUrl" class="form-control" id="modalUrl" placeholder="Image URL" />
-                  <input name="modalImageFile" type="file" class="form-control-file" id="modalImageFile" />
-                  <input name="modalGallery[]" type="file" class="form-control-file" id="modalGallery" multiple />
+                  <input style="display: none;" value="" type="text" name="modalUrl" class="form-control" id="modalUrl" placeholder="Image URL" />
+                  <input style="display: none;" value="" name="modalImageFile" type="file" class="form-control-file" id="modalImageFile" />
+                  <input style="display: none;" value="" name="modalGallery[]" type="file" class="form-control-file" id="modalGallery" multiple />
             
                   <button id="modalSaveButton" type="submit" class="btn-save">Save</button>
                 </form>
@@ -1429,6 +1429,63 @@
                       <option value="set">Set</option>
                     </select>
                   </div>
+
+                    <!-- Tom Select CSS & JS -->
+                    <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.default.min.css" rel="stylesheet">
+                    <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+
+                    <select id="color-pre-selection" name="color">
+                        <option value="">All Colors</option>
+                        @foreach ($colors as $color)
+                            <option value="{{ $color->bricklink_name }}">
+                                {{ $color->bricklink_name }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    <select id="add_condition" name="condition">
+                        <option value="New">New</option>
+                        <option value="Used">Used</option>
+                    </select>
+
+                    <script>
+document.addEventListener("DOMContentLoaded", function() {
+
+    // Initialize Tom Select for Color only
+    const tsColor = new TomSelect("#color-pre-selection", {
+        create: false,
+        sortField: { field: "text", direction: "asc" },
+        placeholder: "Search color..."
+    });
+
+    // Normal selects
+    const categorySelect = document.getElementById("category");
+    const conditionSelect = document.getElementById("add_condition");
+
+    // Restore saved values from localStorage
+    const savedColor = localStorage.getItem("savedColor");
+    const savedCondition = localStorage.getItem("savedCondition");
+    const savedCategory = localStorage.getItem("savedCategory");
+
+    if (savedColor) tsColor.setValue(savedColor);
+    if (savedCondition) conditionSelect.value = savedCondition;
+    if (savedCategory) categorySelect.value = savedCategory;
+
+    // Save changes to localStorage
+    tsColor.input.addEventListener("change", function() {
+        localStorage.setItem("savedColor", this.value);
+    });
+
+    categorySelect.addEventListener("change", function() {
+        localStorage.setItem("savedCategory", this.value);
+    });
+
+    conditionSelect.addEventListener("change", function() {
+        localStorage.setItem("savedCondition", this.value);
+    });
+
+});
+</script>
             
                   <div class="field inline">
                     <label for="upload">Or upload an image</label>
@@ -1457,6 +1514,7 @@
 
         </div>
     </div>
+
 </body>
 </html>
 
