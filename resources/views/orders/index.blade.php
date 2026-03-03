@@ -1306,7 +1306,7 @@ $sections = [
     ['orders' => $to_be_picked_orders, 'id' => 'to-be-picked', 'title' => 'To be picked', 'status' => 'ready_to_pack', 'checkboxClass' => 'order-checkbox', 'button' => 'Mark as Picked'],
     ['orders' => $ready_to_packed_orders, 'id' => 'ready-to-be-packed', 'title' => 'Ready to be packed', 'status' => 'shipped', 'checkboxClass' => 'order-checkbox-ready', 'button' => 'Mark as Packed'],
     ['orders' => $waiting_for_payment_orders, 'id' => 'waiting-payment', 'title' => 'Waiting for a payment', 'status' => 'waiting_invoice', 'checkboxClass' => 'order-checkbox-payment', 'button' => 'Mark as Paid'],
-    ['orders' => $cancelled_orders, 'id' => 'cancelled-orders', 'title' => 'Cancelled Orders', 'status' => 'cancelled', 'checkboxClass' => '', 'button' => ''],
+    ['orders' => $cancelled_orders, 'id' => 'cancelled-orders', 'title' => 'Cancelled Orders', 'status' => 'cancelled', 'checkboxClass' => '', 'button' => '', 'class' => 'collapsed'],
 ];
 @endphp
 
@@ -1314,7 +1314,7 @@ $sections = [
 <form action="{{ route('orders.changeStatus', $section['status']) }}" method="POST" onsubmit="return validateOrders('{{ $section['id'] }}', '{{ $section['checkboxClass'] }}')">
     @csrf
     <div class="order-section">
-        <div class="section-header {{ (count($section['orders']) > 0) ? '' : 'collapsed' }}" onclick="toggleSection('{{ $section['id'] }}')">
+        <div class="section-header {{ (count($section['orders']) > 0) ? '' : 'collapsed' }} {{ $section['class'] ?? '' }}" onclick="toggleSection('{{ $section['id'] }}')">
             <div class="section-title">
                 <span class="expand-icon">▼</span>
                 <span>{{ $section['title'] }}</span>
@@ -1323,7 +1323,7 @@ $sections = [
             <button type="submit" class="header-btn primary" onclick="event.stopPropagation()">{{ $section['button'] }}</button>
         </div>
 
-        <div class="section-content {{ (count($section['orders']) > 0) ? '' : 'collapsed' }}" id="{{ $section['id'] }}">
+        <div class="section-content {{ (count($section['orders']) > 0) ? '' : 'collapsed' }} {{ $section['class'] ?? '' }}" id="{{ $section['id'] }}">
             <table class="orders-table">
                 <thead>
                     <tr>

@@ -890,13 +890,13 @@
                                     }
                                 </style>
 
-                                 <div class="sub-item" id="low-stock-item">
+                                <div class="sub-item" id="low-stock-item">
                                     <a href="https://portal.bntk.eu/low-stock" class="nav-link" id="low-stock-link">
                                         <span class="nav-icon">📊</span>
                                         <span class="nav-text">Out/Low Stocks</span>
                                     </a>
                                 </div>
-                                
+
                                 <!--<div class="sub-item">-->
                                 <!--    <a href="/voorraad/nieuw-product" class="nav-link">-->
                                 <!--        <span class="nav-icon">➕</span>-->
@@ -1425,7 +1425,12 @@
 
                                 document.getElementById('openPickingOrder').addEventListener('click', () => {
                                     pickingItems = Array.from(document.querySelectorAll('#partsTableBody tr'));
-                                    currentIndex = 0;
+                                    // ✅ Find first unpicked item
+                                    currentIndex = pickingItems.findIndex(row => row.dataset.picked === '0');
+                                    // If all items are picked, fallback to first item
+                                    if (currentIndex === -1) {
+                                        currentIndex = 0;
+                                    }
                                     openPicking();
                                 });
 
