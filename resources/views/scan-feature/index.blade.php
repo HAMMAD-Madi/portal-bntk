@@ -12,7 +12,7 @@
       <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://portal.bntk.eu/assets/styles.css" />
-  <script defer src="https://portal.bntk.eu/assets/js/yoo1.js"></script>
+  <script defer src="https://portal.bntk.eu/assets/js/bricklink_official.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/assets/styles/choices.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/choices.js/assets/scripts/choices.min.js"></script>
     <style>
