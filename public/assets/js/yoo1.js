@@ -210,6 +210,7 @@ function renderResults(items) {
       }
       if (!found) categorySelect.value = '';
 
+      syncFilterToModal();
       // DATABASE CHECK
       const itemNo    = item.id;
       const color     = $('#modalColor')?.value || '';
@@ -226,7 +227,6 @@ function renderResults(items) {
       }
 
       modal.classList.remove('hidden');
-      syncFilterToModal();
     });
 
     result.appendChild(card);
