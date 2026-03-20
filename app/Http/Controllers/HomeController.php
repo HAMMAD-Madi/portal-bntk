@@ -33,7 +33,7 @@ class HomeController extends Controller
             $products_in_stock = DB::table('products')->sum('stock');
 
             
-        $ready_to_ship_orders = DB::table('marketplaces_orders')->where('order_group', 'waiting_payment')->count();
+        $ready_to_ship_orders = DB::table('marketplaces_orders')->where('order_group', 'waiting_payment')->where('status', '!=', 'cancelled')->count();
 
 
         $total_orders = DB::table('marketplaces_orders')

@@ -81,10 +81,10 @@ class OrderController extends Controller
         // Calculate average
         $averageDailyRevenue = $daysSoFar > 0 ? ($revenue_this_month / $daysSoFar) : 0;
 
-        $waiting_for_payment_orders = DB::table('marketplaces_orders')->where('order_group', 'waiting_payment')->get();
-        $waiting_invoice_orders = DB::table('marketplaces_orders')->where('order_group', 'waiting_invoice')->get();
-        $to_be_picked_orders = DB::table('marketplaces_orders')->where('order_group', 'to_be_picked')->get();
-        $ready_to_packed_orders = DB::table('marketplaces_orders')->where('order_group', 'ready_to_pack')->get();
+        $waiting_for_payment_orders = DB::table('marketplaces_orders')->where('order_group', 'waiting_payment')->where('status', '!=', 'cancelled')->get();
+        $waiting_invoice_orders = DB::table('marketplaces_orders')->where('order_group', 'waiting_invoice')->where('status', '!=', 'cancelled')->get();
+        $to_be_picked_orders = DB::table('marketplaces_orders')->where('order_group', 'to_be_picked')->where('status', '!=', 'cancelled')->get();
+        $ready_to_packed_orders = DB::table('marketplaces_orders')->where('order_group', 'ready_to_pack')->where('status', '!=', 'cancelled')->get();
 
         $cancelled_orders = DB::table('marketplaces_orders')->where('status', 'cancelled')->get();
 
